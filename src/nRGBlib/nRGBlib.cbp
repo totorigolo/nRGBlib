@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="nRGBlib" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\nRGBlib" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\nRGBlib" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="..\include\maths.h" />
+		<Unit filename="..\include\nAUDIO.h" />
+		<Unit filename="..\include\nCOMMON.h" />
+		<Unit filename="..\include\nGEO.h" />
+		<Unit filename="..\include\nGUI.h" />
+		<Unit filename="..\include\nRGBlib.h" />
+		<Unit filename="..\include\nTILE.h" />
+		<Unit filename="..\include\nVIEW.h" />
+		<Unit filename="..\include\tt.h" />
+		<Unit filename="Makefile" />
+		<Unit filename="RGBstrips.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="clearScreen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="drawBox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="drawChar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="drawCircle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="drawDisc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="drawLine.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="drawStr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="drawTile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="drawTriangle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="getPixel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="maths.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="setPixel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\samples\CXSnake\Makefile" />
+		<Unit filename="..\samples\CXSnake\main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\samples\CXSnake\pos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\samples\CXSnake\pos.h" />
+		<Unit filename="..\samples\CXSnake\snake.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\samples\CXSnake\snake.h" />
+		<Unit filename="..\samples\CXSnake\tile_snake.h" />
+		<Unit filename="..\samples\CXSnake\utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\samples\CXSnake\utils.h" />
+		<Unit filename="..\samples\GeometriCX\Makefile" />
+		<Unit filename="..\samples\GeometriCX\main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\samples\GeometriCX\tileset.h" />
+		<Unit filename="..\samples\Makefile" />
+		<Unit filename="..\samples\helloRGB\Makefile" />
+		<Unit filename="..\samples\helloRGB\main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
