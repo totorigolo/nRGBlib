@@ -10,7 +10,7 @@ OBJS = main.o snake.o pos.o
 DISTDIR = ../bin
 vpath %.tns $(DISTDIR)
 
-all: snake.tns
+all: CXSnake.tns
 
 %.o: %.c
 	$(GCC) $(GCCFLAGS) -c $<
@@ -18,11 +18,11 @@ all: snake.tns
 %.o: %.S
 	$(GCC) $(GCCFLAGS) -c $<
 
-snake.tns: $(OBJS)
+CXSnake.tns: $(OBJS)
 	$(LD) $(LDFLAGS) $^ -o $(@:.tns=.elf)
 	@mkdir -p $(DISTDIR)
 	$(OBJCOPY) -O binary $(@:.tns=.elf) $(DISTDIR)/$@
 
 clean:
 	rm -f *.o *.elf
-	rm -f $(DISTDIR)/snake.tns
+	rm -f $(DISTDIR)/CXSnake.tns

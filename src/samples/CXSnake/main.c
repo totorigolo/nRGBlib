@@ -16,8 +16,8 @@ _scrsize();
 
     int score = 0, jouer = 1;
     char boxstr[280];
-    Color colTexte = { .raw = RGB(0, 255, 255)}; //colTexte.raw = RGB(0, 255, 255);
-    Color couleurFond = { .raw = RGB(0, 0, 0)}; //couleurFond.raw = RGB(0, 0, 0);
+    Color colTexte = RGB(0, 255, 255); //colTexte.raw = RGB(0, 255, 255);
+    Color couleurFond = RGB(0, 0, 0); //couleurFond.raw = RGB(0, 0, 0);
 /*        colTexte.R = 0;
         colTexte.G = 255;
         colTexte.B = 255;

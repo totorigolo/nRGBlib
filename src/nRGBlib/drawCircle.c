@@ -9,14 +9,14 @@ void drawCircleRGB_(short x_centre, short y_centre, short rayon, char R, char G,
 
     while (x <= y) // Tant qu'on est dans le second octant
     {
-        setPixelRGB( x + x_centre,  y + y_centre, RGB(R, G, B));
-        setPixelRGB( y + x_centre,  x + y_centre, RGB(R, G, B));
-        setPixelRGB(-x + x_centre,  y + y_centre, RGB(R, G, B));
-        setPixelRGB(-y + x_centre,  x + y_centre, RGB(R, G, B));
-        setPixelRGB( x + x_centre, -y + y_centre, RGB(R, G, B));
-        setPixelRGB( y + x_centre, -x + y_centre, RGB(R, G, B));
-        setPixelRGB(-x + x_centre, -y + y_centre, RGB(R, G, B));
-        setPixelRGB(-y + x_centre, -x + y_centre, RGB(R, G, B));
+        setPixel( x + x_centre,  y + y_centre, RGB(R, G, B));
+        setPixel( y + x_centre,  x + y_centre, RGB(R, G, B));
+        setPixel(-x + x_centre,  y + y_centre, RGB(R, G, B));
+        setPixel(-y + x_centre,  x + y_centre, RGB(R, G, B));
+        setPixel( x + x_centre, -y + y_centre, RGB(R, G, B));
+        setPixel( y + x_centre, -x + y_centre, RGB(R, G, B));
+        setPixel(-x + x_centre, -y + y_centre, RGB(R, G, B));
+        setPixel(-y + x_centre, -x + y_centre, RGB(R, G, B));
 
         if (m > 0) // Choix du point F
         {

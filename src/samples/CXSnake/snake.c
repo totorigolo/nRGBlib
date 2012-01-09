@@ -21,11 +21,11 @@ int Snake()
     Pos *Bottom = NULL; // de la dernière partie du serpent
     Pos *Current = NULL; // ?????
 
-    Color colScoreTxt = { .raw = RGB(255, 255, 0)}; // Bleu
-    Color colScoreFond = { .raw = RGB(0, 0, 0)}; // Noir
-    Color colSerpent = { .raw = RGB(0, 255, 0)}; // Vert
-    Color colFond = { .raw = RGB(222, 184, 135)}; // Marron
-    Color colPomme = { .raw = RGB(255, 0, 0)}; // Rouge
+    Color colScoreTxt = RGB(255, 255, 0); // Bleu
+    Color colScoreFond = RGB(0, 0, 0); // Noir
+    Color colSerpent = RGB(0, 255, 0); // Vert
+    Color colFond = RGB(222, 184, 135); // Marron
+    Color colPomme = RGB(255, 0, 0); // Rouge
         /*colScoreTxt.components.R = 0;
         colScoreTxt.components.G = 255;
         colScoreTxt.components.B = 255;

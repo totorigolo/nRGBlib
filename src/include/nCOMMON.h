@@ -3,7 +3,7 @@
 
 #include <os.h>
 
-#define RGB(r, g, b) (uint16_t) ((r << 11) | (g << 5) | b)
+#define RGB(r, g, b) (Color) (uint16_t) ((r << 11) | (g << 5) | b)
 
 typedef union Color {
     struct /**/components/**/ {

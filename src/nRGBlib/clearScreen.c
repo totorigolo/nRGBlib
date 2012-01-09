@@ -19,7 +19,7 @@ void clearScreen(Color color)
         {
             for (j = 0; j < SCREEN_HEIGHT; j++)
             {
-                setPixelRGB(i, j, color);
+                setPixel(i, j, color);
             }
         }
         // TODO: Optimiser

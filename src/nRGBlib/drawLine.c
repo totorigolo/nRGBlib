@@ -22,7 +22,7 @@ void drawLineRGB_(short x1, short y1, short x2, short y2, char R, char G, char B
         x = x1;
         y = y1;
 
-        setPixelRGB(x, y, RGB(R, G, B));
+        setPixel(x, y, RGB(R, G, B));
 
         for (y = y1+1; y <= y2; ++y)
         {
@@ -34,7 +34,7 @@ void drawLineRGB_(short x1, short y1, short x2, short y2, char R, char G, char B
             else
                 d += bincr;
 
-            setPixelRGB(x, y, RGB(R, G, B));
+            setPixel(x, y, RGB(R, G, B));
         }
     }
     else // Parcours l'axe horizontal
@@ -54,7 +54,7 @@ void drawLineRGB_(short x1, short y1, short x2, short y2, char R, char G, char B
         x = x1;
         y = y1;
 
-        setPixelRGB(x, y, RGB(R, G, B));
+        setPixel(x, y, RGB(R, G, B));
 
         for (x = x1+1; x <= x2; ++x)
         {
@@ -65,7 +65,7 @@ void drawLineRGB_(short x1, short y1, short x2, short y2, char R, char G, char B
             }
             else
                 d += bincr;
-            setPixelRGB(x, y, RGB(R, G, B));
+            setPixel(x, y, RGB(R, G, B));
         }
     }
 }
