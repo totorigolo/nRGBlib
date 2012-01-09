@@ -3,14 +3,16 @@
 /// Dessine une ligne quelconque en couleurs
 void drawLine_(short x1, short y1, short x2, short y2, Color c)
 {
-    int d, dx, dy, aincr, bincr, xincr, yincr, x, y;
-printf("l1\n");
+    int d, dx, dy, aincr, bincr, xincr, yincr, x, y, tmp;
+
     if (abs(x2 - x1) < abs(y2 - y1)) // Parcours par l'axe vertical
     {
         if (y1 > y2)
         {
-            echangerEntiers(&x1, &x2);
-            echangerEntiers(&y1, &y2);
+            //echangerEntiers(&x1, &x2);
+            //echangerEntiers(&y1, &y2);
+            tmp = x1; x1 = x2; x2 = tmp;
+            tmp = y1; y1 = y2; y2 = tmp;
         }
 
         xincr = x2 > x1 ? 1 : -1;
@@ -36,14 +38,15 @@ printf("l1\n");
 
             setPixel(x, y, c);
         }
-printf("l2\n");
     }
     else // Parcours l'axe horizontal
     {
         if (x1 > x2)
         {
-            echangerEntiers(&x1, &x2);
-            echangerEntiers(&y1, &y2);
+            //echangerEntiers(&x1, &x2);
+            //echangerEntiers(&y1, &y2);
+            tmp = x1; x1 = x2; x2 = tmp;
+            tmp = y1; y1 = y2; y2 = tmp;
         }
 
         yincr = y2 > y1 ? 1 : -1;
@@ -68,9 +71,7 @@ printf("l2\n");
                 d += bincr;
             setPixel(x, y, c);
         }
-printf("l3\n");
     }
-printf("l4\n");
 }
 inline void drawLine(Line *l, Color c)
 {

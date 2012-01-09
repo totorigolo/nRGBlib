@@ -18,7 +18,7 @@ float Cosinus(float x);
 float Sinus(float x);
 
 /// Echange les valeurs de deux entiers
-inline void echangerEntiers(int* x, int* y);
+void echangerEntiers(short int* x, short int* y);
 
 /// Calcule l'inverse de la valeur entre 0 et 1
 float Inverse(float val);

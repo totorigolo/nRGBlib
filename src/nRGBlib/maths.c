@@ -23,9 +23,9 @@ float Puissance(float x, int y)
 }
 
 /// Echange les valeurs de deux entiers
-inline void echangerEntiers(int* x, int* y)
+void echangerEntiers(short int *x, short int *y)
 {
-    int t = *x;
+    short int t = *x;
     *x = *y;
     *y = t;
 }
