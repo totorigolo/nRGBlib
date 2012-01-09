@@ -21,35 +21,35 @@ int Snake()
     Pos *Bottom = NULL; // de la dernière partie du serpent
     Pos *Current = NULL; // ?????
 
-    Color colScoreTxt; // Vert
-    Color colScoreFond; // Vert
-    Color colSerpent; // Vert
-    Color colFond; // Marron
-    Color colPomme; // Rouge
-        colScoreTxt.R = 0;
-        colScoreTxt.G = 255;
-        colScoreTxt.B = 255;
-        colScoreFond.R = 0;
-        colScoreFond.G = 0;
-        colScoreFond.B = 0;
-        colSerpent.R = 0;
-        colSerpent.G = 255;
-        colSerpent.B = 0;
-        colFond.R = 139;
-        colFond.G = 69;
-        colFond.B = 19;
-        colPomme.R = 255;
-        colPomme.G = 0;
-        colPomme.B = 0;
+    Color colScoreTxt = { .raw = RGB(255, 255, 0)}; // Bleu
+    Color colScoreFond = { .raw = RGB(0, 0, 0)}; // Noir
+    Color colSerpent = { .raw = RGB(0, 255, 0)}; // Vert
+    Color colFond = { .raw = RGB(222, 184, 135)}; // Marron
+    Color colPomme = { .raw = RGB(255, 0, 0)}; // Rouge
+        /*colScoreTxt.components.R = 0;
+        colScoreTxt.components.G = 255;
+        colScoreTxt.components.B = 255;
+        colScoreFond.components.R = 0;
+        colScoreFond.components.G = 0;
+        colScoreFond.components.B = 0;
+        colSerpent.components.R = 0;
+        colSerpent.components.G = 255;
+        colSerpent.components.B = 0;
+        colFond.components.R = 222;
+        colFond.components.G = 184;
+        colFond.components.B = 135;
+        colPomme.components.R = 255;
+        colPomme.components.G = 0;
+        colPomme.components.B = 0;*/
 
     // On efface l'écran
-    clearScreenColor(colFond);
+    clearScreen(colFond);
 
     // On crée la zone des scores
     score = 0;
     scoreTxt = "Score = 0";
-    drawBox2DColor(0, 0, SCREEN_WIDTH, 2 * 8, colScoreFond);
-    drawStrColorFond(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond);
+    drawBox_(0, 0, SCREEN_WIDTH, 2 * 8, colScoreFond);
+    drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond);
 
     // On initialise le tableau à zéro
     for (i = 0; i < 40+1; i++)
@@ -69,7 +69,7 @@ int Snake()
     // On crée le serpent (size = 4), et on l'affiche
     for (i = 0; i < size; i++)
     {
-        drawSquareColor(Current->x * 8, Current->y * 8, 8, colSerpent);
+        drawSquare_(Current->x * 8, Current->y * 8, 8, colSerpent);
         tab[Current->x][Current->y] = 1;
         Current = Pos_add(Current, 1, 0); // Ajoute une case
     }
@@ -82,7 +82,7 @@ int Snake()
     // On change la position de la pomme aléatoirement
     applex = abs(randMinMax(1, 40-1));
     appley = abs(randMinMax(4, 30-1));
-    drawSquareColor(applex * 8, appley * 8, 8, colPomme); // On dessine la pomme
+    drawSquare_(applex * 8, appley * 8, 8, colPomme); // On dessine la pomme
 
     // Boucle de jeu
     while (loose == 0 && !isKeyPressed(KEY_NSPIRE_ESC))
@@ -154,7 +154,7 @@ int Snake()
             // Monte le score et le réaffiche
             score += 1;
             sprintf(scoreTxt, "Score = %d", score);
-            drawStrColorFond(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond);
+            drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond);
 
             // On agrandit le serpent
             size++;
@@ -167,7 +167,7 @@ int Snake()
                 appley = abs(randMinMax(4, 30-1));
             }
             while (tab[applex][appley] == 1);
-            drawSquareColor(applex * 8, appley * 8, 8, colPomme); // On la dessine
+            drawSquare_(applex * 8, appley * 8, 8, colPomme); // On la dessine
         }
 
         // On enlève le dernier élément de la queue
@@ -178,7 +178,7 @@ int Snake()
         else // On enlève la queue
         {
             tab[Bottom->x][Bottom->y] = 0;
-            drawSquareColor(Bottom->x * 8, Bottom->y * 8, 8, colFond); // Efface
+            drawSquare_(Bottom->x * 8, Bottom->y * 8, 8, colFond); // Efface
             Bottom = Pos_pop(Bottom);
         }
 
@@ -189,6 +189,6 @@ int Snake()
         }
     }
 
-    clearScreenColor(colFond);
+    clearScreen(colFond);
     return score;
 }

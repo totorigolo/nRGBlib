@@ -14,11 +14,11 @@ void drawTile8Unicolor(short x, short y, char size, Tile8Unicolor tile)
         {
             if ((tile.data[i][0] << j) & 0x8) // 4 premiers pixels
             {
-                drawBox2DRGB(x + (j * f), y + (i * f), f, f, tile.R, tile.G, tile.B);
+                drawBoxRGB_(x + (j * f), y + (i * f), f, f, tile.R, tile.G, tile.B);
             }
             if ((tile.data[i][1] << j) & 0x8) // 4 derniers pixels
             {
-                drawBox2DRGB(x + ((j + 4) * f), y + (i * f), f, f, tile.R, tile.G, tile.B);
+                drawBoxRGB_(x + ((j + 4) * f), y + (i * f), f, f, tile.R, tile.G, tile.B);
             }
         }
     }
@@ -33,11 +33,11 @@ void drawTile8Multicolors(short x, short y, char size, Tile8Multicolors tile)
         {
             if ((tile.data[i][0] << j) & 0x8) // 4 premiers pixels
             {
-                drawBox2DRGB(x + (j * f), y + (i * f), f, f, tile.data[i][2 + j * 3], tile.data[i][3 + j * 3], tile.data[i][4 + j * 3]);
+                drawBoxRGB_(x + (j * f), y + (i * f), f, f, tile.data[i][2 + j * 3], tile.data[i][3 + j * 3], tile.data[i][4 + j * 3]);
             }
             if ((tile.data[i][1] << j) & 0x8) // 4 derniers pixels
             {
-                drawBox2DRGB(x + ((j + 4) * f), y + (i * f), f, f, tile.data[i][2 + (j + 4) * 3], tile.data[i][3 + (j + 4) * 3], tile.data[i][4 + (j + 4) * 3]);
+                drawBoxRGB_(x + ((j + 4) * f), y + (i * f), f, f, tile.data[i][2 + (j + 4) * 3], tile.data[i][3 + (j + 4) * 3], tile.data[i][4 + (j + 4) * 3]);
             }
         }
     }

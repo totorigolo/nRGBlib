@@ -1,19 +1,21 @@
 #include <os.h>
-//#include <nGUI.h>
+#include <nGEO.h>
+#include <nGUI.h>
 
 int main(void)
 {
-printf("int = %d | short = %d | char = %d\n", sizeof(int), sizeof(short), sizeof(char));
     // Sers à rien mais obligatoire pour le moment
     lcd_isincolor();
     lcd_ingray();
     lcd_incolor();
     _scrsize();
 
-/*    drawStrRGB(0, 0, "Hello !", 2, 0, 137, 255, 137);
-    drawBox2DRGB(0, 30, 20, 20, 21, 249, 64);
-    getPixel(0, 35);
-///*/
+    //drawStr(short x, short y, char* str, char size, char endl, Color col);
+    drawStr(0, 0, "Hello !", 2, 0, RGB(137, 255, 137)); // Verdâtre
+    drawSquareRGB_(0, 30, 20, 255, 0, 255); // Rose
+    Color c = getPixel(0, 35);//
+    printf("R = %d, G = %d, B = %d\n", c.components.R, c.components.G, c.components.B);
+//
     // On attends
     while (any_key_pressed());
     while (!any_key_pressed())

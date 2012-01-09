@@ -16,18 +16,18 @@ _scrsize();
 
     int score = 0, jouer = 1;
     char boxstr[280];
-    Color colTexte;
-    Color couleurFond;
-        colTexte.R = 0;
+    Color colTexte = { .raw = RGB(0, 255, 255)}; //colTexte.raw = RGB(0, 255, 255);
+    Color couleurFond = { .raw = RGB(0, 0, 0)}; //couleurFond.raw = RGB(0, 0, 0);
+/*        colTexte.R = 0;
         colTexte.G = 255;
         colTexte.B = 255;
         couleurFond.R = 0;
         couleurFond.G = 0;
-        couleurFond.B = 0;
+        couleurFond.B = 0;*/
 
     // Message de bienvenue
-    clearScreenColor(couleurFond);
-	drawStrColor(0, 0  * CHAR_HEIGHT, "             +----------+\n"
+    clearScreen(couleurFond);
+	drawStr(0, 0  * CHAR_HEIGHT, "             +----------+\n"
                                       "             | CX Snake |\n"
                                       "             +----------+\n"
                                       "by totorigolo  : CX code\n"
@@ -72,8 +72,8 @@ _scrsize();
                         "   - Esc to quit.", score);
 
         // Affiche le Game Over
-        clearScreenColor(couleurFond);
-        drawStrColor(0, 0  * CHAR_HEIGHT, boxstr, 1, 1, colTexte);
+        clearScreen(couleurFond);
+        drawStr(0, 0  * CHAR_HEIGHT, boxstr, 1, 1, colTexte);
 
         while (1)
         {

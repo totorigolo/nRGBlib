@@ -1,7 +1,7 @@
 #include <nGEO.h>
 
 /// Dessine un cercle en couleur
-void drawCircleRGB(short x_centre, short y_centre, short rayon, char R, char G, char B)
+void drawCircleRGB_(short x_centre, short y_centre, short rayon, char R, char G, char B)
 {
     short x = 0;
     short y = rayon; // On se place en haut du cercle
@@ -9,14 +9,14 @@ void drawCircleRGB(short x_centre, short y_centre, short rayon, char R, char G, 
 
     while (x <= y) // Tant qu'on est dans le second octant
     {
-        setPixelRGB( x + x_centre,  y + y_centre, R, G, B);
-        setPixelRGB( y + x_centre,  x + y_centre, R, G, B);
-        setPixelRGB(-x + x_centre,  y + y_centre, R, G, B); // 2
-        setPixelRGB(-y + x_centre,  x + y_centre, R, G, B); // 4
-        setPixelRGB( x + x_centre, -y + y_centre, R, G, B);
-        setPixelRGB( y + x_centre, -x + y_centre, R, G, B);
-        setPixelRGB(-x + x_centre, -y + y_centre, R, G, B); // 1
-        setPixelRGB(-y + x_centre, -x + y_centre, R, G, B); // 3
+        setPixelRGB( x + x_centre,  y + y_centre, RGB(R, G, B));
+        setPixelRGB( y + x_centre,  x + y_centre, RGB(R, G, B));
+        setPixelRGB(-x + x_centre,  y + y_centre, RGB(R, G, B));
+        setPixelRGB(-y + x_centre,  x + y_centre, RGB(R, G, B));
+        setPixelRGB( x + x_centre, -y + y_centre, RGB(R, G, B));
+        setPixelRGB( y + x_centre, -x + y_centre, RGB(R, G, B));
+        setPixelRGB(-x + x_centre, -y + y_centre, RGB(R, G, B));
+        setPixelRGB(-y + x_centre, -x + y_centre, RGB(R, G, B));
 
         if (m > 0) // Choix du point F
         {
@@ -27,7 +27,15 @@ void drawCircleRGB(short x_centre, short y_centre, short rayon, char R, char G, 
         m += 8 * x + 4;
     }
 }
-void drawCircleColor(short x, short y, short rayon, Color col)
+inline void drawCircle_(short x, short y, short rayon, Color col)
 {
-    drawCircleRGB(x, y, rayon, col.R, col.G, col.B);
+    drawCircleRGB_(x, y, rayon, col.components.R, col.components.G, col.components.B);
+}
+inline void drawCircleRGB(Circle *c, char R, char G, char B)
+{
+    drawCircleRGB_(c->x, c->y, c->radius, R, G, B);
+}
+inline void drawCircle(Circle *c, Color col)
+{
+    drawCircleRGB_(c->x, c->y, c->radius, col.components.R, col.components.G, col.components.B);
 }

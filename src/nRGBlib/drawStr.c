@@ -4,7 +4,7 @@
 
 /// Ecris un texte aux positions données en changeant la couleur de fond
 ///    - retour est un booléen qui défini si le retour à la ligne est permis
-void drawStrRGBFond(short x, short y, char* str, char size, char retour, char Rt, char Gt, char Bt, char Rf, char Gf, char Bf)
+void drawStrBckgRGB(short x, short y, char* str, char size, char retour, char Rt, char Gt, char Bt, char Rf, char Gf, char Bf)
 {
     short i, f;
     f = size < 1 ? 1 : size;
@@ -27,7 +27,7 @@ void drawStrRGBFond(short x, short y, char* str, char size, char retour, char Rt
         }
         else
         {
-            drawCharRGBFond(x, y, str[i], f, Rt, Gt, Bt, Rf, Gf, Bf);
+            drawCharBckgRGB(x, y, str[i], f, Rt, Gt, Bt, Rf, Gf, Bf);
             x += (CHAR_WIDTH * f);
         }
         // Si on va dépasser de l'acran
@@ -45,18 +45,14 @@ void drawStrRGBFond(short x, short y, char* str, char size, char retour, char Rt
         }
     }
 }
-inline void drawStrColorFond(short x, short y, char* str, char size, char retour, Color colT, Color colF)
+inline void drawStrBckg(short x, short y, char* str, char size, char retour, Color colT, Color colF)
 {
-    drawStrRGBFond(x, y, str, size, retour, colT.R, colT.G, colT.B, colF.R, colF.G, colF.B);
-}
-inline void drawStrFond(short x, short y, char* str, char size, char retour)
-{
-    drawStrRGBFond(x, y, str, size, retour, 0, 0, 0, 255, 255, 255);
+    drawStrBckgRGB(x, y, str, size, retour, colT.components.R, colT.components.G, colT.components.B, colF.components.R, colF.components.G, colF.components.B);
 }
 
 /// Ecris un texte aux positions données
-///    - retour est un booléen qui défini si le retour à la ligne est permis
-void drawStrRGB(short x, short y, char* str, char size, char retour, char R, char G, char B)
+///    - endl est un booléen qui défini si le retour à la ligne est permis
+void drawStrRGB(short x, short y, char* str, char size, char endl, char R, char G, char B)
 {
     short i, f;
     f = size < 1 ? 1 : size;
@@ -66,7 +62,7 @@ void drawStrRGB(short x, short y, char* str, char size, char retour, char R, cha
         if (str[i] == '\n') // 0x0A = '\n'
         {
             // Si on peut faire des retours à la ligne, on y va
-            if (retour)
+            if (endl)
             {
                 x = 0;
                 y += (CHAR_HEIGHT * f);
@@ -86,7 +82,7 @@ void drawStrRGB(short x, short y, char* str, char size, char retour, char R, cha
         if (x >= SCREEN_WIDTH - CHAR_WIDTH)
         {
             // Retour à la ligne activé, on saute
-            if (retour)
+            if (endl)
             {
                 x = 0;
                 y += (CHAR_HEIGHT * f);
@@ -97,11 +93,7 @@ void drawStrRGB(short x, short y, char* str, char size, char retour, char R, cha
         }
     }
 }
-inline void drawStrColor(short x, short y, char* str, char size, char retour, Color col)
+inline void drawStr(short x, short y, char* str, char size, char endl, Color c)
 {
-    drawStrRGB(x, y, str, size, retour, col.R, col.G, col.B);
-}
-inline void drawStr(short x, short y, char* str, char size, char retour)
-{
-    drawStrRGB(x, y, str, size, retour, 0, 0, 0);
+    drawStrRGB(x, y, str, size, endl, c.components.R, c.components.G, c.components.B);
 }

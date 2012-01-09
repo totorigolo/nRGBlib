@@ -1,7 +1,7 @@
 #include <nGEO.h>
 
 /// Dessine une ligne quelconque en couleurs
-void drawLineRGB(int x1, int y1, int x2, int y2, char R, char G, char B)
+void drawLineRGB_(short x1, short y1, short x2, short y2, char R, char G, char B)
 {
     int d, dx, dy, aincr, bincr, xincr, yincr, x, y;
 
@@ -22,7 +22,7 @@ void drawLineRGB(int x1, int y1, int x2, int y2, char R, char G, char B)
         x = x1;
         y = y1;
 
-        setPixelRGB(x, y, R, G, B);
+        setPixelRGB(x, y, RGB(R, G, B));
 
         for (y = y1+1; y <= y2; ++y)
         {
@@ -34,7 +34,7 @@ void drawLineRGB(int x1, int y1, int x2, int y2, char R, char G, char B)
             else
                 d += bincr;
 
-            setPixelRGB(x, y, R, G, B);
+            setPixelRGB(x, y, RGB(R, G, B));
         }
     }
     else // Parcours l'axe horizontal
@@ -54,7 +54,7 @@ void drawLineRGB(int x1, int y1, int x2, int y2, char R, char G, char B)
         x = x1;
         y = y1;
 
-        setPixelRGB(x, y, R, G, B);
+        setPixelRGB(x, y, RGB(R, G, B));
 
         for (x = x1+1; x <= x2; ++x)
         {
@@ -65,11 +65,19 @@ void drawLineRGB(int x1, int y1, int x2, int y2, char R, char G, char B)
             }
             else
                 d += bincr;
-            setPixelRGB(x, y, R, G, B);
+            setPixelRGB(x, y, RGB(R, G, B));
         }
     }
 }
-void drawLineColor(int x1, int y1, int x2, int y2, Color col)
+inline void drawLine_(short x1, short y1, short x2, short y2, Color col)
 {
-    drawLineRGB(x1, y1, x2, y2, col.R, col.G, col.B);
+    drawLineRGB_(x1, y1, x2, y2, col.components.R, col.components.G, col.components.B);
+}
+inline void drawLineRGB(Line *l, char R, char G, char B)
+{
+    drawLineRGB_(l->x1, l->y1, l->x2, l->y2, R, G, B);
+}
+inline void drawLine(Line *l, Color col)
+{
+    drawLineRGB_(l->x1, l->y1, l->x2, l->y2, col.components.R, col.components.G, col.components.B);
 }

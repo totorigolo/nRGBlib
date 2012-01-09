@@ -4,8 +4,10 @@
 //   -> See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
 
 /// Récupère la valeur du pixel
-Pixel getPixel(short x, short y)
+Color getPixel(short x, short y)
 {
+    Color c;
+
     if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y > SCREEN_HEIGHT)
         return;
 
@@ -29,15 +31,7 @@ Pixel getPixel(short x, short y)
         volatile unsigned char *scr_base = SCREEN_BASE_ADDRESS;
         volatile unsigned char *ptr = scr_base + 2*(x + SCREEN_WIDTH * y);
 
-        char R = *(ptr + 11) * 8;
-        char G = *(ptr + 5) * 4;
-        char B = *ptr * 8;
-
-        printf("R = %d\n", R);
-        printf("G = %d\n", G);
-        printf("B = %d\n", B);
-
-        //                               Rouge 0-31        Vert 0-63       Bleu 0-31
-        //*(volatile unsigned short*)ptr = ((R / 8) << 11) | ((G / 4) << 5) | (B / 8);
+        c.raw = *(volatile unsigned short*)ptr;
     }
+    return c;
 }

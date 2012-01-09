@@ -2,34 +2,43 @@
 #include <os.h>
 
 /// Dessine un rectangle en RGB
-void drawBox2DRGB(short x, short y, short w, short h, char R, char G, char B)
+void drawBoxRGB_(short x, short y, short w, short h, char R, char G, char B)
 {
     short i, j;
     for (i = x; i < (x + w); i++)
     {
         for (j = y; j < (y + h); j++)
         {
-            setPixelRGB(i, j, R, G, B);
+            setPixel(i, j, RGB(R, G, B));
         }
     }
 }
-inline void drawSquareRGB(short x, short y, short c, char R, char G, char B)
+inline void drawBox_(short x, short y, short w, short h, Color col)
 {
-    drawBox2DRGB(x, y, c, c, R, G, B);
+    drawBoxRGB_(x, y, w, h, col.components.R, col.components.G, col.components.B);
 }
-inline void drawBoxRGB(Box box, char R, char G, char B)
+inline void drawBoxRGB(Box *box, char R, char G, char B)
 {
-    drawBox2DRGB(box.x, box.y, box.w, box.h, R, G, B);
+    drawBoxRGB_(box->x, box->y, box->w, box->h, R, G, B);
 }
-inline void drawBox2DColor(short x, short y, short w, short h, Color col)
+inline void drawBox(Box *box, Color col)
 {
-    drawBox2DRGB(x, y, w, h, col.R, col.G, col.B);
+    drawBoxRGB_(box->x, box->y, box->w, box->h, col.components.R, col.components.G, col.components.B);
 }
-inline void drawSquareColor(short x, short y, short c, Color col)
+
+inline void drawSquareRGB_(short x, short y, short c, char R, char G, char B)
 {
-    drawSquareRGB(x, y, c, col.R, col.G, col.B);
+    drawBoxRGB_(x, y, c, c, R, G, B);
 }
-inline void drawBoxColor(Box box, Color col)
+inline void drawSquare_(short x, short y, short c, Color col)
 {
-    drawBox2DRGB(box.x, box.y, box.w, box.h, col.R, col.G, col.B);
+    drawBoxRGB_(x, y, c, c, col.components.R, col.components.G, col.components.B);
+}
+inline void drawSquareRGB(Square *s, char R, char G, char B)
+{
+    drawBoxRGB_(s->x, s->y, s->c, s->c, R, G, B);
+}
+inline void drawSquare(Square *s, Color col)
+{
+    drawBoxRGB_(s->x, s->y, s->c, s->c, col.components.R, col.components.G, col.components.B);
 }

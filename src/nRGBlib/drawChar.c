@@ -1,7 +1,7 @@
 #include <nGUI.h>
 
 /// Dessine une lettre aux position données en changeant la couleur de fond
-void drawCharRGBFond(short x, short y, char ch, char size, char R, char G, char B, char Rf, char Gf, char Bf)
+void drawCharBckgRGB(short x, short y, char ch, char size, char R, char G, char B, char Rb, char Gb, char Bb)
 {
     short i, j, f;
     f = size < 1 ? 1 : size;
@@ -11,22 +11,18 @@ void drawCharRGBFond(short x, short y, char ch, char size, char R, char G, char 
         {
             if ((charMap_ascii[(unsigned char)ch][i] << j) & 0x80)
             {
-                drawBox2DRGB(x + (j * f), y + (i * f), f, f, R, G, B);
+                drawBoxRGB_(x + (j * f), y + (i * f), f, f, R, G, B);
             }
             else
             {
-                drawBox2DRGB(x + (j * f), y + (i * f), f, f, Rf, Gf, Bf);
+                drawBoxRGB_(x + (j * f), y + (i * f), f, f, Rb, Gb, Bb);
             }
         }
     }
 }
-inline void drawCharColorFond(short x, short y, char ch, char size, Color colT, Color colF)
+inline void drawCharBckg(short x, short y, char ch, char size, Color colT, Color colB)
 {
-    drawCharRGBFond(x, y, ch, size, colT.R, colT.G, colT.B, colF.R, colF.G, colF.B);
-}
-inline void drawCharFond(short x, short y, char ch, char size)
-{
-    drawCharRGBFond(x, y, ch, size, 0, 0, 0, 255, 255, 255);
+    drawCharBckgRGB(x, y, ch, size, colT.components.R, colT.components.G, colT.components.B, colB.components.R, colB.components.G, colB.components.B);
 }
 
 /// Dessine une lettre aux position données
@@ -40,16 +36,12 @@ void drawCharRGB(short x, short y, char ch, char size, char R, char G, char B)
         {
             if ((charMap_ascii[(unsigned char)ch][i] << j) & 0x80)
             {
-                drawBox2DRGB(x + (j * f), y + (i * f), f, f, R, G, B);
+                drawBoxRGB_(x + (j * f), y + (i * f), f, f, R, G, B);
             }
         }
     }
 }
-inline void drawCharColor(short x, short y, char ch, char size, Color col)
+inline void drawChar(short x, short y, char ch, char size, Color col)
 {
-    drawCharRGB(x, y, ch, size, col.R, col.G, col.B);
-}
-inline void drawChar(short x, short y, char ch, char size)
-{
-    drawCharRGB(x, y, ch, size, 0, 0, 0);
+    drawCharRGB(x, y, ch, size, col.components.R, col.components.G, col.components.B);
 }
