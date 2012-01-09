@@ -17,7 +17,7 @@ void setPixel(short x, short y, Color c)
         if (lcd_isincolor())
             lcd_ingray();
 
-        char col = (c.components.R % 32 + c.components.G % 64 + c.components.B % 32) / 48; // 3 * 16
+        char col = (c.R % 32 + c.G % 64 + c.B % 32) / 48; // 3 * 16
         unsigned char* p = (unsigned char*)(SCREEN_BASE_ADDRESS + ((x >> 1) + (y << 7) + (y << 5)));
         *p = (x & 1) ? ((*p & 0xF0) | col) : ((*p & 0x0F) | (col << 4));
     }
@@ -32,7 +32,7 @@ void setPixel(short x, short y, Color c)
         ptr = scr_base + 2*(x + SCREEN_WIDTH * y);
 
         //                               Rouge 0-31        Vert 0-63       Bleu 0-31
-        //*(volatile unsigned short*)ptr = (((c.components.R % 32) << 11) | ((c.components.G % 64) << 5) | (c.components.B % 32));
+        //*(volatile unsigned short*)ptr = (((c.R % 32) << 11) | ((c.G % 64) << 5) | (c.B % 32));
         *(volatile unsigned short*)ptr = c.raw;
     }
 }

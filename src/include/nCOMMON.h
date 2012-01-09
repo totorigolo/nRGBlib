@@ -6,11 +6,11 @@
 #define RGB(r, g, b) (Color) (uint16_t) ((r << 11) | (g << 5) | b)
 
 typedef union Color {
-    struct /**/components/**/ {
+    struct {
         int R : 5; // peu importe le type de r, g, b: le ": x" définit un bit field.
         int G : 6;
         int B : 5;
-    } /**/components/**/;
+    };
     uint16_t raw;
 } Color;
 

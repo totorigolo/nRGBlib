@@ -1,7 +1,7 @@
 #include <nGUI.h>
 
 /// Dessine une lettre aux position données en changeant la couleur de fond
-void drawCharBckgRGB(short x, short y, char ch, char size, char R, char G, char B, char Rb, char Gb, char Bb)
+void drawCharBckg(short x, short y, char ch, char size, Color cT, Color cB)
 {
     short i, j, f;
     f = size < 1 ? 1 : size;
@@ -11,22 +11,18 @@ void drawCharBckgRGB(short x, short y, char ch, char size, char R, char G, char 
         {
             if ((charMap_ascii[(unsigned char)ch][i] << j) & 0x80)
             {
-                drawBoxRGB_(x + (j * f), y + (i * f), f, f, R, G, B);
+                drawBox_(x + (j * f), y + (i * f), f, f, cT);
             }
             else
             {
-                drawBoxRGB_(x + (j * f), y + (i * f), f, f, Rb, Gb, Bb);
+                drawBox_(x + (j * f), y + (i * f), f, f, cB);
             }
         }
     }
 }
-inline void drawCharBckg(short x, short y, char ch, char size, Color colT, Color colB)
-{
-    drawCharBckgRGB(x, y, ch, size, colT.components.R, colT.components.G, colT.components.B, colB.components.R, colB.components.G, colB.components.B);
-}
 
 /// Dessine une lettre aux position données
-void drawCharRGB(short x, short y, char ch, char size, char R, char G, char B)
+void drawChar(short x, short y, char ch, char size, Color c)
 {
     short i, j, f;
     f = size < 1 ? 1 : size;
@@ -36,12 +32,8 @@ void drawCharRGB(short x, short y, char ch, char size, char R, char G, char B)
         {
             if ((charMap_ascii[(unsigned char)ch][i] << j) & 0x80)
             {
-                drawBoxRGB_(x + (j * f), y + (i * f), f, f, R, G, B);
+                drawBox_(x + (j * f), y + (i * f), f, f, c);
             }
         }
     }
-}
-inline void drawChar(short x, short y, char ch, char size, Color col)
-{
-    drawCharRGB(x, y, ch, size, col.components.R, col.components.G, col.components.B);
 }

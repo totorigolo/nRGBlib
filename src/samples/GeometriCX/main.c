@@ -7,14 +7,14 @@
 int main(void)
 {
     // Formes géométriques
-    Triangle tri = {21, 12, 211, 133, 212, 121};//new_Triangle(21, 12, 211, 122, 212, 121);
+    //Triangle tri = {21, 12, 211, 133, 212, 121};//new_Triangle(21, 12, 211, 122, 212, 121);
 
     // Sers à rien mais obligatoire pour le moment
     lcd_isincolor();
     lcd_ingray();
     lcd_incolor();
     _scrsize();
-
+//
     // On efface l'écran
     clearScreen(RGB(0, 0, 0));
 
@@ -26,16 +26,19 @@ int main(void)
     drawDisc_(160, 120, 30, RGB(128, 128, 255));
     drawDisc_(120, 160, 30, RGB(128, 0, 255));
     drawDisc_(160, 160, 30, RGB(255, 123, 48));
-    drawTriangle(&tri, RGB(136, 218, 37));
+//printf("1\n");
+    //drawTriangle(&tri, RGB(136, 218, 37));
+//printf("2\n");
     drawTriangle_(140, 20, 160, 40, 110, 80, RGB(37, 136, 218));
+printf("--3-------------------------------------------------------------\n");
     drawTriangle_(145, 15, 145, 60, 120, 40, RGB(218, 37, 136));
     drawTriangle_(135, 10, 175, 50, 130, 30, RGB(136, 218, 37));
     drawBox_(120, 120, 40, 40, RGB(0, 151, 75));
     drawDisc_(250, 60, 35, RGB(128, 128, 255));
     drawCircle_(240, 50, 40, RGB(175, 48, 107));
-    drawLine_(290, 180, 310, 150, RGB(0, 255, 0));
-    drawLine_(280, 170, 300, 140, RGB(255, 255, 0));
-    drawLine_(270, 160, 290, 130, RGB(255, 0, 0));
+    //drawLine_(290, 180, 310, 150, RGB(0, 255, 0));
+    //drawLine_(280, 170, 300, 140, RGB(255, 255, 0));
+    //drawLine_(270, 160, 290, 130, RGB(255, 0, 0));
     drawChar(50, 5, 'n', 1, RGB(255, 217, 76));
     drawChar(260, 60, 'Y', 1, RGB(255, 217, 76));
     drawChar(60, 200, 'O', 1, RGB(255, 217, 76));

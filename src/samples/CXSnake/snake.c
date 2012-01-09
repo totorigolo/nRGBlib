@@ -21,33 +21,18 @@ int Snake()
     Pos *Bottom = NULL; // de la dernière partie du serpent
     Pos *Current = NULL; // ?????
 
-    Color colScoreTxt = RGB(255, 255, 0); // Bleu
+    Color colScoreTxt = RGB(0, 255, 255); // Bleu
     Color colScoreFond = RGB(0, 0, 0); // Noir
     Color colSerpent = RGB(0, 255, 0); // Vert
-    Color colFond = RGB(222, 184, 135); // Marron
+    Color colFond = RGB(255, 217, 136); // Marron
     Color colPomme = RGB(255, 0, 0); // Rouge
-        /*colScoreTxt.components.R = 0;
-        colScoreTxt.components.G = 255;
-        colScoreTxt.components.B = 255;
-        colScoreFond.components.R = 0;
-        colScoreFond.components.G = 0;
-        colScoreFond.components.B = 0;
-        colSerpent.components.R = 0;
-        colSerpent.components.G = 255;
-        colSerpent.components.B = 0;
-        colFond.components.R = 222;
-        colFond.components.G = 184;
-        colFond.components.B = 135;
-        colPomme.components.R = 255;
-        colPomme.components.G = 0;
-        colPomme.components.B = 0;*/
 
     // On efface l'écran
     clearScreen(colFond);
 
     // On crée la zone des scores
     score = 0;
-    scoreTxt = "Score = 0";
+    scoreTxt = "Score = 0   ";
     drawBox_(0, 0, SCREEN_WIDTH, 2 * 8, colScoreFond);
     drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond);
 

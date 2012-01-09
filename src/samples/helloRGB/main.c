@@ -12,9 +12,9 @@ int main(void)
 
     //drawStr(short x, short y, char* str, char size, char endl, Color col);
     drawStr(0, 0, "Hello !", 2, 0, RGB(137, 255, 137)); // Verdâtre
-    drawSquareRGB_(0, 30, 20, 255, 0, 255); // Rose
+    drawSquare_(0, 30, 20, RGB(255, 0, 255)); // Rose
     Color c = getPixel(0, 35);//
-    printf("R = %d, G = %d, B = %d\n", c.components.R, c.components.G, c.components.B);
+    printf("R = %d, G = %d, B = %d\n", c.R, c.G, c.B);
 //
     // On attends
     while (any_key_pressed());
