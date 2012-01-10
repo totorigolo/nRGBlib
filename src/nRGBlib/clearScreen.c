@@ -6,7 +6,7 @@
 //   -> See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
 
 /// Efface l'écran entier avec la couleur
-void clearScreen(Color color)
+void clearScreen(Color *c)
 {
     int i, j;
     // Nspire non-CX
@@ -19,7 +19,7 @@ void clearScreen(Color color)
         {
             for (j = 0; j < SCREEN_HEIGHT; j++)
             {
-                setPixel(i, j, color);
+                setPixel(i, j, c);
             }
         }
         // TODO: Optimiser
@@ -36,6 +36,6 @@ void clearScreen(Color color)
 
         for (ptr = scr_base; ptr < scr_base + (SCREEN_WIDTH * SCREEN_HEIGHT * 2); ptr += 2)
         //    *(volatile unsigned short*)ptr = ((R / 8) << 11) | ((G / 4) << 5) | (B / 8);
-            *(volatile unsigned short*)ptr = color.raw;
+            *(volatile unsigned short*)ptr = c->raw;
     }
 }

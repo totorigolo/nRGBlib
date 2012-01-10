@@ -32,7 +32,7 @@ int main(void)
     drawLine_(290, 180, 310, 150, RGB(0, 255, 0));
     drawLine_(280, 170, 300, 140, RGB(255, 255, 0));
     drawLine_(270, 160, 290, 130, RGB(255, 0, 0));
-    drawChar(50, 5, 'n', 1, RGB(255, 217, 76));
+    drawChar(50, 5, 'n', 1, RGB(31, 25, 12));
     drawChar(260, 60, 'Y', 1, RGB(255, 217, 76));
     drawChar(60, 200, 'O', 1, RGB(255, 217, 76));
     drawChar(37, 136, 'q', 1, RGB(255, 0, 0));

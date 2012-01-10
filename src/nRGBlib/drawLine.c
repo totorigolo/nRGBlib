@@ -1,7 +1,7 @@
 #include <nGEO.h>
 
 /// Dessine une ligne quelconque en couleurs
-void drawLine_(short x1, short y1, short x2, short y2, Color c)
+void drawLine_(short x1, short y1, short x2, short y2, Color *c)
 {
     int d, dx, dy, aincr, bincr, xincr, yincr, x, y, tmp;
 
@@ -73,7 +73,7 @@ void drawLine_(short x1, short y1, short x2, short y2, Color c)
         }
     }
 }
-inline void drawLine(Line *l, Color c)
+inline void drawLine(Line *l, Color *c)
 {
     drawLine_(l->x1, l->y1, l->x2, l->y2, c);
 }

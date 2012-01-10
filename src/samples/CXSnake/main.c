@@ -16,8 +16,8 @@ _scrsize();
 
     int score = 0, jouer = 1;
     char boxstr[280];
-    Color colTexte = RGB(0, 255, 255); //colTexte.raw = RGB(0, 255, 255);
-    Color couleurFond = RGB(0, 0, 0); //couleurFond.raw = RGB(0, 0, 0);
+    Color colTexte = newRGB(0, 255, 255); //colTexte.raw = RGB(0, 255, 255);
+    Color couleurFond = newRGB(0, 0, 0); //couleurFond.raw = RGB(0, 0, 0);
 /*        colTexte.R = 0;
         colTexte.G = 255;
         colTexte.B = 255;
@@ -26,7 +26,7 @@ _scrsize();
         couleurFond.B = 0;*/
 
     // Message de bienvenue
-    clearScreen(couleurFond);
+    clearScreen(&couleurFond);
 	drawStr(0, 0  * CHAR_HEIGHT, "             +----------+\n"
                                       "             | CX Snake |\n"
                                       "             +----------+\n"
@@ -41,7 +41,7 @@ _scrsize();
                                       "   - Down  : Down & 2\n"
                                       "   - Right : Right & 6\n"
                                       "   - Left  : Left & 4\n\n\n"
-                                      "Ctrl to Start !", 1, 1, colTexte);
+                                      "Ctrl to Start !", 1, 1, &colTexte);
 
     //Initialise le genérateur
     while (!isKeyPressed(KEY_NSPIRE_CTRL))
@@ -72,8 +72,8 @@ _scrsize();
                         "   - Esc to quit.", score);
 
         // Affiche le Game Over
-        clearScreen(couleurFond);
-        drawStr(0, 0  * CHAR_HEIGHT, boxstr, 1, 1, colTexte);
+        clearScreen(&couleurFond);
+        drawStr(0, 0  * CHAR_HEIGHT, boxstr, 1, 1, &colTexte);
 
         while (1)
         {

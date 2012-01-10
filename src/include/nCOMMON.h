@@ -3,7 +3,9 @@
 
 #include <os.h>
 
-#define RGB(r, g, b) (Color) (uint16_t) (((r % 32) << 11) | ((g % 64) << 5) | (b % 32))
+#define newRGB(r, g, b) (Color) (uint16_t) (((r % 32) << 11) | ((g % 64) << 5) | (b % 32))
+#define rawRGB(r, g, b) (((r % 32) << 11) | ((g % 64) << 5) | (b % 32))
+#define RGB(r, g, b) (Color*) (uint16_t) (((r % 32) << 11) | ((g % 64) << 5) | (b % 32))
 
 typedef union Color {
     struct {
@@ -18,10 +20,10 @@ typedef union Color {
 Color getPixel(short x, short y);
 
 /// Dessine un pixel en couleur
-void setPixel(short x, short y, Color c);
+void setPixel(short x, short y, Color *c);
 
 /// Dessine l'écran entier avec la couleur
-void clearScreen(Color c);
+void clearScreen(Color *c);
 
 
 #endif // NCOMMON_H_INCLUDED
