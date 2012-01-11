@@ -3,9 +3,9 @@
 
 #include <os.h>
 
-#define newRGB(r, g, b) (Color) (uint16_t) (((r % 32) << 11) | ((g % 64) << 5) | (b % 32))
-#define rawRGB(r, g, b) (((r % 32) << 11) | ((g % 64) << 5) | (b % 32))
-#define RGB(r, g, b) (Color*) (uint16_t) (((r % 32) << 11) | ((g % 64) << 5) | (b % 32))
+#define rawRGB(r, g, b) (((r / 8) << 11) | ((g / 4) << 5) | (b / 8))
+#define newRGB(r, g, b) (Color) (uint16_t) (((r / 8) << 11) | ((g / 4) << 5) | (b / 8))
+#define RGB(r, g, b) (Color*) (uint16_t) (((r / 8) << 11) | ((g / 4) << 5) | (b / 8))
 
 typedef union Color {
     struct {
