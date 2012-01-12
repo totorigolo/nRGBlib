@@ -12,9 +12,7 @@ struct Tile8Multicolors
 typedef struct Tile8Unicolor Tile8Unicolor;
 struct Tile8Unicolor
 {
-    char R;
-    char G;
-    char B;
+    Color color;
     char data[8][2];
 };
 
@@ -27,9 +25,7 @@ struct Tile16Multicolors
 typedef struct Tile16Unicolor Tile16Unicolor;
 struct Tile16Unicolor
 {
-    char R;
-    char G;
-    char B;
+    Color color;
     char data[16][2];
 };
 

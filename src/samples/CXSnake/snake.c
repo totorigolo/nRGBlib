@@ -1,6 +1,6 @@
 #include <os.h>
 #include <nRGBlib.h>
-#include <maths.h>
+#include <nMATHS.h>
 #include "snake.h"
 #include "pos.h"
 #include "tile_snake.h"
@@ -9,7 +9,7 @@ int Snake()
 {
     char tab[41][31]; // Tableau de jeu
     int i,j; // for
-    volatile int k; // for pour le hack
+    volatile int k; // for pour le hack // TODO: Sleep();
     char* scoreTxt;
     char score = 0; // Score final (improbable que le score dépasse 255)
     char size = 4; // Taille du serpent (idem)
@@ -21,20 +21,20 @@ int Snake()
     Pos *Bottom = NULL; // de la dernière partie du serpent
     Pos *Current = NULL; // ?????
 
-    Color colScoreTxt = newRGB(0, 255, 255); // Bleu
-    Color colScoreFond = newRGB(0, 0, 0); // Noir
-    Color colSerpent = newRGB(0, 255, 0); // Vert
-    Color colFond = newRGB(31, 54, 17); // Marron
-    Color colPomme = newRGB(255, 0, 0); // Rouge
+    Color colScoreTxt = RGB(0, 255, 255); // Bleu
+    Color colScoreFond = RGB(0, 0, 0); // Noir
+    //Color colSerpent = RGB(0, 255, 0); // Vert
+    Color colFond = RGB(200, 200, 200); // Marron
+    Color colPomme = RGB(255, 0, 0); // Rouge
 
     // On efface l'écran
-    clearScreen(&colFond);
+    clearScreen(colFond);
 
     // On crée la zone des scores
     score = 0;
     scoreTxt = "Score = 0   ";
-    drawBox_(0, 0, SCREEN_WIDTH, 2 * 8, &colScoreFond);
-    drawStrBckg(0, 0, scoreTxt, 1, 0, &colScoreTxt, &colScoreFond);
+    drawBox_(0, 0, SCREEN_WIDTH, 2 * 8, colScoreFond);
+    drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond);
 
     // On initialise le tableau à zéro
     for (i = 0; i < 40+1; i++)
@@ -54,7 +54,8 @@ int Snake()
     // On crée le serpent (size = 4), et on l'affiche
     for (i = 0; i < size; i++)
     {
-        drawSquare_(Current->x * 8, Current->y * 8, 8, &colSerpent);
+        drawTile8Unicolor(Head->x * 8, Head->y * 8, 1, tile_snake);
+        //drawSquare_(Current->x * 8, Current->y * 8, 8, colSerpent);
         tab[Current->x][Current->y] = 1;
         Current = Pos_add(Current, 1, 0); // Ajoute une case
     }
@@ -67,7 +68,7 @@ int Snake()
     // On change la position de la pomme aléatoirement
     applex = abs(randMinMax(1, 40-1));
     appley = abs(randMinMax(4, 30-1));
-    drawSquare_(applex * 8, appley * 8, 8, &colPomme); // On dessine la pomme
+    drawSquare_(applex * 8, appley * 8, 8, colPomme); // On dessine la pomme
 
     // Boucle de jeu
     while (loose == 0 && !isKeyPressed(KEY_NSPIRE_ESC))
@@ -139,7 +140,7 @@ int Snake()
             // Monte le score et le réaffiche
             score += 1;
             sprintf(scoreTxt, "Score = %d", score);
-            drawStrBckg(0, 0, scoreTxt, 1, 0, &colScoreTxt, &colScoreFond);
+            drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond);
 
             // On agrandit le serpent
             size++;
@@ -152,7 +153,7 @@ int Snake()
                 appley = abs(randMinMax(4, 30-1));
             }
             while (tab[applex][appley] == 1);
-            drawSquare_(applex * 8, appley * 8, 8, &colPomme); // On la dessine
+            drawSquare_(applex * 8, appley * 8, 8, colPomme); // On la dessine
         }
 
         // On enlève le dernier élément de la queue
@@ -163,7 +164,7 @@ int Snake()
         else // On enlève la queue
         {
             tab[Bottom->x][Bottom->y] = 0;
-            drawSquare_(Bottom->x * 8, Bottom->y * 8, 8, &colFond); // Efface
+            drawSquare_(Bottom->x * 8, Bottom->y * 8, 8, colFond); // Efface
             Bottom = Pos_pop(Bottom);
         }
 
@@ -174,6 +175,6 @@ int Snake()
         }
     }
 
-    clearScreen(&colFond);
+    clearScreen(colFond);
     return score;
 }

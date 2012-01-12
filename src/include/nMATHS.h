@@ -12,16 +12,15 @@ int Factorielle(int n);
 float Puissance(float x, int y);
 
 /// Calcule le cosinus
+// TODO: Allégér les calculs
 float Cosinus(float x);
 
 /// Calcule le sinus
+// TODO: Allégér les calculs
 float Sinus(float x);
 
-/// Echange les valeurs de deux entiers
-void echangerEntiers(short int* x, short int* y);
-
 /// Calcule l'inverse de la valeur entre 0 et 1
-float Inverse(float val);
+inline float Inverse(float val);
 
 /// Choisi un nombre aléatoire (basé sur le nombre de fois que la fonction est appelée)
 int rand();

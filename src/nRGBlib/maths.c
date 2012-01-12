@@ -1,4 +1,4 @@
-#include <maths.h>
+#include <nMATHS.h>
 
 /// Calcule la factorielle
 int Factorielle(int n)
@@ -22,19 +22,10 @@ float Puissance(float x, int y)
     return puissance;
 }
 
-/// Echange les valeurs de deux entiers
-void echangerEntiers(short int *x, short int *y)
-{
-    short int t = *x;
-    *x = *y;
-    *y = t;
-}
-
 /// Calcule l'inverse de la valeur entre 0 et 1
-float Inverse(float val)
+inline float Inverse(float val)
 {
-    val = 1 / val;
-    return (val > 1) ? 1 : ((val < 0) ? 0 : val);
+    return (1 / val > 1) ? 1 : ((1 / val < 0) ? 0 : 1 / val);
 }
 
 /// Choisi un nombre aléatoire (basé sur le nombre de fois que la fonction est appelée)

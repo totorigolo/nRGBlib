@@ -31,11 +31,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="..\include\maths.h" />
 		<Unit filename="..\include\nAUDIO.h" />
 		<Unit filename="..\include\nCOMMON.h" />
 		<Unit filename="..\include\nGEO.h" />
 		<Unit filename="..\include\nGUI.h" />
+		<Unit filename="..\include\nMATHS.h" />
 		<Unit filename="..\include\nRGBlib.h" />
 		<Unit filename="..\include\nTILE.h" />
 		<Unit filename="..\include\nVIEW.h" />

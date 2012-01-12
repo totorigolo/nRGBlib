@@ -7,7 +7,6 @@
 Color getPixel(short x, short y)
 {
     Color c;
-
     if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y > SCREEN_HEIGHT)
         return;
 

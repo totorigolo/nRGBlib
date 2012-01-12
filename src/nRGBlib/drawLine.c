@@ -1,16 +1,14 @@
 #include <nGEO.h>
 
 /// Dessine une ligne quelconque en couleurs
-void drawLine_(short x1, short y1, short x2, short y2, Color *c)
+void drawLine_(short x1, short y1, short x2, short y2, Color c)
 {
     int d, dx, dy, aincr, bincr, xincr, yincr, x, y, tmp;
 
     if (abs(x2 - x1) < abs(y2 - y1)) // Parcours par l'axe vertical
     {
-        if (y1 > y2)
+        if (y1 > y2) // Echange les nombres
         {
-            //echangerEntiers(&x1, &x2);
-            //echangerEntiers(&y1, &y2);
             tmp = x1; x1 = x2; x2 = tmp;
             tmp = y1; y1 = y2; y2 = tmp;
         }
@@ -41,10 +39,8 @@ void drawLine_(short x1, short y1, short x2, short y2, Color *c)
     }
     else // Parcours l'axe horizontal
     {
-        if (x1 > x2)
+        if (x1 > x2) // Echange les nombres
         {
-            //echangerEntiers(&x1, &x2);
-            //echangerEntiers(&y1, &y2);
             tmp = x1; x1 = x2; x2 = tmp;
             tmp = y1; y1 = y2; y2 = tmp;
         }
@@ -73,7 +69,7 @@ void drawLine_(short x1, short y1, short x2, short y2, Color *c)
         }
     }
 }
-inline void drawLine(Line *l, Color *c)
+inline void drawLine(Line *l, Color c)
 {
     drawLine_(l->x1, l->y1, l->x2, l->y2, c);
 }

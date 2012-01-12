@@ -1,7 +1,7 @@
 #include <nGUI.h>
 
 /// Dessine une lettre aux position données en changeant la couleur de fond
-void drawCharBckg(short x, short y, char ch, char size, Color *cT, Color *cB)
+void drawCharBckg(short x, short y, char ch, char size, Color cT, Color cB)
 {
     short i, j, f;
     f = size < 1 ? 1 : size;
@@ -22,7 +22,7 @@ void drawCharBckg(short x, short y, char ch, char size, Color *cT, Color *cB)
 }
 
 /// Dessine une lettre aux position données
-void drawChar(short x, short y, char ch, char size, Color *c)
+void drawChar(short x, short y, char ch, char size, Color c)
 {
     short i, j, f;
     f = size < 1 ? 1 : size;

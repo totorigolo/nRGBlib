@@ -4,7 +4,7 @@
 
 /// Ecris un texte aux positions données en changeant la couleur de fond
 ///    - retour est un booléen qui défini si le retour à la ligne est permis
-void drawStrBckg(short x, short y, char* str, char size, char retour, Color *cT, Color *cB)
+void drawStrBckg(short x, short y, char* str, char size, char retour, Color cT, Color cB)
 {
     short i, f;
     f = size < 1 ? 1 : size;
@@ -48,7 +48,7 @@ void drawStrBckg(short x, short y, char* str, char size, char retour, Color *cT,
 
 /// Ecris un texte aux positions données
 ///    - endl est un booléen qui défini si le retour à la ligne est permis
-void drawStr(short x, short y, char* str, char size, char endl, Color *c)
+void drawStr(short x, short y, char* str, char size, char endl, Color c)
 {
     short i, f;
     f = size < 1 ? 1 : size;
@@ -71,9 +71,7 @@ void drawStr(short x, short y, char* str, char size, char endl, Color *c)
         }
         else
         {
-            printf("--------------------------------------\n1\n");
             drawChar(x, y, str[i], f, c);
-            printf("2\n--------------------------------------\n\n");
             x += (CHAR_WIDTH * f);
         }
         // Si on va dépasser de l'écran

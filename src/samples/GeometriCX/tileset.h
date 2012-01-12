@@ -3,7 +3,8 @@
 
 #include "nRGBlib.h"
 
-Tile8Unicolor tile_bonhommeU = {255,   0, 0, {
+//Tile8Unicolor tile_bonhommeU = {255, 0, 0, {
+Tile8Unicolor tile_bonhommeU = {RGB(255, 0, 0), {
     {0b0011, 0b1100},
     {0b0011, 0b1100},
     {0b0001, 0b1000},

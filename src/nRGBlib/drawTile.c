@@ -14,11 +14,11 @@ void drawTile8Unicolor(short x, short y, char size, Tile8Unicolor tile)
         {
             if ((tile.data[i][0] << j) & 0x8) // 4 premiers pixels
             {
-                drawBox_(x + (j * f), y + (i * f), f, f, RGB(tile.R, tile.G, tile.B));
+                drawBox_(x + (j * f), y + (i * f), f, f, tile.color);
             }
             if ((tile.data[i][1] << j) & 0x8) // 4 derniers pixels
             {
-                drawBox_(x + ((j + 4) * f), y + (i * f), f, f, RGB(tile.R, tile.G, tile.B));
+                drawBox_(x + ((j + 4) * f), y + (i * f), f, f, tile.color);
             }
         }
     }
