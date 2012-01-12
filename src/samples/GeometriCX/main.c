@@ -12,8 +12,6 @@ int main(void)
     lcd_incolor();
     _scrsize();
 
-    int x, y, radius, R, G, B;
-
     // On efface l'écran
     clearScreen(RGB(0, 0, 0));
 
@@ -59,26 +57,13 @@ int main(void)
         {
             while (!isKeyPressed(KEY_NSPIRE_ESC))
             {
-                x = randMinMax(0, 319);
-                y = randMinMax(0, 239);
-                radius = randMinMax(5, 50);
-                R = randMinMax(0, 255);
-                G = randMinMax(0, 255);
-                B = randMinMax(0, 255);
-
                 if (randMinMax(0, 1))
                 {
-                    //drawDisc_(randMinMax(0, 320), randMinMax(0, 240), randMinMax(5, 50), RGB(randMinMax(0, 255), randMinMax(0, 255), randMinMax(0, 255)));
-                    printf("Disque - %d, %d, %d | %d, %d, %d\n", x, y, radius, R, G, B);
-                    drawDisc_(x, y, radius, RGB(R, G, B));
-                    printf("Done\n\n");
+                    drawDisc_(randMinMax(0, 320), randMinMax(0, 240), randMinMax(5, 50), RGB(randMinMax(0, 255), randMinMax(0, 255), randMinMax(0, 255)));
                 }
                 else
                 {
-                    //drawCircle_(randMinMax(0, 320), randMinMax(0, 240), randMinMax(5, 50), RGB(randMinMax(0, 255), randMinMax(0, 255), randMinMax(0, 255)));
-                    printf("Cercle - %d, %d, %d | %d, %d, %d\n", x, y, radius, R, G, B);
-                    drawCircle_(x, y, radius, RGB(R, G, B));
-                    printf("Done\n\n");
+                    drawCircle_(randMinMax(0, 320), randMinMax(0, 240), randMinMax(5, 50), RGB(randMinMax(0, 255), randMinMax(0, 255), randMinMax(0, 255)));
                 }
             }
             drawStr(0, 240 - CHAR_HEIGHT * 3, "Ctrl to Bubble Land!", 2, 0, RGB(0, 255, 255));
