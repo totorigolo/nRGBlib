@@ -52,19 +52,15 @@ int main(void)
     while (!isKeyPressed(KEY_NSPIRE_ESC))
     {
         rand();
-        //sleep(50);
+        sleep(50);
         if (isKeyPressed(KEY_NSPIRE_CTRL))
         {
             while (!isKeyPressed(KEY_NSPIRE_ESC))
             {
                 if (randMinMax(0, 1))
-                {
                     drawDisc_(randMinMax(0, 320), randMinMax(0, 240), randMinMax(5, 50), RGB(randMinMax(0, 255), randMinMax(0, 255), randMinMax(0, 255)));
-                }
                 else
-                {
                     drawCircle_(randMinMax(0, 320), randMinMax(0, 240), randMinMax(5, 50), RGB(randMinMax(0, 255), randMinMax(0, 255), randMinMax(0, 255)));
-                }
             }
             drawStr(0, 240 - CHAR_HEIGHT * 3, "Ctrl to Bubble Land!", 2, 0, RGB(0, 255, 255));
             drawStrBckg(0, 240 - CHAR_HEIGHT, "Esc to Quit", 1, 0, RGB(255, 0, 0), RGB(255, 255, 255));
@@ -74,36 +70,3 @@ int main(void)
     // Rends la main à l'OS
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

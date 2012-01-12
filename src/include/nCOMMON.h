@@ -3,10 +3,6 @@
 
 #include <os.h>
 
-/*/#define rawRGB(r, g, b) (((r / 8) << 11) | ((g / 4) << 5) | (b / 8))
-//#define newRGB(r, g, b) (Color) (uint16_t) (((r / 8) << 11) | ((g / 4) << 5) | (b / 8))
-//#define RGB(r, g, b) (Color*) (uint16_t) (((r / 8) << 11) | ((g / 4) << 5) | (b / 8))*/
-
 typedef union Color {
     struct {
         uint8_t R : 5; // peu importe le type de r, g, b: le ": x" définit un bit field.
@@ -16,9 +12,7 @@ typedef union Color {
     uint16_t raw;
 } Color;
 
-//typedef uint16_t Color;
 #define rawRGB(r, g, b) (((((uint8_t)(r)) / 8) << 11) | ((((uint8_t)(g)) / 4) << 5) | (((uint8_t)(b)) / 8))
-//#define newRGB(r, g, b) (Color) (uint16_t) (((((uint8_t)(r)) / 8) << 11) | ((((uint8_t)(g)) / 4) << 5) | (((uint8_t)(b)) / 8))
 #define RGB(r, g, b) (Color) (uint16_t) (((((uint8_t)(r)) / 8) << 11) | ((((uint8_t)(g)) / 4) << 5) | (((uint8_t)(b)) / 8))
 
 /// Récupère la valeur du pixel

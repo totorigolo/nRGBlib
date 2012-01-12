@@ -8,7 +8,6 @@
 /// Dessine un pixel en couleur
 void setPixel(short x, short y, Color c)
 {
-    //if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y > SCREEN_HEIGHT)
     if (x < 0 || x >= 320 || y < 0 || y >= 240)
         return;
 
@@ -20,8 +19,8 @@ void setPixel(short x, short y, Color c)
 
         char col = ((c.R / 8) + (c.G / 4) + (c.B / 8)) / 48; // 3 * 16
         unsigned char* p = (unsigned char*)(SCREEN_BASE_ADDRESS + ((x >> 1) + (y << 7) + (y << 5)));
-        *p = (x & 1) ? ((*p & 0xF0) | col) : ((*p & 0x0F) | (col << 4));
-        //*p = c->raw;
+        //*p = (x & 1) ? ((*p & 0xF0) | col) : ((*p & 0x0F) | (col << 4));
+        *p = c.raw;
     }
     // Nspire CX
     else
@@ -34,9 +33,6 @@ void setPixel(short x, short y, Color c)
         ptr = scr_base + 2*(x + SCREEN_WIDTH * y);
 
         //                               Rouge 0-31        Vert 0-63       Bleu 0-31
-        //*(volatile unsigned short*)ptr = (((c.R / 8) << 11) | ((c.G / 4) << 5) | (c.B / 8));
-//printf("\t%d, %d, %d | %d\n", c.R, c.G, c.B, c.raw);
         *(volatile unsigned short*)ptr = c.raw;
-//printf("\tDone\n");
     }
 }

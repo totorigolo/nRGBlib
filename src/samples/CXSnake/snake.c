@@ -24,7 +24,7 @@ int Snake()
     Color colScoreTxt = RGB(0, 255, 255); // Bleu
     Color colScoreFond = RGB(0, 0, 0); // Noir
     //Color colSerpent = RGB(0, 255, 0); // Vert
-    Color colFond = RGB(200, 200, 200); // Marron
+    Color colFond = RGB(200, 200, 200); // Gris clair
     Color colPomme = RGB(255, 0, 0); // Rouge
 
     // On efface l'écran

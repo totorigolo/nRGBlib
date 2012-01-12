@@ -3,68 +3,46 @@
 
 #include "nCOMMON.h"
 
-typedef struct Line
-{
+typedef struct Line {
     short x1;
     short y1;
     short x2;
     short y2;
 } Line;
-Line new_Line(short x1, short y1, short x2, short y2);
-void init_Line(Line *l, short x1, short y1, short x2, short y2);
 
-typedef struct Box
-{
+typedef struct Box {
     short x;
     short y;
     short w;
     short h;
 } Box;
-Box new_Box(short x, short y, short w, short h);
-void init_Box(Box *b, short x, short y, short w, short h);
 
-typedef struct Square Square;
-struct Square
-{
+typedef struct Square {
     short x;
     short y;
     short side;
-};
-Square new_Square(short x, short y, short c);
-void init_Square(Square *d, short x, short y, short c);
+} Square;
 
-typedef struct Circle Circle;
-struct Circle
-{
+typedef struct Circle {
     short x;
     short y;
     short radius;
-};
-Circle new_Circle(short x, short y, short radius);
-void init_Circle(Circle *d, short x, short y, short radius);
+} Circle;
 
-typedef struct Disc Disc;
-struct Disc
-{
+typedef struct Disc {
     short x;
     short y;
     short radius;
-};
-Disc new_Disc(short x, short y, short radius);
-void init_Disc(Disc *d, short x, short y, short radius);
+} Disc;
 
-typedef struct Triangle Triangle;
-struct Triangle
-{
+typedef struct Triangle {
     short x1;
     short y1;
     short x2;
     short y2;
     short x3;
     short y3;
-};
-Triangle new_Triangle(short x1, short y1, short x2, short y2, short x3, short y3);
-void init_Triangle(Triangle *t, short x1, short y1, short x2, short y2, short x3, short y3);
+} Triangle;
 
 /// Dessine trois bandes RGB qui font chacunes 1 / 3 de l'écran
 void RGBstrips();

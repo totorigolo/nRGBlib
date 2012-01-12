@@ -7,10 +7,10 @@ void drawBox_(short x, short y, short w, short h, Color c)
     short i, j;
     for (i = x; i < (x + w) && i < 320; i++)
     {
-        if (i <= 0) continue;
+        if (i < 0) continue;
         for (j = y; j < (y + h) && j < 240; j++)
         {
-            if (j <= 0) continue;
+            if (j < 0) continue;
             setPixel(i, j, c);
         }
     }
