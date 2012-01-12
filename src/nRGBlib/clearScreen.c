@@ -21,8 +21,7 @@ void clearScreen(Color c)
             {
                 setPixel(i, j, c);
             }
-        }
-        // TODO: Optimiser
+        } // TODO: Optimiser
     }
     // Nspire CX
     else

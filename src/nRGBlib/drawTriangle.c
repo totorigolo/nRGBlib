@@ -1,7 +1,7 @@
 #include <nGEO.h>
 
 /// Dessine un triangle vide en couleur
-void drawTriangle_(short x1, short y1, short x2, short y2, short x3, short y3, Color c)
+void drawTriangle_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, Color c)
 {
     drawLine_(x1, y1, x2, y2, c);
     drawLine_(x2, y2, x3, y3, c);

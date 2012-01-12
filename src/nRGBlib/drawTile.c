@@ -4,10 +4,9 @@
 
 /// Dessine une tile de 8x8 pixels en couleurs agrandie *facteur (1 < facteur < infinie) aux positions données
 ///     \size supérieure à 1
-void drawTile8Unicolor(short x, short y, char size, Tile8Unicolor tile)
+void drawTile8Unicolor(int16_t x, int16_t y, int8_t size, Tile8Unicolor tile)
 {
-    short i, j, f;
-    f = size < 1 ? 1 : size;
+    int8_t i, j, f = size < 1 ? 1 : size;
     for (i = 0; i < 8; i++)
     {
         for (j = 0; j < 4; j++)
@@ -23,10 +22,9 @@ void drawTile8Unicolor(short x, short y, char size, Tile8Unicolor tile)
         }
     }
 }
-void drawTile8Multicolors(short x, short y, char size, Tile8Multicolors tile)
+void drawTile8Multicolors(int16_t x, int16_t y, int8_t size, Tile8Multicolors tile)
 {
-    short i, j, f;
-    f = size < 1 ? 1 : size;
+    int8_t i, j, f = size < 1 ? 1 : size;
     for (i = 0; i < 8; i++)
     {
         for (j = 0; j < 4; j++)

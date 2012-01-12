@@ -1,9 +1,9 @@
 #include <nGEO.h>
 
 /// Dessine une ligne quelconque en couleurs
-void drawLine_(short x1, short y1, short x2, short y2, Color c)
+void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c)
 {
-    int d, dx, dy, aincr, bincr, xincr, yincr, x, y, tmp;
+    int16_t d, dx, dy, aincr, bincr, xincr, yincr, x, y, tmp;
 
     if (abs(x2 - x1) < abs(y2 - y1)) // Parcours par l'axe vertical
     {

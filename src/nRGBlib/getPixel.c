@@ -4,7 +4,7 @@
 //   -> See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
 
 /// Récupère la valeur du pixel
-Color getPixel(short x, short y)
+Color getPixel(int16_t x, int16_t y)
 {
     Color c;
     if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y > SCREEN_HEIGHT)

@@ -6,17 +6,17 @@
 #include "nCOMMON.h"
 
 /// Dessine une lettre aux position données en changeant la couleur de fond
-void drawCharBckg(short x, short y, char ch, char size, Color cT, Color cB);
+void drawCharBckg(int16_t x, int16_t y, char ch, int8_t size, Color cT, Color cB);
 
 /// Dessine une lettre aux positions données
-void drawChar(short x, short y, char ch, char size, Color c);
+void drawChar(int16_t x, int16_t y, char ch, int8_t size, Color c);
 
 /// Ecris un texte aux positions données en changeant la couleur de fond
 ///    - retour est un booléen qui défini si le retour à la ligne est permis
-void drawStrBckg(short x, short y, char* str, char size, char endl, Color cT, Color cB);
+void drawStrBckg(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color cT, Color cB);
 
 /// Ecris un texte aux positions données
 ///    - retour est un booléen qui défini si le retour à la ligne est permis
-void drawStr(short x, short y, char* str, char size, char endl, Color c);
+void drawStr(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color c);
 
 #endif // NGUI_H_INCLUDED

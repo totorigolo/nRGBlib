@@ -6,7 +6,7 @@
 //   -> See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
 
 /// Dessine un pixel en couleur
-void setPixel(short x, short y, Color c)
+void setPixel(int16_t x, int16_t y, Color c)
 {
     if (x < 0 || x >= 320 || y < 0 || y >= 240)
         return;

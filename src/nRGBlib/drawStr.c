@@ -4,10 +4,10 @@
 
 /// Ecris un texte aux positions données en changeant la couleur de fond
 ///    - retour est un booléen qui défini si le retour à la ligne est permis
-void drawStrBckg(short x, short y, char* str, char size, char retour, Color cT, Color cB)
+void drawStrBckg(int16_t x, int16_t y, char* str, int8_t size, int8_t retour, Color cT, Color cB)
 {
-    short i, f;
-    f = size < 1 ? 1 : size;
+    int16_t i;
+    int8_t f = size < 1 ? 1 : size;
     for (i = 0; i < strlen(str); i++)
     {
         // Si le caractère actuel est un '\n'
@@ -48,10 +48,10 @@ void drawStrBckg(short x, short y, char* str, char size, char retour, Color cT, 
 
 /// Ecris un texte aux positions données
 ///    - endl est un booléen qui défini si le retour à la ligne est permis
-void drawStr(short x, short y, char* str, char size, char endl, Color c)
+void drawStr(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color c)
 {
-    short i, f;
-    f = size < 1 ? 1 : size;
+    int16_t i;
+    int8_t f = size < 1 ? 1 : size;
     for (i = 0; i < strlen(str); i++)
     {
         // Si le caractère actuel est un '\n'

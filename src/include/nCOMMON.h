@@ -16,10 +16,10 @@ typedef union Color {
 #define RGB(r, g, b) (Color) (uint16_t) (((((uint8_t)(r)) / 8) << 11) | ((((uint8_t)(g)) / 4) << 5) | (((uint8_t)(b)) / 8))
 
 /// Récupère la valeur du pixel
-Color getPixel(short x, short y);
+Color getPixel(int16_t x, int16_t y);
 
 /// Dessine un pixel en couleur
-void setPixel(short x, short y, Color c);
+void setPixel(int16_t x, int16_t y, Color c);
 
 /// Dessine l'écran entier avec la couleur
 void clearScreen(Color c);
