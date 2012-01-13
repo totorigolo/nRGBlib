@@ -1,5 +1,4 @@
 #include "pos.h"
-#include "utils.h"
 #include <os.h>
 
 Pos* Pos_add(Pos *P, int x, int y)

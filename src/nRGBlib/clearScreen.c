@@ -9,7 +9,7 @@
 void clearScreen(Color c)
 {
     int i, j;
-    // Nspire non-CX
+    // 4 bpp
     if (!has_colors)
     {
         for (i = 0; i < SCREEN_WIDTH; i++)
@@ -20,20 +20,12 @@ void clearScreen(Color c)
             }
         } // TODO: Optimiser
     }
-    // Nspire CX
+    // 16 bpp
     else
     {
-        // Régle l'écran en 16bpp (lcd_incolor())
-        volatile unsigned *lcd_control = IO_LCD_CONTROL;
-        unsigned 	mode = *lcd_control & ~0b1110;
-        *lcd_control = mode | 0b1100; // R5G6B5
-
-        volatile unsigned char *scr_base = SCREEN_BASE_ADDRESS;
-        volatile unsigned char *ptr;
-        //unsigned scr_size = SCREEN_BYTES_SIZE;
-
-        for (ptr = scr_base; ptr < scr_base + (SCREEN_WIDTH * SCREEN_HEIGHT * 2); ptr += 2)
-        //    *(volatile unsigned short*)ptr = ((R / 8) << 11) | ((G / 4) << 5) | (B / 8);
-            *(volatile unsigned short*)ptr = c.raw;
+        unsigned char *scr_base = SCREEN_BASE_ADDRESS;
+        unsigned char *ptr;
+        for (ptr = scr_base; ptr < scr_base + (SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(uint16_t)); ptr += sizeof(uint16_t))
+            *(uint16_t*)ptr = c;
     }
 }

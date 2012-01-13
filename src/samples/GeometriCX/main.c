@@ -6,6 +6,9 @@
 
 int main(void)
 {
+    // Ecran couleur (si possible)
+    lcd_incolor();
+
     // On efface l'écran
     clearScreen(RGB(0, 0, 0));
 

@@ -14,16 +14,17 @@ int Snake()
     char score = 0; // Score final (improbable que le score dépasse 255)
     char size = 4; // Taille du serpent (idem)
     char loose = 0; // Jeu perdu
+    int lvl = 0; // Niveau, pour la difficulté -> toutes les 10 pommes
     char no_pop = 0; // Quand on mange une pomme -> ajouter une case
     int applex = 0, appley = 0; // Position de la pomme
     char direction = DROITE; // Direction du serpent
     Pos *Head = NULL; // Position de la tête
     Pos *Bottom = NULL; // de la dernière partie du serpent
-    Pos *Current = NULL; // ?????
+    Pos *Current = NULL; // de la partie affichée
 
     Color colScoreTxt = RGB(0, 255, 255); // Bleu
     Color colScoreFond = RGB(0, 0, 0); // Noir
-    //Color colSerpent = RGB(0, 255, 0); // Vert
+    Color colSerpent = RGB(0, 255, 0); // Vert
     Color colFond = RGB(200, 200, 200); // Gris clair
     Color colPomme = RGB(255, 0, 0); // Rouge
 
@@ -32,7 +33,7 @@ int Snake()
 
     // On crée la zone des scores
     score = 0;
-    scoreTxt = "Score = 0   ";
+    scoreTxt = "Score = 0    ";
     drawBox_(0, 0, SCREEN_WIDTH, 2 * 8, colScoreFond);
     drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond);
 
@@ -54,14 +55,15 @@ int Snake()
     // On crée le serpent (size = 4), et on l'affiche
     for (i = 0; i < size; i++)
     {
-        drawTile8Unicolor(Head->x * 8, Head->y * 8, 1, tile_snake);
-        //drawSquare_(Current->x * 8, Current->y * 8, 8, colSerpent);
+        //drawTile8Unicolor(Head->x * 8, Head->y * 8, 1, tile_snake);
+        drawSquare_(Head->x * 8, Head->y * 8, 8, colSerpent);
         tab[Current->x][Current->y] = 1;
         Current = Pos_add(Current, 1, 0); // Ajoute une case
     }
 
     // On crée la tête, et on la dessine
-    drawTile8Unicolor(Current->x * 8, Current->y * 8, 1, tile_snake);
+    //drawTile8Unicolor(Current->x * 8, Current->y * 8, 1, tile_snake);
+    drawSquare_(Current->x * 8, Current->y * 8, 8, colSerpent);
     tab[Current->x][Current->y] = 1;
     Head = Current;
 
@@ -122,7 +124,8 @@ int Snake()
         // On ajoute un element à la tête et on dessine la tête
         if ( (Head->x > (-1)) && (Head->y > (-1)))
         {
-            drawTile8Unicolor(Head->x * 8, Head->y * 8, 1, tile_snake);
+            //drawTile8Unicolor(Head->x * 8, Head->y * 8, 1, tile_snake);
+            drawSquare_(Head->x * 8, Head->y * 8, 8, colSerpent);
         }
 
         // On verifie que la tête ne touche pas le corps
@@ -139,8 +142,14 @@ int Snake()
         {
             // Monte le score et le réaffiche
             score += 1;
-            sprintf(scoreTxt, "Score = %d", score);
+            sprintf(scoreTxt, "Score = %d  ", score);
             drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond);
+
+            // Augmente la difficulté toutes les 10 pommes
+            if (score % 6 == 0)
+            {
+                lvl++;
+            }
 
             // On agrandit le serpent
             size++;
@@ -168,13 +177,12 @@ int Snake()
             Bottom = Pos_pop(Bottom);
         }
 
-        // Hack pour faire mouliner le processeur
-        for (k = 0; k < 1000000; k++)
+        /*/ Hack pour faire mouliner le processeur
+        for (k = 0; k < 1000000 - (lvl * 1000); k++)
         {
             i = k / 2;
-        }
+        }*/
+        sleep(abs(70 - (lvl * 6)));
     }
-
-    clearScreen(colFond);
     return score;
 }
