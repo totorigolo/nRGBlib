@@ -6,12 +6,6 @@
 
 int main(void)
 {
-    // Sers à rien mais obligatoire pour le moment
-    lcd_isincolor();
-    lcd_ingray();
-    lcd_incolor();
-    _scrsize();
-
     // On efface l'écran
     clearScreen(RGB(0, 0, 0));
 

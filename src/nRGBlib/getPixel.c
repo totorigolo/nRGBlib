@@ -1,3 +1,4 @@
+#include <libndls.h>
 #include <nCOMMON.h>
 
 // Voir le lien pour la couleur (mode R5G6B5) :
@@ -13,8 +14,10 @@ Color getPixel(int16_t x, int16_t y)
     // Nspire non-CX
     if (!has_colors)
     {
-        if (lcd_isincolor())
-            lcd_ingray();
+        // Régle l'écran en 4bpp (lcd_ingray())
+        volatile unsigned *lcd_control = IO_LCD_CONTROL;
+        unsigned mode = *lcd_control & ~0b1110;
+        *lcd_control = mode | 0b010000000100;
 
         char col = ((25 + 255 + 198) / 3) / 16;
         unsigned char* p = (unsigned char*)(SCREEN_BASE_ADDRESS + ((x >> 1) + (y << 7) + (y << 5)));
@@ -24,8 +27,9 @@ Color getPixel(int16_t x, int16_t y)
     // Nspire CX
     else
     {
-        if (!lcd_isincolor())
-            lcd_incolor();
+        volatile unsigned *lcd_control = IO_LCD_CONTROL;
+        unsigned 	mode = *lcd_control & ~0b1110;
+        *lcd_control = mode | 0b1100; // R5G6B5
 
         volatile unsigned char *scr_base = SCREEN_BASE_ADDRESS;
         volatile unsigned char *ptr = scr_base + 2*(x + SCREEN_WIDTH * y);

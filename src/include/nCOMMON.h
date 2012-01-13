@@ -24,5 +24,4 @@ void setPixel(int16_t x, int16_t y, Color c);
 /// Dessine l'écran entier avec la couleur
 void clearScreen(Color c);
 
-
 #endif // NCOMMON_H_INCLUDED

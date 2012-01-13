@@ -12,9 +12,6 @@ void clearScreen(Color c)
     // Nspire non-CX
     if (!has_colors)
     {
-        if (lcd_isincolor())
-            lcd_ingray();
-
         for (i = 0; i < SCREEN_WIDTH; i++)
         {
             for (j = 0; j < SCREEN_HEIGHT; j++)
@@ -26,8 +23,10 @@ void clearScreen(Color c)
     // Nspire CX
     else
     {
-        if (!lcd_isincolor())
-            lcd_incolor();
+        // Régle l'écran en 16bpp (lcd_incolor())
+        volatile unsigned *lcd_control = IO_LCD_CONTROL;
+        unsigned 	mode = *lcd_control & ~0b1110;
+        *lcd_control = mode | 0b1100; // R5G6B5
 
         volatile unsigned char *scr_base = SCREEN_BASE_ADDRESS;
         volatile unsigned char *ptr;

@@ -39,7 +39,6 @@
 		<Unit filename="..\include\nRGBlib.h" />
 		<Unit filename="..\include\nTILE.h" />
 		<Unit filename="..\include\nVIEW.h" />
-		<Unit filename="..\include\tt.h" />
 		<Unit filename="Makefile" />
 		<Unit filename="RGBstrips.c">
 			<Option compilerVar="CC" />

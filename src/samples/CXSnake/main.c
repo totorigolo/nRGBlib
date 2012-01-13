@@ -5,12 +5,6 @@
 
 int main(void)
 {
-// Link, quand je te tient...
-lcd_ingray();
-lcd_isincolor();
-lcd_incolor();
-_scrsize();
-
     int score = 0, jouer = 1;
     char boxstr[280];
     Color colTexte = RGB(0, 255, 255);
