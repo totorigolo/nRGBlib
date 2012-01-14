@@ -4,9 +4,6 @@
 
 int main()
 {
-    // Ecran couleur (si possible)
-    lcd_incolor();
-
     // Un ligne simple pour la couleur
     Color c1 = RGB(233, 0, 128); // Violet-gris
 

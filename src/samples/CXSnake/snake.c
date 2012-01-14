@@ -55,14 +55,12 @@ int Snake()
     // On crée le serpent (size = 4), et on l'affiche
     for (i = 0; i < size; i++)
     {
-        //drawTile8Unicolor(Head->x * 8, Head->y * 8, 1, tile_snake);
         drawSquare_(Head->x * 8, Head->y * 8, 8, colSerpent);
         tab[Current->x][Current->y] = 1;
         Current = Pos_add(Current, 1, 0); // Ajoute une case
     }
 
     // On crée la tête, et on la dessine
-    //drawTile8Unicolor(Current->x * 8, Current->y * 8, 1, tile_snake);
     drawSquare_(Current->x * 8, Current->y * 8, 8, colSerpent);
     tab[Current->x][Current->y] = 1;
     Head = Current;
@@ -124,7 +122,6 @@ int Snake()
         // On ajoute un element à la tête et on dessine la tête
         if ( (Head->x > (-1)) && (Head->y > (-1)))
         {
-            //drawTile8Unicolor(Head->x * 8, Head->y * 8, 1, tile_snake);
             drawSquare_(Head->x * 8, Head->y * 8, 8, colSerpent);
         }
 
@@ -177,11 +174,6 @@ int Snake()
             Bottom = Pos_pop(Bottom);
         }
 
-        /*/ Hack pour faire mouliner le processeur
-        for (k = 0; k < 1000000 - (lvl * 1000); k++)
-        {
-            i = k / 2;
-        }*/
         sleep(abs(70 - (lvl * 6)));
     }
     return score;

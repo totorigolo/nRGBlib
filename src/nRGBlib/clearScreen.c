@@ -10,22 +10,20 @@ void clearScreen(Color c)
 {
     int i, j;
     // 4 bpp
+#if (__FAST_SETPIXEL__ == 1) // nCOMMON.h
     if (!has_colors)
+#else
+    if (!has_colors || ((*IO_LCD_CONTROL & 0b1110) != 0b1100)) // R5G6B5 - libndls - lcd_isincolor())
+#endif
     {
-        for (i = 0; i < SCREEN_WIDTH; i++)
-        {
-            for (j = 0; j < SCREEN_HEIGHT; j++)
-            {
-                setPixel(i, j, c);
-            }
-        } // TODO: Optimiser
+        memset(SCREEN_BASE_ADDRESS, (((getBW(c)) << 4) | getBW(c)), (SCREEN_WIDTH * SCREEN_HEIGHT / 2));
     }
     // 16 bpp
     else
     {
         unsigned char *scr_base = SCREEN_BASE_ADDRESS;
         unsigned char *ptr;
-        for (ptr = scr_base; ptr < scr_base + (SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(uint16_t)); ptr += sizeof(uint16_t))
+        for (ptr = scr_base; ptr < scr_base + (SCREEN_WIDTH * SCREEN_HEIGHT * 2); ptr += sizeof(uint16_t))
             *(uint16_t*)ptr = c;
     }
 }

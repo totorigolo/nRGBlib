@@ -31,6 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="..\include\charmap.h" />
 		<Unit filename="..\include\nAUDIO.h" />
 		<Unit filename="..\include\nCOMMON.h" />
 		<Unit filename="..\include\nGEO.h" />
@@ -70,9 +71,6 @@
 		<Unit filename="drawTriangle.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="getPixel.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="maths.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -92,10 +90,6 @@
 		</Unit>
 		<Unit filename="..\samples\CXSnake\snake.h" />
 		<Unit filename="..\samples\CXSnake\tile_snake.h" />
-		<Unit filename="..\samples\CXSnake\utils.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="..\samples\CXSnake\utils.h" />
 		<Unit filename="..\samples\GeometriCX\Makefile" />
 		<Unit filename="..\samples\GeometriCX\main.c">
 			<Option compilerVar="CC" />

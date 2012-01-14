@@ -5,9 +5,6 @@
 
 int main(void)
 {
-    // Ecran couleur (si possible)
-    lcd_incolor();
-
     int score = 0, jouer = 1;
     char boxstr[280];
     Color colTexte = RGB(0, 255, 255);

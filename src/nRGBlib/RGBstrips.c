@@ -8,20 +8,18 @@
 /// Dessine trois bandes RGB qui font chacunes 1 / 3 de l'écran
 void RGBstrips()
 {
-    // Nspire non-CX
+    // 4 bpp
+#if (__FAST_SETPIXEL__ == 1) // nCOMMON.h
     if (!has_colors)
+#else
+    if (!has_colors || ((*IO_LCD_CONTROL & 0b1110) != 0b1100)) // R5G6B5 - libndls - lcd_isincolor())
+#endif
     {
-        if (lcd_isincolor())
-            lcd_ingray();
-
         // TODO: RGBstrips pour non-CX
     }
-    // Nspire CX
+    // 16 bpp
     else
     {
-        if (!lcd_isincolor())
-            lcd_incolor();
-
         volatile unsigned char *scr_base = SCREEN_BASE_ADDRESS;
         volatile unsigned char *ptr;
         //unsigned scr_size = SCREEN_BYTES_SIZE;
