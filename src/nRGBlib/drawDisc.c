@@ -1,6 +1,6 @@
 #include <nGEO.h>
 
-/// Dessine un disque en couleur
+/// Draw a disc in color
 void drawDisc_(int16_t x, int16_t y, int16_t radius, Color c)
 {
     int16_t x2 = 0;

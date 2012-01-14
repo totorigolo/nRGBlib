@@ -29,8 +29,8 @@ struct Tile16Unicolor
     char data[16][2];
 };
 
-/// Dessine une tile de 8x8 pixels en couleurs aux positions données
-/// \size supérieure à 1; 1 = taille normale
+/// Draw a 8x8 tile in color(s) resized to the given positions
+//   - size >= 1
 void drawTile8Unicolor(int16_t x, int16_t y, int8_t size, Tile8Unicolor tile);
 void drawTile8Multicolors(int16_t x, int16_t y, int8_t size, Tile8Multicolors tile);
 

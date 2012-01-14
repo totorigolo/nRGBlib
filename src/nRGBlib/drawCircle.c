@@ -1,6 +1,6 @@
 #include <nGEO.h>
 
-/// Dessine un cercle en couleur
+/// Draw a circle in color
 void drawCircle_(int16_t x, int16_t y, int16_t radius, Color c)
 {
     int16_t x2 = 0;

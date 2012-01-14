@@ -1,7 +1,7 @@
 GCC = nspire-gcc
 LD = nspire-ld
 GCCFLAGS = -Os -Wall -W -marm
-LDFLAGS =
+LDFLAGS = -L "../../../sdk/lib/" -lRGB
 OBJCOPY := "$(shell (which arm-elf-objcopy arm-none-eabi-objcopy arm-linux-gnueabi-objcopy | head -1) 2>/dev/null)"
 ifeq (${OBJCOPY},"")
 	OBJCOPY := arm-none-eabi-objcopy

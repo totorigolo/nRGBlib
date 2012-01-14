@@ -5,25 +5,8 @@
 #define PI 3.14159265
 #endif
 
-/// Calcule la factorielle
-int Factorielle(int n);
-
-/// Calcule la puissance
-float Puissance(float x, int y);
-
-/// Calcule le cosinus
-// TODO: Allégér les calculs
-float Cosinus(float x);
-
-/// Calcule le sinus
-// TODO: Allégér les calculs
-float Sinus(float x);
-
-/// Calcule l'inverse de la valeur entre 0 et 1
-inline float Inverse(float val);
-
-/// Choisi un nombre aléatoire (basé sur le nombre de fois que la fonction est appelée)
+/// Choose an random number (based on the number of time the function is called)
 int rand();
-inline int randMinMax(int min, int max);
+inline int randMinMax(int min, int max); // min & max included
 
 #endif // MATHS_H_INCLUDED

@@ -9,7 +9,6 @@ int Snake()
 {
     char tab[41][31]; // Tableau de jeu
     int i,j; // for
-    volatile int k; // for pour le hack // TODO: Sleep();
     char* scoreTxt;
     char score = 0; // Score final (improbable que le score dépasse 255)
     char size = 4; // Taille du serpent (idem)

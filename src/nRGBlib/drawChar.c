@@ -1,6 +1,6 @@
 #include <nGUI.h>
 
-/// Dessine une lettre aux position données en changeant la couleur de fond
+/// Draw a letter to the given position and change the background color
 void drawCharBckg(int16_t x, int16_t y, char ch, int8_t size, Color cT, Color cB)
 {
     int32_t i, j;
@@ -21,7 +21,7 @@ void drawCharBckg(int16_t x, int16_t y, char ch, int8_t size, Color cT, Color cB
     }
 }
 
-/// Dessine une lettre aux position données
+/// Draw a letter to the given position
 void drawChar(int16_t x, int16_t y, char ch, int8_t size, Color c)
 {
     int32_t i, j;

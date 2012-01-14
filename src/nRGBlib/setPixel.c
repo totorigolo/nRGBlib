@@ -2,10 +2,9 @@
 #include <libndls.h>
 #include <os.h>
 
-// Voir le lien pour la couleur (mode R5G6B5) :
-//   -> See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
+// See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
 
-/// Dessine un pixel en couleur
+/// Draw a pixel in color
 void setPixel(int16_t x, int16_t y, Color c)
 {
     if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)

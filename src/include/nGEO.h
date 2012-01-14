@@ -44,30 +44,31 @@ typedef struct Triangle {
     int16_t y3;
 } Triangle;
 
-/// Dessine trois bandes RGB qui font chacunes 1 / 3 de l'écran
+/// Draw three red, green and blue strips
 void RGBstrips();
 
-/// Dessine une ligne quelconque en couleurs
+/// Draw a line in color
+//    - Note that for a vertical or horizontal line, utilisation of drawBox is faster
 void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c);
 inline void drawLine(Line *l, Color c);
 
-/// Dessine un rectangle en couleur
+/// Draw a box / rectangle in color
 void drawBox_(int16_t x, int16_t y, int16_t w, int16_t h, Color c);
 inline void drawBox(Box *box, Color c);
 
-/// Dessine un carré en couleur
+/// Draw a square in color
 inline void drawSquare_(int16_t x, int16_t y, int16_t side, Color c);
 inline void drawSquare(Square *s, Color c);
 
-/// Dessine un cercle en couleur
+/// Draw a circle in color
 void drawCircle_(int16_t x, int16_t y, int16_t radius, Color c);
 inline void drawCircle(Circle *c, Color col);
 
-/// Dessine un disque en couleur
+/// Draw a disc in color
 void drawDisc_(int16_t x, int16_t y, int16_t radius, Color c);
 inline void drawDisc(Disc *d, Color c);
 
-/// Dessine un triangle vide en couleur
+/// Draw an empty triangle in color
 void drawTriangle_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, Color c);
 inline void drawTriangle(Triangle *t, Color c);
 

@@ -6,10 +6,10 @@
 
 int main(void)
 {
-    // On efface l'écran
+    // Clear screen in black
     clearScreen(RGB(0, 0, 0));
 
-    // Dessine tout !
+    // Draw all !
     drawTriangle_(0, 0, 319, 0, 319, 239, RGB(37, 136, 218));
     drawTriangle_(0, 0, 0, 239, 319, 239, RGB(218, 37, 136));
     drawBox_(300, 0, 20, 10, RGB(0, 95, 107));
@@ -38,16 +38,15 @@ int main(void)
     drawStr(0, 240 - CHAR_HEIGHT * 3, "Ctrl to Bubble Land!", 2, 0, RGB(0, 255, 255));
     drawStrBckg(0, 240 - CHAR_HEIGHT, "Esc to Quit", 1, 0, RGB(255, 0, 0), RGB(255, 255, 255));
     drawStrBckg(SCREEN_WIDTH - 13 * CHAR_WIDTH, 240 - CHAR_HEIGHT, "by totorigolo", 1, 0, RGB(255, 0, 0), RGB(0, 255, 255));
-
     drawCircle_(289, 30, 30, RGB(255, 255, 255));
     drawDisc_(15, 15, 15, RGB(255, 255, 255));
 
-    // On attends
+    // Wait
     while (!isKeyPressed(KEY_NSPIRE_ESC))
     {
         rand();
         sleep(50);
-        if (isKeyPressed(KEY_NSPIRE_CTRL))
+        if (isKeyPressed(KEY_NSPIRE_CTRL)) // Bubble Land !
         {
             while (!isKeyPressed(KEY_NSPIRE_ESC))
             {
@@ -61,6 +60,6 @@ int main(void)
         }
     }
 
-    // Rends la main à l'OS
+    // Quit
     return 0;
 }

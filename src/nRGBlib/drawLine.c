@@ -1,6 +1,7 @@
 #include <nGEO.h>
 
-/// Dessine une ligne quelconque en couleurs
+/// Draw a line in color
+//    - Note that for a vertical or horizontal line, utilisation of drawBox is faster
 void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c)
 {
     int16_t d, dx, dy, aincr, bincr, xincr, yincr, x, y, tmp;

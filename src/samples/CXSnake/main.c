@@ -1,6 +1,8 @@
 #include <os.h>
-#include <nRGBlib.h>
-#include <nMATHS.h>
+//#include <nRGBlib.h>
+//#include <nMATHS.h>
+#include "../../include/nRGBlib.h"
+#include "../../include/nMATHS.h"
 #include "snake.h"
 
 int main(void)
@@ -40,7 +42,7 @@ int main(void)
         score = 0;
         score = Snake();
 
-        if (score < 0) // Erreur durant l'execution
+        if (score < 0) // Erreur durant l'exécution
             break;
 
         // Crée le message de fin

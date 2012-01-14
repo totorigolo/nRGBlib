@@ -1,9 +1,7 @@
 #include <nTILE.h>
 
-// TODO: !!! uniquement un char pour les pixels
-
-/// Dessine une tile de 8x8 pixels en couleurs agrandie *facteur (1 < facteur < infinie) aux positions données
-///     \size supérieure à 1
+/// Draw a 8x8 tile in color resized to the given positions
+//   - size >= 1
 void drawTile8Unicolor(int16_t x, int16_t y, int8_t size, Tile8Unicolor tile)
 {
     int8_t i, j, f = size < 1 ? 1 : size;
@@ -22,6 +20,8 @@ void drawTile8Unicolor(int16_t x, int16_t y, int8_t size, Tile8Unicolor tile)
         }
     }
 }
+/// Draw a 8x8 tile in colors resized to the given positions
+//   - size >= 1
 void drawTile8Multicolors(int16_t x, int16_t y, int8_t size, Tile8Multicolors tile)
 {
     int8_t i, j, f = size < 1 ? 1 : size;

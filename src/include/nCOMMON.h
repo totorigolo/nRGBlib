@@ -3,7 +3,7 @@
 
 #include <os.h>
 
-// (Dés)active la possibilité d'utiliser l'écran en 4 bpp sur Nspires 16bpp, mais accélère le dessin
+// Dis/enables the possibility of using the screen of 4 bpp Nspire 16bpp, but accelerates drawing
 #define __FAST_SETPIXEL__ 0
 
 typedef uint16_t Color;
@@ -14,10 +14,10 @@ typedef uint16_t Color;
 #define getB(c) (((c) & 0x1F) * 2)
 #define getBW(c) ((((getR(c)) / 16) + ((getG(c)) / 16) + ((getB(c)) / 16)) / 3)
 
-/// Dessine un pixel en couleur
+/// Draw a pixel in color
 void setPixel(int16_t x, int16_t y, Color c);
 
-/// Dessine l'écran entier avec la couleur
+/// Clear screen with a color
 void clearScreen(Color c);
 
 #endif // NCOMMON_H_INCLUDED

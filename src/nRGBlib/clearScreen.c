@@ -2,10 +2,9 @@
 #include <nCOMMON.h>
 #include <os.h>
 
-// Voir le lien pour la couleur (mode R5G6B5) :
-//   -> See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
+// See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
 
-/// Efface l'écran entier avec la couleur
+/// Clear screen with the selected color
 void clearScreen(Color c)
 {
     int i, j;

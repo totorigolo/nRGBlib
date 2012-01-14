@@ -1,33 +1,5 @@
 #include <nMATHS.h>
 
-/// Calcule la factorielle
-int Factorielle(int n)
-{
-    int i, fact = 1;
-    for (i = 1; i <= n; i++)
-        fact *= i;
-
-    return fact;
-}
-
-/// Calcule la puissance
-float Puissance(float x, int y)
-{
-    int i;
-    float puissance = 1;
-
-    for (i = 1; i <= y;)
-        puissance *= x;
-
-    return puissance;
-}
-
-/// Calcule l'inverse de la valeur entre 0 et 1
-inline float Inverse(float val)
-{
-    return (1 / val > 1) ? 1 : ((1 / val < 0) ? 0 : 1 / val);
-}
-
 /// Choisi un nombre aléatoire (basé sur le nombre de fois que la fonction est appelée)
 int rand()
 {

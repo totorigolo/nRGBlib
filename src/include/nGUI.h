@@ -5,18 +5,18 @@
 #include "charmap.h"
 #include "nCOMMON.h"
 
-/// Dessine une lettre aux position données en changeant la couleur de fond
+/// Draw a letter to the given position and change the background color
 void drawCharBckg(int16_t x, int16_t y, char ch, int8_t size, Color cT, Color cB);
 
-/// Dessine une lettre aux positions données
+/// Draw a letter to the given position
 void drawChar(int16_t x, int16_t y, char ch, int8_t size, Color c);
 
-/// Ecris un texte aux positions données en changeant la couleur de fond
-///    - retour est un booléen qui défini si le retour à la ligne est permis
+/// Write a text to the given position and change background color
+//    - endl is a boolean which define if the line break is allowed
 void drawStrBckg(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color cT, Color cB);
 
-/// Ecris un texte aux positions données
-///    - retour est un booléen qui défini si le retour à la ligne est permis
+/// Write a text to the given position and change background color
+//    - endl is a boolean which define if the line break is allowed
 void drawStr(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color c);
 
 #endif // NGUI_H_INCLUDED
