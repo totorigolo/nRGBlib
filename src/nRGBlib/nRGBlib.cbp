@@ -31,6 +31,17 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="..\..\LisezMoi.txt" />
+		<Unit filename="..\..\ReadMe.txt" />
+		<Unit filename="..\..\sdk\include\charmap.h" />
+		<Unit filename="..\..\sdk\include\nAUDIO.h" />
+		<Unit filename="..\..\sdk\include\nCOMMON.h" />
+		<Unit filename="..\..\sdk\include\nGEO.h" />
+		<Unit filename="..\..\sdk\include\nGUI.h" />
+		<Unit filename="..\..\sdk\include\nMATHS.h" />
+		<Unit filename="..\..\sdk\include\nRGBlib.h" />
+		<Unit filename="..\..\sdk\include\nTILE.h" />
+		<Unit filename="..\..\sdk\include\nVIEW.h" />
 		<Unit filename="..\include\charmap.h" />
 		<Unit filename="..\include\nAUDIO.h" />
 		<Unit filename="..\include\nCOMMON.h" />
@@ -71,6 +82,7 @@
 		<Unit filename="drawTriangle.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="essaiTransparent.cpp" />
 		<Unit filename="maths.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -96,6 +108,7 @@
 		</Unit>
 		<Unit filename="..\samples\GeometriCX\tileset.h" />
 		<Unit filename="..\samples\Makefile" />
+		<Unit filename="..\samples\ReadMe.txt" />
 		<Unit filename="..\samples\helloRGB\Makefile" />
 		<Unit filename="..\samples\helloRGB\main.c">
 			<Option compilerVar="CC" />
