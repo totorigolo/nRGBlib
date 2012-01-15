@@ -1,12 +1,12 @@
 AS = nspire-as
 AR := "$(shell (which arm-elf-ar arm-none-eabi-ar arm-linux-gnueabi-ar | head -1) 2>/dev/null)"
 GCC = nspire-gcc
-GCCFLAGS = -Os -nostdlib
+GCCFLAGS = -Os -nostdlib -I"../include"
 LD = nspire-ld
 LDFLAGS = s -nostdlib
 OBJCOPY := "$(shell (which arm-elf-objcopy arm-none-eabi-objcopy arm-linux-gnueabi-objcopy | head -1) 2>/dev/null)"
 LIB = libRGB.a
-DISTDIR = ../../../ndless-v3.1/sdk/lib
+DISTDIR = ../lib
 vpath %.a $(DISTDIR)
 OBJS = $(patsubst %.c,%.o,$(wildcard *.c))
 
@@ -19,10 +19,7 @@ all: static $(LIB)
 	$(AS) $(GCCFLAGS) -c $<
 
 %.elf: %.o
-	$(LD) $(LDFLAGS) $^ -o $@
-
-# Force ARM mode for functions which uses non-Thumb inline assembly
-clear_cache.o idle.o: GCCFLAGS+=-marm
+	$(LD) $(LDFLAGS) $^ -o $@ -lndls
 
 static:
 	@mkdir -p $(DISTDIR)
@@ -39,9 +36,3 @@ samples:
 	(cd ../samples && make)
 rsamples:
 	(cd ../samples && make clean all)
-
-.PHONY: samplesHello
-samplesHello:
-	(cd ../samples/HelloRGB && make)
-rsamplesHello:
-	(cd ../samples/HelloRGB && make clean all)

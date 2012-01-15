@@ -1,5 +1,4 @@
 #include <nCOMMON.h>
-#include <libndls.h>
 #include <os.h>
 
 // See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
@@ -14,7 +13,7 @@ void setPixel(int16_t x, int16_t y, Color c)
 #if (__FAST_SETPIXEL__ == 1) // nCOMMON.h
     if (!has_colors)
 #else
-    if (!has_colors || ((*IO_LCD_CONTROL & 0b1110) != 0b1100)) // R5G6B5 - libndls - lcd_isincolor())
+    if (!has_colors || !lcd_isincolor())
 #endif
     {
         unsigned char* p = (unsigned char*)(SCREEN_BASE_ADDRESS + ((x >> 1) + (y << 7) + (y << 5)));

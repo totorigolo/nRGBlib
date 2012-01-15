@@ -1,4 +1,3 @@
-#include <libndls.h>
 #include <nCOMMON.h>
 #include <os.h>
 
@@ -12,7 +11,7 @@ void clearScreen(Color c)
 #if (__FAST_SETPIXEL__ == 1) // nCOMMON.h
     if (!has_colors)
 #else
-    if (!has_colors || ((*IO_LCD_CONTROL & 0b1110) != 0b1100)) // R5G6B5 - libndls - lcd_isincolor())
+    if (!has_colors || !lcd_isincolor())
 #endif
     {
         memset(SCREEN_BASE_ADDRESS, (((getBW(c)) << 4) | getBW(c)), (SCREEN_WIDTH * SCREEN_HEIGHT / 2));

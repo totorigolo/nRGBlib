@@ -1,5 +1,4 @@
 #include <nGEO.h>
-#include <libndls.h>
 #include <os.h>
 
 // See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer

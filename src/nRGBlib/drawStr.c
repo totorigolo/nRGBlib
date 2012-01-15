@@ -1,4 +1,3 @@
-#include "charmap.h"
 #include <nGUI.h>
 #include <os.h>
 

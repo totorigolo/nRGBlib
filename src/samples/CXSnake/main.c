@@ -1,8 +1,6 @@
 #include <os.h>
-//#include <nRGBlib.h>
-//#include <nMATHS.h>
-#include "../../include/nRGBlib.h"
-#include "../../include/nMATHS.h"
+#include <nRGBlib.h>
+#include <nMATHS.h>
 #include "snake.h"
 
 int main(void)

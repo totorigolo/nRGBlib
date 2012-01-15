@@ -1,7 +1,7 @@
 GCC = nspire-gcc
 LD = nspire-ld
-GCCFLAGS = -Os -Wall -W -marm
-LDFLAGS =
+GCCFLAGS = -Os -nostdlib -I"../../include"
+LDFLAGS = -L "../../lib"
 OBJCOPY := "$(shell (which arm-elf-objcopy arm-none-eabi-objcopy arm-linux-gnueabi-objcopy | head -1) 2>/dev/null)"
 ifeq (${OBJCOPY},"")
 	OBJCOPY := arm-none-eabi-objcopy
@@ -20,7 +20,7 @@ all: HelloRGB.tns
 	$(GCC) $(GCCFLAGS) -c $<
 
 HelloRGB.tns: $(OBJS)
-	$(LD) $(LDFLAGS) $^ -o $(@:.tns=.elf)
+	$(LD) $(LDFLAGS) $^ -o $(@:.tns=.elf) -lRGB
 	@mkdir -p $(DISTDIR)
 	$(OBJCOPY) -O binary $(@:.tns=.elf) $(DISTDIR)/$@
 
