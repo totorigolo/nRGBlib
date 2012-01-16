@@ -111,12 +111,19 @@ ExtendeD (Ndless, help), Lionel Debroux (continual help), Goplat (his TI-Nspire
 Emulator that allowed me to test more effectively), TI-Planet (data hosting,
 active community for help), and those I forgot:)
 
-Creator and main developper :
-=============================
+Creator and main developper:
+============================
 
   Thomas Lacroix aka totorigolo  -  toto.rigolo@free.fr
 
-License :
-=========
 
-A license will be added soon.
+Legal stuff:
+============
+
+Most of the work is covered by the Mozilla Public License, version 2.0 (MPL).
+Please read careful the file "Mozilla-Public-License-v1.1.html" before
+distributing of any part of Ndless, with or without modification.
+
+Some parts are covered by other licenses. Others are in the public domain. These
+parts are identified by the files LICENSE.txt or LICENSE.html in the sub-
+directory.

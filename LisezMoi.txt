@@ -117,8 +117,8 @@ Development version of the source code:
 Remerciements :
 ===============
 
-ExtendeD (Ndless, aide), Lionel Debroux (aide continuelle et soutient permanent),
-Goplat (TI-Nspire Emulator qui m'a permis de tester beaucoup plus efficacement),
+ExtendeD (Ndless, grande aide), Lionel Debroux (aide et bons conseils permanents),
+Goplat (son TI-Nspire Emulator qui m'a permis de tester beaucoup plus efficacement),
 TI-Planet (data hosting, communauté active pour l'aide), et ceux que j'ai oublié :)
 
 Créateur et développeur principal :
@@ -126,7 +126,13 @@ Créateur et développeur principal :
 
   Thomas Lacroix aka totorigolo  -  toto.rigolo@free.fr
 
-Licence :
-=========
+Licence:
+========
 
-Une licence sera bientôt mise en place.
+La plupart de ce travail est couvert par la Mozilla Public License, version 2.0 (MPL).
+Lisez attentivement le fichier "Mozilla-Public-License-v2.0.html" avant
+de distribuer n'importe quelle partie de nRGBlib, avec ou sans modification.
+
+Quelques parties peuvent être couvertes par d'autres licences. Le reste est dans le
+domaine public. Ces parties sont identifiables avec les fichiers LICENSE.txt ou LICENSE.html
+dans les sous-répertoires.
