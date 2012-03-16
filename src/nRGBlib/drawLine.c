@@ -7,7 +7,7 @@
  *
  * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
  * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011
+ * Portions created by the Initial Developer are Copyright (C) 2011-2012
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
@@ -17,7 +17,7 @@
 
 /// Draw a line in color
 //    - Note that for a vertical or horizontal line, utilisation of drawBox is faster
-void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c)
+void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBuffer buffer[76800])
 {
     int16_t d, dx, dy, aincr, bincr, xincr, yincr, x, y, tmp;
 
@@ -38,7 +38,7 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c)
         x = x1;
         y = y1;
 
-        setPixel(x, y, c);
+        setPixel(x, y, c, buffer);
 
         for (y = y1+1; y <= y2; ++y)
         {
@@ -50,7 +50,7 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c)
             else
                 d += bincr;
 
-            setPixel(x, y, c);
+            setPixel(x, y, c, buffer);
         }
     }
     else // Parcours l'axe horizontal
@@ -70,7 +70,7 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c)
         x = x1;
         y = y1;
 
-        setPixel(x, y, c);
+        setPixel(x, y, c, buffer);
 
         for (x = x1+1; x <= x2; ++x)
         {
@@ -81,11 +81,11 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c)
             }
             else
                 d += bincr;
-            setPixel(x, y, c);
+            setPixel(x, y, c, buffer);
         }
     }
 }
-inline void drawLine(Line *l, Color c)
+inline void drawLine(Line *l, Color c, ScreenBuffer buffer[76800])
 {
-    drawLine_(l->x1, l->y1, l->x2, l->y2, c);
+    drawLine_(l->x1, l->y1, l->x2, l->y2, c, buffer);
 }

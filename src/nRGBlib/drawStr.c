@@ -7,7 +7,7 @@
  *
  * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
  * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011
+ * Portions created by the Initial Developer are Copyright (C) 2011-2012
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
@@ -18,7 +18,7 @@
 
 /// Write a text to the given position and change background color
 //    - endl is a boolean which define if the line break is allowed
-void drawStrBckg(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color cT, Color cB)
+void drawStrBckg(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color cT, Color cB, ScreenBuffer buffer[76800])
 {
     int16_t i;
     int8_t f = size < 1 ? 1 : size;
@@ -41,7 +41,7 @@ void drawStrBckg(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Colo
         }
         else
         {
-            drawCharBckg(x, y, str[i], f, cT, cB);
+            drawCharBckg(x, y, str[i], f, cT, cB, buffer);
             x += (CHAR_WIDTH * f);
         }
         // If you go beyond the screen
@@ -62,7 +62,7 @@ void drawStrBckg(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Colo
 
 /// Write a text to the given position
 //    - endl is a boolean which define if the line break is allowed
-void drawStr(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color c)
+void drawStr(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color c, ScreenBuffer buffer[76800])
 {
     int16_t i;
     int8_t f = size < 1 ? 1 : size;
@@ -85,7 +85,7 @@ void drawStr(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color c)
         }
         else
         {
-            drawChar(x, y, str[i], f, c);
+            drawChar(x, y, str[i], f, c, buffer);
             x += (CHAR_WIDTH * f);
         }
         // If you go beyond the screen

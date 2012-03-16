@@ -7,7 +7,7 @@
  *
  * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
  * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011
+ * Portions created by the Initial Developer are Copyright (C) 2011-2012
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
@@ -20,13 +20,15 @@
 
 int main(void)
 {
+    ScreenBuffer *buffer = NewScreenBuffer();
+
     int score = 0, jouer = 1;
     char boxstr[280];
     Color colTexte = RGB(0, 255, 255);
     Color couleurFond = RGB(0, 0, 0);
 
     // Message de bienvenue
-    clearScreen(couleurFond);
+    clearScreen(couleurFond, buffer);
 	drawStr(0, 0  * CHAR_HEIGHT,    "             +----------+\n"
                                     "             | CX Snake |\n"
                                     "             +----------+\n"
@@ -41,7 +43,9 @@ int main(void)
                                     "   - Down  : Down & 2\n"
                                     "   - Right : Right & 6\n"
                                     "   - Left  : Left & 4\n\n\n"
-                                    "Ctrl to Start !", 1, 1, colTexte);
+                                    "Ctrl to Start !", 1, 1, colTexte, buffer);
+    display(buffer);
+
 
     //Initialise le genérateur
     while (!isKeyPressed(KEY_NSPIRE_CTRL))
@@ -72,8 +76,10 @@ int main(void)
                         "   - Esc to quit.", score);
 
         // Affiche le Game Over
-        clearScreen(couleurFond);
-        drawStr(0, 0  * CHAR_HEIGHT, boxstr, 1, 1, colTexte);
+        clearScreen(couleurFond, buffer);
+        drawStr(0, 0  * CHAR_HEIGHT, boxstr, 1, 1, colTexte, buffer);
+    display(buffer);
+
 
         while (1)
         {
@@ -86,6 +92,8 @@ int main(void)
             }
         }
     }
+
+    free(buffer);
 
     // Rends la main à l'OS
     return 0;

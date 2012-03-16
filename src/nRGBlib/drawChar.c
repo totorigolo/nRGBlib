@@ -7,7 +7,7 @@
  *
  * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
  * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011
+ * Portions created by the Initial Developer are Copyright (C) 2011-2012
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
@@ -16,7 +16,7 @@
 #include <nGUI.h>
 
 /// Draw a letter to the given position and change the background color
-void drawCharBckg(int16_t x, int16_t y, char ch, int8_t size, Color cT, Color cB)
+void drawCharBckg(int16_t x, int16_t y, char ch, int8_t size, Color cT, Color cB, ScreenBuffer buffer[76800])
 {
     int32_t i, j;
     int8_t f = size < 1 ? 1 : size;
@@ -26,18 +26,18 @@ void drawCharBckg(int16_t x, int16_t y, char ch, int8_t size, Color cT, Color cB
         {
             if ((charMap_ascii[(unsigned char)ch][i] << j) & 0x80)
             {
-                drawBox_(x + (j * f), y + (i * f), f, f, cT);
+                drawBox_(x + (j * f), y + (i * f), f, f, cT, buffer);
             }
             else
             {
-                drawBox_(x + (j * f), y + (i * f), f, f, cB);
+                drawBox_(x + (j * f), y + (i * f), f, f, cB, buffer);
             }
         }
     }
 }
 
 /// Draw a letter to the given position
-void drawChar(int16_t x, int16_t y, char ch, int8_t size, Color c)
+void drawChar(int16_t x, int16_t y, char ch, int8_t size, Color c, ScreenBuffer buffer[76800])
 {
     int32_t i, j;
     int8_t f = size < 1 ? 1 : size;
@@ -47,7 +47,7 @@ void drawChar(int16_t x, int16_t y, char ch, int8_t size, Color c)
         {
             if ((charMap_ascii[(unsigned char)ch][i] << j) & 0x80)
             {
-                drawBox_(x + (j * f), y + (i * f), f, f, c);
+                drawBox_(x + (j * f), y + (i * f), f, f, c, buffer);
             }
         }
     }

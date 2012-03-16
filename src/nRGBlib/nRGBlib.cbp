@@ -3,115 +3,182 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="nRGBlib" />
+		<Option makefile_is_custom="1" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="Debug">
-				<Option output="bin\Debug\nRGBlib" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Debug\" />
-				<Option type="1" />
+			<Target title="all">
+				<Option type="4" />
 				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-g" />
-				</Compiler>
 			</Target>
-			<Target title="Release">
-				<Option output="bin\Release\nRGBlib" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release\" />
-				<Option type="1" />
+			<Target title="clean">
+				<Option type="4" />
 				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-O2" />
-				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
+			</Target>
+			<Target title="samples">
+				<Option type="4" />
+				<Option compiler="gcc" />
+			</Target>
+			<Target title="rsamples">
+				<Option type="4" />
+				<Option compiler="gcc" />
+			</Target>
+			<Target title="all_sam">
+				<Option type="4" />
+				<Option compiler="gcc" />
+			</Target>
+			<Target title="clr_all_rsam">
+				<Option type="4" />
+				<Option compiler="gcc" />
+			</Target>
+			<Target title="all_rsam">
+				<Option type="4" />
+				<Option compiler="gcc" />
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="..\..\LisezMoi.txt" />
-		<Unit filename="..\..\ReadMe.txt" />
-		<Unit filename="..\..\sdk\include\charmap.h" />
-		<Unit filename="..\..\sdk\include\nAUDIO.h" />
-		<Unit filename="..\..\sdk\include\nCOMMON.h" />
-		<Unit filename="..\..\sdk\include\nGEO.h" />
-		<Unit filename="..\..\sdk\include\nGUI.h" />
-		<Unit filename="..\..\sdk\include\nMATHS.h" />
-		<Unit filename="..\..\sdk\include\nRGBlib.h" />
-		<Unit filename="..\..\sdk\include\nTILE.h" />
-		<Unit filename="..\..\sdk\include\nVIEW.h" />
-		<Unit filename="..\include\charmap.h" />
-		<Unit filename="..\include\nAUDIO.h" />
-		<Unit filename="..\include\nCOMMON.h" />
-		<Unit filename="..\include\nGEO.h" />
-		<Unit filename="..\include\nGUI.h" />
-		<Unit filename="..\include\nMATHS.h" />
-		<Unit filename="..\include\nRGBlib.h" />
-		<Unit filename="..\include\nTILE.h" />
-		<Unit filename="..\include\nVIEW.h" />
-		<Unit filename="Makefile" />
-		<Unit filename="RGBstrips.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\..\LisezMoi.txt">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="clearScreen.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\..\ReadMe.txt">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="drawBox.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\include\charmap.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="drawChar.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\include\nAUDIO.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="drawCircle.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\include\nCOMMON.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="drawDisc.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\include\nGEO.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="drawLine.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\include\nGUI.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="drawStr.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\include\nMATHS.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="drawTile.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\include\nRGBlib.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="drawTriangle.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\include\nTILE.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="essaiTransparent.cpp" />
-		<Unit filename="maths.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\include\nVIEW.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="setPixel.c">
-			<Option compilerVar="CC" />
+		<Unit filename="..\samples\CXSnake\Makefile">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="..\samples\CXSnake\Makefile" />
 		<Unit filename="..\samples\CXSnake\main.c">
 			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="..\samples\CXSnake\pos.c">
 			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="..\samples\CXSnake\pos.h" />
+		<Unit filename="..\samples\CXSnake\pos.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="..\samples\CXSnake\snake.c">
 			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="..\samples\CXSnake\snake.h" />
-		<Unit filename="..\samples\CXSnake\tile_snake.h" />
-		<Unit filename="..\samples\GeometriCX\Makefile" />
+		<Unit filename="..\samples\CXSnake\snake.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="..\samples\CXSnake\tile_snake.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="..\samples\GeometriCX\Makefile">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="..\samples\GeometriCX\main.c">
 			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="..\samples\GeometriCX\tileset.h" />
-		<Unit filename="..\samples\Makefile" />
-		<Unit filename="..\samples\ReadMe.txt" />
-		<Unit filename="..\samples\helloRGB\Makefile" />
+		<Unit filename="..\samples\GeometriCX\tileset.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="..\samples\Makefile">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="..\samples\ReadMe.txt">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="..\samples\helloRGB\Makefile">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="..\samples\helloRGB\main.c">
 			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Makefile">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="RGBstrips.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="clearScreen.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="display.c">
+			<Option compilerVar="CC" />
+			<Option target="all" />
+			<Option target="clean" />
+			<Option target="samples" />
+			<Option target="rsamples" />
+		</Unit>
+		<Unit filename="drawBox.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="drawChar.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="drawCircle.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="drawDisc.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="drawLine.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="drawStr.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="drawTile.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="drawTriangle.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="essaiTransparent.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="maths.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="setPixel.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Extensions>
 			<code_completion />

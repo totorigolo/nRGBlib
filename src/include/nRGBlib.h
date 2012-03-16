@@ -1,5 +1,5 @@
-#ifndef DRAWRGB_H_INCLUDED
-#define DRAWRGB_H_INCLUDED
+#ifndef NRGBLIB_H_INCLUDED
+#define NRGBLIB_H_INCLUDED
 
 #include "nCOMMON.h"
 #include "nGEO.h"
@@ -8,4 +8,4 @@
 #include "nGUI.h"
 #include "nAUDIO.h"
 
-#endif // DRAWRGB_H_INCLUDED
+#endif // NRGBLIB_H_INCLUDED

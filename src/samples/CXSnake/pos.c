@@ -7,7 +7,7 @@
  *
  * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
  * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011
+ * Portions created by the Initial Developer are Copyright (C) 2011-2012
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):

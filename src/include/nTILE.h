@@ -31,8 +31,8 @@ struct Tile16Unicolor
 
 /// Draw a 8x8 tile in color(s) resized to the given positions
 //   - size >= 1
-void drawTile8Unicolor(int16_t x, int16_t y, int8_t size, Tile8Unicolor tile);
-void drawTile8Multicolors(int16_t x, int16_t y, int8_t size, Tile8Multicolors tile);
+void drawTile8Unicolor(int16_t x, int16_t y, int8_t size, Tile8Unicolor tile, ScreenBuffer buffer[76800]);
+void drawTile8Multicolors(int16_t x, int16_t y, int8_t size, Tile8Multicolors tile, ScreenBuffer buffer[76800]);
 
 
 #endif // NTILE_H_INCLUDED

@@ -7,7 +7,7 @@
  *
  * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
  * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011
+ * Portions created by the Initial Developer are Copyright (C) 2011-2012
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
@@ -16,7 +16,7 @@
 #include <nGEO.h>
 
 /// Draw a circle in color
-void drawCircle_(int16_t x, int16_t y, int16_t radius, Color c)
+void drawCircle_(int16_t x, int16_t y, int16_t radius, Color c, ScreenBuffer buffer[76800])
 {
     int16_t x2 = 0;
     int16_t y2 = radius; // On se place en haut du cercle
@@ -24,14 +24,14 @@ void drawCircle_(int16_t x, int16_t y, int16_t radius, Color c)
 
     while (x2 <= y2) // Tant qu'on est dans le second octant
     {
-        setPixel( x2 + x,  y2 + y, c);
-        setPixel( y2 + x,  x2 + y, c);
-        setPixel(-x2 + x,  y2 + y, c);
-        setPixel(-y2 + x,  x2 + y, c);
-        setPixel( x2 + x, -y2 + y, c);
-        setPixel( y2 + x, -x2 + y, c);
-        setPixel(-x2 + x, -y2 + y, c);
-        setPixel(-y2 + x, -x2 + y, c);
+        setPixel( x2 + x,  y2 + y, c, buffer);
+        setPixel( y2 + x,  x2 + y, c, buffer);
+        setPixel(-x2 + x,  y2 + y, c, buffer);
+        setPixel(-y2 + x,  x2 + y, c, buffer);
+        setPixel( x2 + x, -y2 + y, c, buffer);
+        setPixel( y2 + x, -x2 + y, c, buffer);
+        setPixel(-x2 + x, -y2 + y, c, buffer);
+        setPixel(-y2 + x, -x2 + y, c, buffer);
 
         if (m > 0) // Choix du point
         {
@@ -42,7 +42,7 @@ void drawCircle_(int16_t x, int16_t y, int16_t radius, Color c)
         m += 8 * x2 + 4;
     }
 }
-inline void drawCircle(Circle *c, Color col)
+inline void drawCircle(Circle *c, Color col, ScreenBuffer buffer[76800])
 {
-    drawCircle_(c->x, c->y, c->radius, col);
+    drawCircle_(c->x, c->y, c->radius, col, buffer);
 }

@@ -7,7 +7,7 @@
  *
  * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
  * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011
+ * Portions created by the Initial Developer are Copyright (C) 2011-2012
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
@@ -22,6 +22,8 @@
 
 int Snake()
 {
+    ScreenBuffer *buffer = NewScreenBuffer();
+
     char tab[41][31]; // Tableau de jeu
     int i,j; // for
     char* scoreTxt;
@@ -43,13 +45,13 @@ int Snake()
     Color colPomme = RGB(255, 0, 0); // Rouge
 
     // On efface l'écran
-    clearScreen(colFond);
+    clearScreen(colFond, buffer);
 
     // On crée la zone des scores
     score = 0;
     scoreTxt = "Score = 0    ";
-    drawBox_(0, 0, SCREEN_WIDTH, 2 * 8, colScoreFond);
-    drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond);
+    drawBox_(0, 0, SCREEN_WIDTH, 2 * 8, colScoreFond, buffer);
+    drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond, buffer);
 
     // On initialise le tableau à zéro
     for (i = 0; i < 40+1; i++)
@@ -69,20 +71,20 @@ int Snake()
     // On crée le serpent (size = 4), et on l'affiche
     for (i = 0; i < size; i++)
     {
-        drawSquare_(Head->x * 8, Head->y * 8, 8, colSerpent);
+        drawSquare_(Head->x * 8, Head->y * 8, 8, colSerpent, buffer);
         tab[Current->x][Current->y] = 1;
         Current = Pos_add(Current, 1, 0); // Ajoute une case
     }
 
     // On crée la tête, et on la dessine
-    drawSquare_(Current->x * 8, Current->y * 8, 8, colSerpent);
+    drawSquare_(Current->x * 8, Current->y * 8, 8, colSerpent, buffer);
     tab[Current->x][Current->y] = 1;
     Head = Current;
 
     // On change la position de la pomme aléatoirement
     applex = abs(randMinMax(1, 40-1));
     appley = abs(randMinMax(4, 30-1));
-    drawSquare_(applex * 8, appley * 8, 8, colPomme); // On dessine la pomme
+    drawSquare_(applex * 8, appley * 8, 8, colPomme, buffer); // On dessine la pomme
 
     // Boucle de jeu
     while (loose == 0 && !isKeyPressed(KEY_NSPIRE_ESC))
@@ -136,7 +138,7 @@ int Snake()
         // On ajoute un element à la tête et on dessine la tête
         if ( (Head->x > (-1)) && (Head->y > (-1)))
         {
-            drawSquare_(Head->x * 8, Head->y * 8, 8, colSerpent);
+            drawSquare_(Head->x * 8, Head->y * 8, 8, colSerpent, buffer);
         }
 
         // On verifie que la tête ne touche pas le corps
@@ -154,7 +156,7 @@ int Snake()
             // Monte le score et le réaffiche
             score += 1;
             sprintf(scoreTxt, "Score = %d  ", score);
-            drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond);
+            drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond, buffer);
 
             // Augmente la difficulté toutes les 10 pommes
             if (score % 6 == 0)
@@ -173,7 +175,7 @@ int Snake()
                 appley = abs(randMinMax(4, 30-1));
             }
             while (tab[applex][appley] == 1);
-            drawSquare_(applex * 8, appley * 8, 8, colPomme); // On la dessine
+            drawSquare_(applex * 8, appley * 8, 8, colPomme, buffer); // On la dessine
         }
 
         // On enlève le dernier élément de la queue
@@ -184,11 +186,17 @@ int Snake()
         else // On enlève la queue
         {
             tab[Bottom->x][Bottom->y] = 0;
-            drawSquare_(Bottom->x * 8, Bottom->y * 8, 8, colFond); // Efface
+            drawSquare_(Bottom->x * 8, Bottom->y * 8, 8, colFond, buffer); // Efface
             Bottom = Pos_pop(Bottom);
         }
 
+    display(buffer);
+
         sleep(abs(70 - (lvl * 6)));
     }
+    display(buffer);
+
+    free(buffer);
+
     return score;
 }

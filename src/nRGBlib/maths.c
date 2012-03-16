@@ -7,7 +7,7 @@
  *
  * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
  * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011
+ * Portions created by the Initial Developer are Copyright (C) 2011-2012
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
@@ -15,7 +15,7 @@
 
 #include <nMATHS.h>
 
-/// Choisi un nombre aléatoire (basé sur le nombre de fois que la fonction est appelée)
+/// Choose a random number (based on the number of times this function is called
 int rand()
 {
     static int m_w = 56789;
@@ -25,15 +25,8 @@ int rand()
     m_w = 18000 * (m_w & 65535) + (m_w >> 16);
 
     return (m_z << 16) + m_w;
-
-    /*static unsigned int a = 1664525, b = 1013904223, m = 0x7FFFFFFF;
-	static unsigned int nombre = 63642362;
-
-    nombre = (a*nombre+ b) % m;
-
-    return nombre;*/
 }
-/// \min inclu et \max inclu
+/// \min included et \max included
 inline int randMinMax(int min, int max)
 {
     return abs(rand()) % (max - min + 1) + min;
