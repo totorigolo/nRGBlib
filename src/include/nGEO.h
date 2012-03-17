@@ -45,9 +45,6 @@ typedef struct Triangle {
     int16_t y3;
 } Triangle;
 
-/// Draw three red, green and blue strips
-void RGBstrips();
-
 /// Draw a line in color
 //    - Note that for a vertical or horizontal line, use of drawBox is faster
 void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBuffer buffer[76800]);

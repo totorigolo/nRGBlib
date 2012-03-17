@@ -22,7 +22,7 @@
 int main(void)
 {
     // Create a new screen buffer
-    ScreenBuffer *buffer = NewScreenBuffer();
+    ScreenBuffer *buffer = GetNewScreenBuffer();
 
     // Clear screen in black and clear our screen buffer too
     clearScreen(RGB(50, 25, 37), buffer);
@@ -80,14 +80,15 @@ int main(void)
                 // Display our buffer on the screen
                 display(buffer);
             }
-            while (isKeyPressed(KEY_NSPIRE_ESC));
-
             // Draw texts
             drawStr(0, 240 - CHAR_HEIGHT * 3, "Ctrl to Bubble Land!", 2, 0, RGB(0, 255, 255), buffer);
             drawStrBckg(0, 240 - CHAR_HEIGHT, "Esc to Quit", 1, 0, RGB(255, 0, 0), RGB(255, 255, 255), buffer);
 
             // Display our buffer on the screen
             display(buffer);
+
+            // Wait to not quit immediately
+            while (isKeyPressed(KEY_NSPIRE_ESC));
         }
     }
 

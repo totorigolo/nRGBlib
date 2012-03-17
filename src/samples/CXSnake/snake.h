@@ -1,11 +1,11 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
-#define GAUCHE 0
-#define DROITE 1
-#define HAUT 2
-#define BAS 3
+#define LEFT 0
+#define RIGHT 1
+#define UP 2
+#define DOWN 3
 
-int Snake();
+int Snake(ScreenBuffer *buffer);
 
 #endif

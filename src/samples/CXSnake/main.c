@@ -20,14 +20,15 @@
 
 int main(void)
 {
-    ScreenBuffer *buffer = NewScreenBuffer();
+    // Create a new screen buffer
+    ScreenBuffer *buffer = GetNewScreenBuffer();
 
-    int score = 0, jouer = 1;
+    int score = 0, play = 1;
     char boxstr[280];
-    Color colTexte = RGB(0, 255, 255);
-    Color couleurFond = RGB(0, 0, 0);
+    Color colTexte = CYAN;
+    Color couleurFond = BLACK;
 
-    // Message de bienvenue
+    // Draw a wellcoming message
     clearScreen(couleurFond, buffer);
 	drawStr(0, 0  * CHAR_HEIGHT,    "             +----------+\n"
                                     "             | CX Snake |\n"
@@ -43,26 +44,26 @@ int main(void)
                                     "   - Down  : Down & 2\n"
                                     "   - Right : Right & 6\n"
                                     "   - Left  : Left & 4\n\n\n"
-                                    "Ctrl to Start !", 1, 1, colTexte, buffer);
+                                    "Ctrl to Start !\n"
+                                    "                      Or Esc to quit...", 1, 1, colTexte, buffer);
     display(buffer);
 
-
-    //Initialise le genérateur
-    while (!isKeyPressed(KEY_NSPIRE_CTRL))
-    {
+    // Wait and init rand
+    while (!isKeyPressed(KEY_NSPIRE_CTRL) && !(play == isKeyPressed(KEY_NSPIRE_ESC)))
         rand();
-    }
 
-    while (jouer)
+    // Main loop
+    while (play)
     {
-        // Joue et récupère le score
+        // Plays and gets the score
         score = 0;
-        score = Snake();
+        score = Snake(buffer);
 
-        if (score < 0) // Erreur durant l'exécution
+        // Check if there were not any error
+        if (score < 0)
             break;
 
-        // Crée le message de fin
+        // Create the end message
         sprintf(boxstr, "             +-----------+\n"
                         "             | Game Over |\n"
                         "             +-----------+\n\n"
@@ -75,26 +76,29 @@ int main(void)
                         "   - Ctrl to try again.\n"
                         "   - Esc to quit.", score);
 
-        // Affiche le Game Over
+        // Draw the message
         clearScreen(couleurFond, buffer);
         drawStr(0, 0  * CHAR_HEIGHT, boxstr, 1, 1, colTexte, buffer);
-    display(buffer);
 
+        // Display the buffer on the screen
+        display(buffer);
 
+        // Wait
         while (1)
         {
+            rand();
             if (isKeyPressed(KEY_NSPIRE_CTRL))
                 break;
             else if (isKeyPressed(KEY_NSPIRE_ESC))
             {
-                jouer = 0;
+                play = 0;
                 break;
             }
         }
     }
 
+    // Free our screen buffer
     free(buffer);
 
-    // Rends la main à l'OS
     return 0;
 }

@@ -12,21 +12,27 @@ typedef uint16_t Color;
 #define getB(c) (((c) & 0x1F) * 2)
 #define getBW(c) ((((getR(c)) / 16) + ((getG(c)) / 16) + ((getB(c)) / 16)) / 3)
 
-// BLACK and WHITE are defined yet by libndls
+// BLACK and WHITE are already defined by libndls
+#undef WHITE
+#undef BLACK
+#define BLACK RGB(0, 0, 0)
+#define WHITE RGB(255, 255, 255)
 #define RED RGB(255, 0, 0)
 #define GREEN RGB(0, 255, 0)
 #define BLUE RGB(0, 0, 255)
+#define YELLOW RGB(255, 255, 0)
+#define CYAN RGB(0, 255, 255)
+#define FUCHSIA RGB(255, 0, 255)
+#define BROWN RGB(91, 59, 17)
 
 typedef Color ScreenBuffer;
 
-/// Charge un nouveau buffer d'écran
-#define NewScreenBuffer() malloc(sizeof(Color) * 76800)
-/**
-   \Example:
-   ScreenBuffer *buffer = NewScreenBuffer();
-   //...
-   free(buffer);
-**/
+/// Create a new buffer for rendering
+#define GetNewScreenBuffer() malloc(sizeof(Color) * 76800)
+
+/// Load the direct screen buffer -> display is useless
+/// \Warning : Don't free() this buffer !!! Just define your NULL to delete !!!
+#define GetDirectScreenBuffer() SCREEN_BASE_ADDRESS
 
 /// Display the buffer on the screen
 void display(ScreenBuffer buffer[76800]);

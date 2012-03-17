@@ -15,12 +15,15 @@ all: static $(LIB)
 	echo 'Done...'
 
 %.o: %.c
+	echo 'Building $<...'
 	$(GCC) $(GCCFLAGS) -c $<
 
 %.o: %.S
+	echo 'Building $<...'
 	$(AS) $(GCCFLAGS) -c $<
 
 %.elf: %.o
+	echo 'Building .elf file...'
 	$(LD) $(LDFLAGS) $^ -o $@ -lndls
 
 static:
