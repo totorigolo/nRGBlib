@@ -17,7 +17,7 @@
 
 /// Draw a line in color
 //    - Note that for a vertical or horizontal line, utilisation of drawBox is faster
-void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBuffer buffer[76800])
+void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBuffer buffer)
 {
     int16_t d, dx, dy, aincr, bincr, xincr, yincr, x, y, tmp;
 
@@ -85,7 +85,7 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBu
         }
     }
 }
-inline void drawLine(Line *l, Color c, ScreenBuffer buffer[76800])
+inline void drawLine(Line *l, Color c, ScreenBuffer buffer)
 {
     drawLine_(l->x1, l->y1, l->x2, l->y2, c, buffer);
 }

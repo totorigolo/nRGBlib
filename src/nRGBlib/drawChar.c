@@ -16,7 +16,7 @@
 #include <nGUI.h>
 
 /// Draw a letter to the given position and change the background color
-void drawCharBckg(int16_t x, int16_t y, char ch, int8_t size, Color cT, Color cB, ScreenBuffer buffer[76800])
+void drawCharBckg(int16_t x, int16_t y, char ch, int8_t size, Color cT, Color cB, ScreenBuffer buffer)
 {
     int32_t i, j;
     int8_t f = size < 1 ? 1 : size;
@@ -37,7 +37,7 @@ void drawCharBckg(int16_t x, int16_t y, char ch, int8_t size, Color cT, Color cB
 }
 
 /// Draw a letter to the given position
-void drawChar(int16_t x, int16_t y, char ch, int8_t size, Color c, ScreenBuffer buffer[76800])
+void drawChar(int16_t x, int16_t y, char ch, int8_t size, Color c, ScreenBuffer buffer)
 {
     int32_t i, j;
     int8_t f = size < 1 ? 1 : size;

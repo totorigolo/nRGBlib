@@ -17,7 +17,7 @@
 
 /// Draw a 8x8 tile in color resized to the given positions
 //   - size >= 1
-void drawTile8Unicolor(int16_t x, int16_t y, int8_t size, Tile8Unicolor tile, ScreenBuffer buffer[76800])
+void drawTile8Unicolor(int16_t x, int16_t y, int8_t size, Tile8Unicolor tile, ScreenBuffer buffer)
 {
     int8_t i, j, f = size < 1 ? 1 : size;
     for (i = 0; i < 8; i++)
@@ -37,7 +37,7 @@ void drawTile8Unicolor(int16_t x, int16_t y, int8_t size, Tile8Unicolor tile, Sc
 }
 /// Draw a 8x8 tile in colors resized to the given positions
 //   - size >= 1
-void drawTile8Multicolors(int16_t x, int16_t y, int8_t size, Tile8Multicolors tile, ScreenBuffer buffer[76800])
+void drawTile8Multicolors(int16_t x, int16_t y, int8_t size, Tile8Multicolors tile, ScreenBuffer buffer)
 {
     int8_t i, j, f = size < 1 ? 1 : size;
     for (i = 0; i < 8; i++)

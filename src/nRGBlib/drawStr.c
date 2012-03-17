@@ -18,7 +18,7 @@
 
 /// Write a text to the given position and change background color
 //    - endl is a boolean which define if the line break is allowed
-void drawStrBckg(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color cT, Color cB, ScreenBuffer buffer[76800])
+void drawStrBckg(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color cT, Color cB, ScreenBuffer buffer)
 {
     int16_t i;
     int8_t f = size < 1 ? 1 : size;
@@ -62,7 +62,7 @@ void drawStrBckg(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Colo
 
 /// Write a text to the given position
 //    - endl is a boolean which define if the line break is allowed
-void drawStr(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color c, ScreenBuffer buffer[76800])
+void drawStr(int16_t x, int16_t y, char* str, int8_t size, int8_t endl, Color c, ScreenBuffer buffer)
 {
     int16_t i;
     int8_t f = size < 1 ? 1 : size;

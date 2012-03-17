@@ -22,10 +22,10 @@
 int main(void)
 {
     // Create a new screen buffer
-    ScreenBuffer *buffer = GetNewScreenBuffer();
+    ScreenBuffer buffer = GetNewScreenBuffer();
 
     // Clear screen in black and clear our screen buffer too
-    clearScreen(RGB(50, 25, 37), buffer);
+    clearScreen(BLACK, buffer);
 
     // Draw all !
     drawTriangle_(0, 0, 319, 0, 319, 239, RGB(37, 136, 218), buffer);
@@ -81,8 +81,8 @@ int main(void)
                 display(buffer);
             }
             // Draw texts
-            drawStr(0, 240 - CHAR_HEIGHT * 3, "Ctrl to Bubble Land!", 2, 0, RGB(0, 255, 255), buffer);
-            drawStrBckg(0, 240 - CHAR_HEIGHT, "Esc to Quit", 1, 0, RGB(255, 0, 0), RGB(255, 255, 255), buffer);
+            drawStr(0, 240 - CHAR_HEIGHT * 3, "Ctrl to Bubble Land!", 2, 0, CYAN, buffer);
+            drawStrBckg(0, 240 - CHAR_HEIGHT, "Esc to Quit", 1, 0, RED, WHITE, buffer);
 
             // Display our buffer on the screen
             display(buffer);

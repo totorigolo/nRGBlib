@@ -14,9 +14,11 @@ vpath %.tns $(DISTDIR)
 all: HelloRGB.tns
 
 %.o: %.c
+	echo 'Building $<...'
 	$(GCC) $(GCCFLAGS) -c $<
 
 %.o: %.S
+	echo 'Building $<...'
 	$(GCC) $(GCCFLAGS) -c $<
 
 HelloRGB.tns: $(OBJS)

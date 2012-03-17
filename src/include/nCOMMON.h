@@ -5,6 +5,7 @@
 
 typedef uint16_t Color;
 
+// See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
 #define RGB(r, g, b) (Color) (((((uint8_t)(r)) / 8) << 11) | ((((uint8_t)(g)) / 4) << 5) | (((uint8_t)(b)) / 8))
 
 #define getR(c) ((((c) & 0xF800) >> 11) * 8)
@@ -25,25 +26,29 @@ typedef uint16_t Color;
 #define FUCHSIA RGB(255, 0, 255)
 #define BROWN RGB(91, 59, 17)
 
-typedef Color ScreenBuffer;
+typedef void* ScreenBuffer;
 
 /// Create a new buffer for rendering
-#define GetNewScreenBuffer() malloc(sizeof(Color) * 76800)
+#define GetNewScreenBuffer() (lcd_isincolor()) ?  malloc(sizeof(Color) * 76800) : malloc(sizeof(Color) * 38400)
+/*#define GetNewScreenBuffer() if (lcd_isincolor())              \
+                                malloc(sizeof(uint16_t) * 76800); \
+                            else                               \
+                                malloc(sizeof(uint8_t) * 38400)*/
 
 /// Load the direct screen buffer -> display is useless
 /// \Warning : Don't free() this buffer !!! Just define your NULL to delete !!!
 #define GetDirectScreenBuffer() SCREEN_BASE_ADDRESS
 
 /// Display the buffer on the screen
-void display(ScreenBuffer buffer[76800]);
+void display(ScreenBuffer buffer);
 
 /// Copy the displayed screen buffer in the given buffer
-void copyScreenToBuffer(ScreenBuffer buffer[76800]);
+void copyScreenToBuffer(ScreenBuffer buffer);
 
 /// Draw a pixel in color
-void setPixel(int16_t x, int16_t y, Color c, ScreenBuffer buffer[76800]);
+void setPixel(int16_t x, int16_t y, Color c, ScreenBuffer buffer);
 
 /// Clear screen with a color
-void clearScreen(Color c, ScreenBuffer buffer[76800]);
+void clearScreen(Color c, ScreenBuffer buffer);
 
 #endif // NCOMMON_H_INCLUDED

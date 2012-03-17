@@ -16,7 +16,7 @@
 #include <nGEO.h>
 
 /// Draw a circle in color
-void drawCircle_(int16_t x, int16_t y, int16_t radius, Color c, ScreenBuffer buffer[76800])
+void drawCircle_(int16_t x, int16_t y, int16_t radius, Color c, ScreenBuffer buffer)
 {
     int16_t x2 = 0;
     int16_t y2 = radius; // On se place en haut du cercle
@@ -42,7 +42,7 @@ void drawCircle_(int16_t x, int16_t y, int16_t radius, Color c, ScreenBuffer buf
         m += 8 * x2 + 4;
     }
 }
-inline void drawCircle(Circle *c, Color col, ScreenBuffer buffer[76800])
+inline void drawCircle(Circle *c, Color col, ScreenBuffer buffer)
 {
     drawCircle_(c->x, c->y, c->radius, col, buffer);
 }

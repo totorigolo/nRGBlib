@@ -36,7 +36,7 @@ int Snake(ScreenBuffer *buffer)
     Pos *Bottom = NULL; // Last snake position
     Pos *Current = NULL; // Current drawed part position
 
-    Color colScoreTxt = WHITE;
+    Color colScoreTxt = CYAN;
     Color colScoreFond = BLACK;
     Color colSerpent = GREEN;
     Color colFond = RGB(220, 220, 220); // Light grey

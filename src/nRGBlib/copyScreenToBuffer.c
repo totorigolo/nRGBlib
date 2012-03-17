@@ -17,16 +17,8 @@
 #include <nGEO.h>
 #include <os.h>
 
-// See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
-
 /// Display the buffer on the screen
-void copyScreenToBuffer(ScreenBuffer buffer[76800])
+void copyScreenToBuffer(ScreenBuffer buffer)
 {
-    // 4 bpp
-    if (!has_colors || !lcd_isincolor());
-    // 16 bpp
-    else
-    {
-        memcpy(buffer, SCREEN_BASE_ADDRESS, SCREEN_BYTES_SIZE);
-    }
+    memcpy(buffer, SCREEN_BASE_ADDRESS, SCREEN_BYTES_SIZE);
 }

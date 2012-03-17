@@ -1,22 +1,36 @@
+/****************************************************************************
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * The Original Code is nRGBlib code.
+ *
+ * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
+ * <toto.rigolo@free.fr>.
+ * Portions created by the Initial Developer are Copyright (C) 2011-2012
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s):
+ ****************************************************************************/
+
 #include <os.h>
 #include <nGEO.h>
 #include <nGUI.h>
 
-/** Two methods exist:
+/** Two rendering methods exist:
     - direct rendering
     - double buffering rendering
-    Change the following define to try the two methods */
-
+    Change the following define to try both methods */
 #define DIRECT_RENDERING 0
 
 int main()
 {
 #if DIRECT_RENDERING == 0
     // Create a new screen buffer
-    ScreenBuffer *buffer = GetNewScreenBuffer();
+    ScreenBuffer buffer = GetNewScreenBuffer();
 #else
     // Get the direct rendering buffer
-    ScreenBuffer *buffer = GetDirectScreenBuffer();
+    ScreenBuffer buffer = GetDirectScreenBuffer();
 #endif
 
     // Create a new color
@@ -45,7 +59,7 @@ int main()
         sleep(100);
 
 #if DIRECT_RENDERING == 0
-    // Free our screen buffer
+    // Free our screen buffer -> Don't forget !!!
     free(buffer);
 #else
     // Forget the buffer

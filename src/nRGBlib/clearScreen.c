@@ -16,24 +16,29 @@
 #include <nCOMMON.h>
 #include <os.h>
 
-// See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
-
 /// Clear screen with the selected color
-void clearScreen(Color c, ScreenBuffer buffer[76800])
+void clearScreen(Color c, ScreenBuffer buffer)
 {
     // 4 bpp
     if (!has_colors || !lcd_isincolor())
     {
+        // Clear the screen the color
         memset(SCREEN_BASE_ADDRESS, (((getBW(c)) << 4) | getBW(c)), (SCREEN_WIDTH * SCREEN_HEIGHT / 2));
+
+        // Copy the screen buffer to the given buffer
+        if (buffer != NULL)
+            memcpy(buffer, SCREEN_BASE_ADDRESS, SCREEN_BYTES_SIZE);
     }
     // 16 bpp
     else
     {
+        // Clear the screen with the color
         unsigned char *scr_base = SCREEN_BASE_ADDRESS;
         unsigned char *ptr;
         for (ptr = scr_base; ptr < scr_base + (SCREEN_WIDTH * SCREEN_HEIGHT * 2); ptr += sizeof(uint16_t))
             *(uint16_t*)ptr = c;
 
+        // Copy the screen buffer to the given buffer
         if (buffer != NULL)
             memcpy(buffer, SCREEN_BASE_ADDRESS, SCREEN_BYTES_SIZE);
     }
