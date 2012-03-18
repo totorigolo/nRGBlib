@@ -13,8 +13,8 @@
  * Contributor(s):
  ****************************************************************************/
 
-#include <nGEO.h>
 #include <os.h>
+#include <nGEO.h>
 
 /// Draw a box / rectangle in color
 inline void drawBox_(int16_t x, int16_t y, int16_t w, int16_t h, Color c, ScreenBuffer buffer)

@@ -13,8 +13,8 @@
  * Contributor(s):
  ****************************************************************************/
 
-#include <nGUI.h>
 #include <os.h>
+#include <nGUI.h>
 
 /// Write a text to the given position and change background color
 //    - endl is a boolean which define if the line break is allowed

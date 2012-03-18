@@ -14,23 +14,22 @@
  ****************************************************************************/
 
 #include <os.h>
-#include <nCOMMON.h>
+#include <nIMAGE.h>
 
-/// Draw a pixel in color
-void setPixel(int16_t x, int16_t y, Color c, ScreenBuffer buffer)
+/// Draw the image on the given buffer
+void drawImage(Image *img, ScreenBuffer buffer)
 {
-    if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
-        return;
-
-    // 4 bpp
-    if (!has_colors || !lcd_isincolor())
+    Color *pdata = img->data;
+    Color c;
+    unsigned int i, j;
+    for (j = img->y; j < (img->y + img->h); j++)
     {
-        unsigned char* p = (unsigned char*)(buffer + ((x >> 1) + (y << 7) + (y << 5)));
-        *p = (x & 1) ? ((*p & 0xF0) | getBW(c)) : ((*p & 0x0F) | (getBW(c) << 4));
-    }
-    // 16 bpp
-    else
-    {
-        *(((Color *)buffer) + (x + SCREEN_WIDTH * y)) = c;
+        for (i = img->x; i < (img->x + img->w); i++)
+        {
+            c = *pdata;
+            //printf("%d ", c);
+            setPixel(i, j, c, buffer);
+            pdata += sizeof(Color);
+        }
     }
 }

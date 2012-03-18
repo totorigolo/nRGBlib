@@ -13,9 +13,9 @@
  * Contributor(s):
  ****************************************************************************/
 
+#include <os.h>
 #include <nCOMMON.h>
 #include <nGEO.h>
-#include <os.h>
 
 /// Display the buffer on the screen
 void display(ScreenBuffer buffer)

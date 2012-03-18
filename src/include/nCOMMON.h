@@ -29,11 +29,7 @@ typedef uint16_t Color;
 typedef void* ScreenBuffer;
 
 /// Create a new buffer for rendering
-#define GetNewScreenBuffer() (lcd_isincolor()) ?  malloc(sizeof(Color) * 76800) : malloc(sizeof(Color) * 38400)
-/*#define GetNewScreenBuffer() if (lcd_isincolor())              \
-                                malloc(sizeof(uint16_t) * 76800); \
-                            else                               \
-                                malloc(sizeof(uint8_t) * 38400)*/
+#define GetNewScreenBuffer() malloc(SCREEN_BYTES_SIZE)
 
 /// Load the direct screen buffer -> display is useless
 /// \Warning : Don't free() this buffer !!! Just define your NULL to delete !!!

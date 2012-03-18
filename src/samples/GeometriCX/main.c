@@ -92,6 +92,7 @@ int main(void)
         }
     }
 
+    // Free our screen buffer
     free(buffer);
 
     // Quit

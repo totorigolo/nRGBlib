@@ -13,8 +13,8 @@
  * Contributor(s):
  ****************************************************************************/
 
-#include <nCOMMON.h>
 #include <os.h>
+#include <nCOMMON.h>
 
 /// Clear screen with the selected color
 void clearScreen(Color c, ScreenBuffer buffer)

@@ -15,7 +15,7 @@
 				<Option type="4" />
 				<Option compiler="gcc" />
 			</Target>
-			<Target title="clean_all">
+			<Target title="clean all">
 				<Option output="nRGBlib" prefix_auto="1" extension_auto="1" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -63,6 +63,9 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="..\include\nGUI.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="..\include\nIMAGE.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="..\include\nMATHS.h">
@@ -124,6 +127,16 @@
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="..\samples\images\1.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="..\samples\images\Makefile">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="..\samples\images\main.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="Makefile">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -133,20 +146,11 @@
 		</Unit>
 		<Unit filename="copyScreenToBuffer.c">
 			<Option compilerVar="CC" />
-			<Option target="all" />
-			<Option target="clean" />
-			<Option target="samples" />
-			<Option target="rsamples" />
-			<Option target="all_sam" />
-			<Option target="clr_all_rsam" />
-			<Option target="all_rsam" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="display.c">
 			<Option compilerVar="CC" />
-			<Option target="all" />
-			<Option target="clean" />
-			<Option target="samples" />
-			<Option target="rsamples" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="drawBox.c">
 			<Option compilerVar="CC" />
@@ -164,6 +168,9 @@
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="drawImage.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="drawLine.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
@@ -180,8 +187,8 @@
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="essaiTransparent.cpp">
-			<Option target="&lt;{~None~}&gt;" />
+		<Unit filename="loadImage.c">
+			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="maths.c">
 			<Option compilerVar="CC" />
