@@ -140,6 +140,10 @@
 		<Unit filename="Makefile">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="clearBuffer.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="clearScreen.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />

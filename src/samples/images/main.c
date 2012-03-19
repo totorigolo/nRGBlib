@@ -19,51 +19,57 @@
 int main(int argc, char* argv[])
 {
     // Create a new screen buffer
-    //ScreenBuffer buffer = GetNewScreenBuffer();
+    ScreenBuffer buffer = GetNewScreenBuffer();
 
     // Create the image
     Image image;
+    image.data = NULL;
 
     // Find the image path
     int len = strrchr(argv[0], '/') - argv[0] + 1;
-    char path[len + strlen("img2.h.tns")];
+    char path[len + strlen("img.h.tns") + 1];
     memcpy(path, argv[0], len);
-    memcpy(path + len * sizeof(char), "img2.h.tns", strlen("img2.h.tns"));
+    memcpy(path + len * sizeof(char), "img.h.tns", strlen("img.h.tns"));
 
     // Load the image
     loadImage(&image, path);
     image.x = SCREEN_WIDTH / 2 - image.w / 2;
     image.y = SCREEN_HEIGHT / 2 - image.h / 2;
 
-    // Draw the image
-    clearScreen(WHITE, NULL);
-    drawImage(&image, GetDirectScreenBuffer());
+    clearScreen(RGB(200, 200, 200), buffer);
+    while (1)
+    {
+        // Events processing
+        if (isKeyPressed(KEY_NSPIRE_ESC))
+            break;
 
-    /*drawLine_(290, 180, 310, 150, RGB(0, 255, 0), buffer);
-    drawLine_(280, 170, 300, 140, RGB(255, 255, 0), buffer);
-    drawLine_(270, 160, 290, 130, RGB(255, 0, 0), buffer);
-    drawChar( 50,   5, 'n', 1, RGB(255, 217, 76), buffer);
-    drawChar(260,  60, 'Y', 1, RGB(255, 217, 76), buffer);
-    drawChar( 60, 200, 'O', 1, RGB(255, 217, 76), buffer);
-    drawChar( 37, 136, 'q', 1, RGB(255, 0, 0), buffer);
-    drawChar(302,  39, 'M', 1, RGB(0, 217, 28), buffer);
-    drawChar(258,  17, 'X', 1, RGB(255, 128, 0), buffer);*/
+        if (isKeyPressed(KEY_NSPIRE_UP) || isKeyPressed(KEY_NSPIRE_8))
+            image.y -= 6;
+        if (isKeyPressed(KEY_NSPIRE_DOWN) || isKeyPressed(KEY_NSPIRE_2))
+            image.y += 6;
+        if (isKeyPressed(KEY_NSPIRE_LEFT) || isKeyPressed(KEY_NSPIRE_4))
+            image.x -= 6;
+        if (isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
+            image.x += 6;
 
-    // Display our buffer on the screen
-    //display(buffer);
+        // Draw the image
+        clearBuffer(RGB(200, 200, 200), buffer);
+        drawImage(&image, buffer);
 
-    // Wait
-    while (any_key_pressed());
-    while (!any_key_pressed())
-        sleep(100);
+        // Display our buffer on the screen
+        display(buffer);
+    }
 
+    printf("Deleting all things...\n");
     // Free our screen buffer
-printf("111111\n");
-    //free(buffer);
-printf("22222\n");
-    //free(image.data);
-printf("333333\n");
+    printf("Buffer...\n");
+    free(buffer);
+    printf("Img.data...\n");
+    if (image.data != NULL)
+        free(image.data);
+    printf("Done!\n");
 
     // And quit
+    sleep(300);
     return 0;
 }

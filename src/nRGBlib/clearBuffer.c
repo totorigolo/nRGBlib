@@ -14,26 +14,15 @@
  ****************************************************************************/
 
 #include <os.h>
-#include <nIMAGE.h>
+#include <nCOMMON.h>
 
-/// Draw the image on the given buffer
-void drawImage(Image *img, ScreenBuffer buffer)
+/// Clear buffer with the selected color
+void clearBuffer(Color c, ScreenBuffer buffer)
 {
-    Color c;
-    int i, j;
+    if (buffer == NULL) return;
 
-    // Is the image loaded ?
-    if (!img->data) return;
-
-    for (i = img->x; i < (img->x + img->w); i++)
-    {
-        if (i > SCREEN_WIDTH) break;
-        if (i < 0) continue;
-        for (j = img->y; j < (img->y + img->h); j++)
-        {
-            if (j > SCREEN_HEIGHT) break;
-            if (j < 0) continue;
-            setPixel(i, j, img->data[(i - img->x) * img->w + (j - img->y)], buffer);
-        }
-    }
+    unsigned int x, y;
+    for (x = 0; x < SCREEN_WIDTH; x++)
+        for (y = 0; y < SCREEN_HEIGHT; y++)
+            *(((Color *)buffer) + (x + SCREEN_WIDTH * y)) = c;
 }

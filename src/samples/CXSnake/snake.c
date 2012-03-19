@@ -90,17 +90,17 @@ int Snake(ScreenBuffer *buffer)
             if (direction != DOWN)
                 direction = UP;
         }
-        else if (isKeyPressed(KEY_NSPIRE_DOWN) || isKeyPressed(KEY_NSPIRE_2))
+        if (isKeyPressed(KEY_NSPIRE_DOWN) || isKeyPressed(KEY_NSPIRE_2))
         {
             if (direction != UP)
                 direction = DOWN;
         }
-        else if (isKeyPressed(KEY_NSPIRE_LEFT) || isKeyPressed(KEY_NSPIRE_4))
+        if (isKeyPressed(KEY_NSPIRE_LEFT) || isKeyPressed(KEY_NSPIRE_4))
         {
             if (direction != RIGHT)
                 direction = LEFT;
         }
-        else if (isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
+        if (isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
         {
             if (direction != LEFT)
                 direction = RIGHT;

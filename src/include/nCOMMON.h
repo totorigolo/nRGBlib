@@ -44,7 +44,10 @@ void copyScreenToBuffer(ScreenBuffer buffer);
 /// Draw a pixel in color
 void setPixel(int16_t x, int16_t y, Color c, ScreenBuffer buffer);
 
-/// Clear screen with a color
+/// Clear screen and buffer with a color (give NULL as buffer to not delete)
 void clearScreen(Color c, ScreenBuffer buffer);
+
+/// Clear buffer with a color
+void clearBuffer(Color c, ScreenBuffer buffer);
 
 #endif // NCOMMON_H_INCLUDED

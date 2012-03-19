@@ -42,9 +42,9 @@ int main()
 
 	// Save pixels
 	unsigned short c;
-	for (unsigned int j = 0; j < img.GetHeight(); ++j)
+	for (unsigned int i = 0; i < img.GetWidth(); ++i)
 	{
-		for (unsigned int i = 0; i < img.GetWidth(); ++i)
+		for (unsigned int j = 0; j < img.GetHeight(); ++j)
 		{
 			c = RGB(img.GetPixel(i, j).r, img.GetPixel(i, j).g, img.GetPixel(i, j).b);
 			fwrite(&c, 1, sizeof(unsigned short), f);

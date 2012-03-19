@@ -19,36 +19,44 @@
 /// Load an image from a .h file
 void loadImage(Image *img, char* path)
 {
-    Color *pdata;
-    unsigned int i;
+    unsigned int i, j;
     FILE *file;
     file = fopen(path, "rb");
-    if (file != NULL)
+
+    // File doesn't exist
+    if (file == NULL)
     {
-        // Read the image dimensions
-        fread(&img->w, 1, sizeof(unsigned int), file);
-        fread(&img->h, 1, sizeof(unsigned int), file);
-
-        // TODO: Free old image - loadImage.c
-        /*/ Free old data
-        if (img->data != NULL)
-            free(img->data);*/
-
-        // Malloc image data
-        img->size = 0;
-        img->data = malloc(img->w * img->h * sizeof(Color));
-        if (img->data == NULL)
-            exit(0);
-        img->size = img->w * img->h * sizeof(Color);
-
-        // Load image
-        for (pdata = img->data; pdata < img->data + img->size; pdata += sizeof(Color))
-        {
-            fread(pdata, 1, sizeof(Color), file);
-        }
-        pdata = NULL;
-
-        // Close our file
-        fclose(file);
+        printf("File doesn't exist!\n");
+        return;
     }
+
+    // Read the image dimensions
+    fread(&img->w, 1, sizeof(unsigned int), file);
+    fread(&img->h, 1, sizeof(unsigned int), file);
+    printf("Image size:\n - width = %d\n - height = %d\n", img->w, img->h);
+
+    // TODO: Free old image - loadImage.c
+    /*/ Free old data
+    if (img->data != NULL)
+        free(img->data);*/
+
+    // Alloc image data
+    img->data = calloc(img->w * img->h, sizeof(Color));
+    if (img->data == NULL)
+        exit(0);
+
+    // Load image
+    printf("Loading image...\n");
+    for (i = 0; i < img->w; i++)
+    {
+        //printf("%d/%d... ", i, img->w);
+        for (j = 0; j < img->h; j++)
+        {
+            fread(&img->data[i * img->w + j], 1, sizeof(Color), file);
+        }
+    }
+
+    // Close our file
+    fclose(file);
+    printf("Image loaded successfully!\n");
 }
