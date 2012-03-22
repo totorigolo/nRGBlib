@@ -33,7 +33,7 @@ void drawImage(Image *img, ScreenBuffer buffer)
         {
             if (j > SCREEN_HEIGHT) break;
             if (j < 0) continue;
-            setPixel(i, j, img->data[(i - img->x) * img->w + (j - img->y)], buffer);
+            setPixel(i, j, GET_IMG_PIXEL((i - img->x), (j - img->y), img), buffer);
         }
     }
 }

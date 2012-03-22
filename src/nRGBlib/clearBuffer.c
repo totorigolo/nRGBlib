@@ -21,8 +21,18 @@ void clearBuffer(Color c, ScreenBuffer buffer)
 {
     if (buffer == NULL) return;
 
-    unsigned int x, y;
-    for (x = 0; x < SCREEN_WIDTH; x++)
-        for (y = 0; y < SCREEN_HEIGHT; y++)
-            *(((Color *)buffer) + (x + SCREEN_WIDTH * y)) = c;
+    // 4 bpp
+    if (!has_colors || !lcd_isincolor())
+    {
+        // Clear the screen the color
+        memset(buffer, (((getBW(c)) << 4) | getBW(c)), (SCREEN_WIDTH * SCREEN_HEIGHT / 2));
+    }
+    // 16 bpp
+    else
+    {
+        unsigned int x, y;
+        for (x = 0; x < SCREEN_WIDTH; x++)
+            for (y = 0; y < SCREEN_HEIGHT; y++)
+                *(((Color *)buffer) + (x + SCREEN_WIDTH * y)) = c;
+    }
 }

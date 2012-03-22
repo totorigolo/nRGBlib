@@ -27,9 +27,10 @@ int main(int argc, char* argv[])
 
     // Find the image path
     int len = strrchr(argv[0], '/') - argv[0] + 1;
-    char path[len + strlen("img.h.tns") + 1];
+    char *file = "img.h.tns";
+    char path[len + strlen(file) + 1];
     memcpy(path, argv[0], len);
-    memcpy(path + len * sizeof(char), "img.h.tns", strlen("img.h.tns"));
+    memcpy(path + len * sizeof(char), file, strlen(file));
 
     // Load the image
     loadImage(&image, path);
@@ -44,13 +45,19 @@ int main(int argc, char* argv[])
             break;
 
         if (isKeyPressed(KEY_NSPIRE_UP) || isKeyPressed(KEY_NSPIRE_8))
-            image.y -= 6;
+            image.y -= 2;
         if (isKeyPressed(KEY_NSPIRE_DOWN) || isKeyPressed(KEY_NSPIRE_2))
-            image.y += 6;
+            image.y += 2;
         if (isKeyPressed(KEY_NSPIRE_LEFT) || isKeyPressed(KEY_NSPIRE_4))
-            image.x -= 6;
+            image.x -= 2;
         if (isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
-            image.x += 6;
+            image.x += 2;
+
+        if (isKeyPressed(KEY_NSPIRE_DEL) || isKeyPressed(KEY_NSPIRE_5))
+        {
+            image.x = SCREEN_WIDTH / 2 - image.w / 2;
+            image.y = SCREEN_HEIGHT / 2 - image.h / 2;
+        }
 
         // Draw the image
         clearBuffer(RGB(200, 200, 200), buffer);
@@ -60,9 +67,8 @@ int main(int argc, char* argv[])
         display(buffer);
     }
 
-    printf("Deleting all things...\n");
     // Free our screen buffer
-    printf("Buffer...\n");
+    printf("Deleting all things...\nBuffer...\n");
     free(buffer);
     printf("Img.data...\n");
     if (image.data != NULL)
@@ -70,6 +76,5 @@ int main(int argc, char* argv[])
     printf("Done!\n");
 
     // And quit
-    sleep(300);
     return 0;
 }

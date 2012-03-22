@@ -11,6 +11,8 @@ typedef struct Image {
     Color *data;
 } Image;
 
+#define GET_IMG_PIXEL(x, y, img) img->data[x * img->w + y]
+
 /// Load an image from a .h file
 void loadImage(Image *img, char *path);
 
