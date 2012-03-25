@@ -42,14 +42,17 @@ int main()
 
 	// Save pixels
 	unsigned short c;
+	unsigned short *image = (unsigned short*) calloc(img.GetWidth() * img.GetHeight(), sizeof(unsigned short));
 	for (unsigned int i = 0; i < img.GetWidth(); ++i)
 	{
 		for (unsigned int j = 0; j < img.GetHeight(); ++j)
 		{
 			c = RGB(img.GetPixel(i, j).r, img.GetPixel(i, j).g, img.GetPixel(i, j).b);
-			fwrite(&c, 1, sizeof(unsigned short), f);
+			image[j + i * img.GetHeight()] = c;
+			//fwrite(&c, sizeof(unsigned short), 1, f);
 		}
 	}
+	fwrite(image, sizeof(unsigned short), img.GetWidth() * img.GetHeight(), f);
 	fclose(f);
 
 	// Done

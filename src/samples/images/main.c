@@ -26,8 +26,8 @@ int main(int argc, char* argv[])
     image.data = NULL;
 
     // Find the image path
+    char *file = "gun.h.tns";
     int len = strrchr(argv[0], '/') - argv[0] + 1;
-    char *file = "img.h.tns";
     char path[len + strlen(file) + 1];
     memcpy(path, argv[0], len);
     memcpy(path + len * sizeof(char), file, strlen(file));
@@ -68,12 +68,8 @@ int main(int argc, char* argv[])
     }
 
     // Free our screen buffer
-    printf("Deleting all things...\nBuffer...\n");
     free(buffer);
-    printf("Img.data...\n");
-    if (image.data != NULL)
-        free(image.data);
-    printf("Done!\n");
+    free(image.data);
 
     // And quit
     return 0;

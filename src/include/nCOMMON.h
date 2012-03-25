@@ -32,7 +32,7 @@ typedef void* ScreenBuffer;
 #define GetNewScreenBuffer() malloc(SCREEN_BYTES_SIZE)
 
 /// Load the direct screen buffer -> display is useless
-/// \Warning : Don't free() this buffer !!! Just define your NULL to delete !!!
+/// \Warning : Don't free() this buffer : just define your NULL to delete !
 #define GetDirectScreenBuffer() SCREEN_BASE_ADDRESS
 
 /// Display the buffer on the screen

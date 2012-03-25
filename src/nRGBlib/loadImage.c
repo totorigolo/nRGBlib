@@ -36,11 +36,8 @@ void loadImage(Image *img, char* path)
     printf("Image size:\n - width = %d\n - height = %d\n", img->w, img->h);
 
     // Free old data
-    if (img->data != NULL)
-    {
-        free(img->data);
-        img->data = NULL;
-    }
+    free(img->data);
+    img->data = NULL;
 
     // Alloc image data
     img->data = calloc(img->w * img->h, sizeof(Color));
@@ -49,9 +46,11 @@ void loadImage(Image *img, char* path)
 
     // Load image
     printf("Loading image...\n");
-    for (i = 0; i < img->w; i++)
+	fread(img->data, sizeof(Color), img->w * img->h, file);
+
+    /*for (i = 0; i < img->w; i++)
         for (j = 0; j < img->h; j++)
-            fread(&GET_IMG_PIXEL(i, j, img), 1, sizeof(Color), file);
+            fread(&GET_IMG_PIXEL(i, j, img), 1, sizeof(Color), file);*/
 
     // Close our file
     fclose(file);
