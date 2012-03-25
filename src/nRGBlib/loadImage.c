@@ -30,6 +30,12 @@ void loadImage(Image *img, char* path)
         return;
     }
 
+    // (Re)init images values
+    img->x = 0;
+    img->y = 0;
+    img->w = 0;
+    img->h = 0;
+
     // Read the image dimensions
     fread(&img->w, 1, sizeof(unsigned int), file);
     fread(&img->h, 1, sizeof(unsigned int), file);
@@ -39,10 +45,14 @@ void loadImage(Image *img, char* path)
     free(img->data);
     img->data = NULL;
 
+
     // Alloc image data
     img->data = calloc(img->w * img->h, sizeof(Color));
     if (img->data == NULL)
+    {
+        printf("Failed to alloc memory: the image is too big.\n");
         exit(0);
+    }
 
     // Load image
     printf("Loading image...\n");

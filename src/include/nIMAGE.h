@@ -19,4 +19,8 @@ void loadImage(Image *img, char *path);
 /// Draw the image on the given buffer
 void drawImage(Image *img, ScreenBuffer buffer);
 
+/// Delete an image
+// Just define x, y, w, h to 0 and free data
+void deleteImage(Image *img);
+
 #endif // NIMAGE_H_INCLUDED

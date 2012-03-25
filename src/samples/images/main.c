@@ -25,17 +25,20 @@ int main(int argc, char* argv[])
     Image image;
     image.data = NULL;
 
+// TODO: Explorateur de fichiers (sample/images)
+
     // Find the image path
-    char *file = "gun.h.tns";
+    /*char *file = "elephant.h.tns";
     int len = strrchr(argv[0], '/') - argv[0] + 1;
     char path[len + strlen(file) + 1];
     memcpy(path, argv[0], len);
-    memcpy(path + len * sizeof(char), file, strlen(file));
+    memcpy(path + len * sizeof(char), file, strlen(file));*/
+    char path[] = "/documents/Examples/bac.h.tns";
 
     // Load the image
     loadImage(&image, path);
-    image.x = SCREEN_WIDTH / 2 - image.w / 2;
-    image.y = SCREEN_HEIGHT / 2 - image.h / 2;
+    //image.x = SCREEN_WIDTH / 2 - image.w / 2;
+    //image.y = SCREEN_HEIGHT / 2 - image.h / 2;
 
     clearScreen(RGB(200, 200, 200), buffer);
     while (1)
@@ -45,13 +48,13 @@ int main(int argc, char* argv[])
             break;
 
         if (isKeyPressed(KEY_NSPIRE_UP) || isKeyPressed(KEY_NSPIRE_8))
-            image.y -= 2;
-        if (isKeyPressed(KEY_NSPIRE_DOWN) || isKeyPressed(KEY_NSPIRE_2))
             image.y += 2;
+        if (isKeyPressed(KEY_NSPIRE_DOWN) || isKeyPressed(KEY_NSPIRE_2))
+            image.y -= 2;
         if (isKeyPressed(KEY_NSPIRE_LEFT) || isKeyPressed(KEY_NSPIRE_4))
-            image.x -= 2;
-        if (isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
             image.x += 2;
+        if (isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
+            image.x -= 2;
 
         if (isKeyPressed(KEY_NSPIRE_DEL) || isKeyPressed(KEY_NSPIRE_5))
         {
@@ -67,9 +70,11 @@ int main(int argc, char* argv[])
         display(buffer);
     }
 
+    // Delete our image
+    deleteImage(&image);
+
     // Free our screen buffer
     free(buffer);
-    free(image.data);
 
     // And quit
     return 0;
