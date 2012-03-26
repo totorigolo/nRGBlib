@@ -15,6 +15,7 @@
 
 #include <os.h>
 #include <nIMAGE.h>
+#include <nGUI.h>
 
 int main(int argc, char* argv[])
 {
@@ -22,6 +23,7 @@ int main(int argc, char* argv[])
     ScreenBuffer buffer = GetNewScreenBuffer();
 
     // Create the image
+    int speed = 2;
     Image image;
     image.data = NULL;
 
@@ -37,8 +39,6 @@ int main(int argc, char* argv[])
 
     // Load the image
     loadImage(&image, path);
-    //image.x = SCREEN_WIDTH / 2 - image.w / 2;
-    //image.y = SCREEN_HEIGHT / 2 - image.h / 2;
 
     clearScreen(RGB(200, 200, 200), buffer);
     while (1)
@@ -48,23 +48,35 @@ int main(int argc, char* argv[])
             break;
 
         if (isKeyPressed(KEY_NSPIRE_UP) || isKeyPressed(KEY_NSPIRE_8))
-            image.y += 2;
+            image.y += speed;
         if (isKeyPressed(KEY_NSPIRE_DOWN) || isKeyPressed(KEY_NSPIRE_2))
-            image.y -= 2;
+            image.y -= speed;
         if (isKeyPressed(KEY_NSPIRE_LEFT) || isKeyPressed(KEY_NSPIRE_4))
-            image.x += 2;
+            image.x += speed;
         if (isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
-            image.x -= 2;
+            image.x -= speed;
+
+        if (isKeyPressed(KEY_NSPIRE_PLUS))
+            speed += 1;
+        if (isKeyPressed(KEY_NSPIRE_MINUS))
+            speed -= 1;
 
         if (isKeyPressed(KEY_NSPIRE_DEL) || isKeyPressed(KEY_NSPIRE_5))
         {
-            image.x = SCREEN_WIDTH / 2 - image.w / 2;
-            image.y = SCREEN_HEIGHT / 2 - image.h / 2;
+            image.x = 0;
+            image.y = 0;
+            speed = 1;
         }
 
         // Draw the image
         clearBuffer(RGB(200, 200, 200), buffer);
         drawImage(&image, buffer);
+        if (speed < 0)
+            drawChar(0, 0, '-', 1, RED, buffer);
+        else
+            drawChar(0, 0, '+', 1, RED, buffer);
+        drawChar(8, 0, '0' + abs(speed) / 10, 1, RED, buffer);
+        drawChar(16, 0, '0' + abs(speed) % 10, 1, RED, buffer);
 
         // Display our buffer on the screen
         display(buffer);

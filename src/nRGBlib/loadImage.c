@@ -16,10 +16,9 @@
 #include <os.h>
 #include <nIMAGE.h>
 
-/// Load an image from a .h file
+/// Load an image from a converted image file
 void loadImage(Image *img, char* path)
 {
-    unsigned int i, j;
     FILE *file;
     file = fopen(path, "rb");
 
@@ -57,10 +56,6 @@ void loadImage(Image *img, char* path)
     // Load image
     printf("Loading image...\n");
 	fread(img->data, sizeof(Color), img->w * img->h, file);
-
-    /*for (i = 0; i < img->w; i++)
-        for (j = 0; j < img->h; j++)
-            fread(&GET_IMG_PIXEL(i, j, img), 1, sizeof(Color), file);*/
 
     // Close our file
     fclose(file);

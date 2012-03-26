@@ -16,8 +16,7 @@
 				<Option compiler="gcc" />
 			</Target>
 			<Target title="clean all">
-				<Option output="nRGBlib" prefix_auto="1" extension_auto="1" />
-				<Option type="0" />
+				<Option type="4" />
 				<Option compiler="gcc" />
 			</Target>
 			<Target title="samples">
@@ -117,9 +116,12 @@
 		<Unit filename="..\samples\Makefile">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="..\samples\RPG\Makefile" />
+		<Unit filename="..\samples\RPG\Makefile">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="..\samples\RPG\main.c">
 			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="..\samples\ReadMe.txt">
 			<Option target="&lt;{~None~}&gt;" />
@@ -129,9 +131,6 @@
 		</Unit>
 		<Unit filename="..\samples\helloRGB\main.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="..\samples\images\1.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="..\samples\images\Makefile">
@@ -182,6 +181,9 @@
 		<Unit filename="drawImage.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="drawImageSubrect.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="drawLine.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
@@ -204,6 +206,9 @@
 		<Unit filename="maths.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="setImage.c">
+			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="setPixel.c">
 			<Option compilerVar="CC" />
