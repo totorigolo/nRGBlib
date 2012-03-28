@@ -23,7 +23,7 @@ void setPixel(int16_t x, int16_t y, Color c, ScreenBuffer buffer)
         return;
 
     // 4 bpp
-    if (!has_colors || !lcd_isincolor())
+    else if (!has_colors || !lcd_isincolor())
     {
         unsigned char* p = (unsigned char*)(buffer + ((x >> 1) + (y << 7) + (y << 5)));
         *p = (x & 1) ? ((*p & 0xF0) | getBW(c)) : ((*p & 0x0F) | (getBW(c) << 4));

@@ -29,6 +29,7 @@ int main(int argc, char* argv[])
     image.data = NULL;
 
     char path[] = "/documents/Examples/fond.h.tns";
+    //char path[] = "/documents/ndless/dev/fond.h.tns";
 
     // Load the image
     loadImage(&image, path);

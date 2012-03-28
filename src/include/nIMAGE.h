@@ -13,7 +13,7 @@ typedef struct Image {
     Color *data;
 } Image;
 
-#define GET_IMG_PIXEL(x, y, img) img->data[((y) + (x) * (img->h))]
+#define GET_IMG_PIXEL(x, y, img) img->data[((x) + ((y) * (img->w)))]
 
 /// Load an image from a converted image file
 void loadImage(Image *img, char *path);

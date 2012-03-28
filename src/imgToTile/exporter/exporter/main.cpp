@@ -18,6 +18,7 @@ int main()
 	if (!img.LoadFromFile(path))
 	{
 		std::cerr << "Can't open the image!" << std::endl;
+		system("PAUSE");
 		return EXIT_FAILURE;
 	}
 	
@@ -32,7 +33,12 @@ int main()
 	// Open the file
 	FILE *f;
 	fopen_s(&f, path.c_str(), "wb");
-	if (!f) return EXIT_FAILURE;
+	if (!f)
+	{
+		std::cerr << "Can't create the file!" << std::endl;
+		system("PAUSE");
+		return EXIT_FAILURE;
+	}
 
 	// Save image size
 	int i = img.GetWidth();
@@ -48,7 +54,8 @@ int main()
 		for (unsigned int j = 0; j < img.GetHeight(); ++j)
 		{
 			c = RGB(img.GetPixel(i, j).r, img.GetPixel(i, j).g, img.GetPixel(i, j).b);
-			image[j + i * img.GetHeight()] = c;
+			image[i + j * img.GetWidth()] = c;
+			//image[j + i * img.GetHeight()] = c;
 			//fwrite(&c, sizeof(unsigned short), 1, f);
 		}
 	}

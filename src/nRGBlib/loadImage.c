@@ -44,7 +44,6 @@ void loadImage(Image *img, char* path)
     free(img->data);
     img->data = NULL;
 
-
     // Alloc image data
     img->data = calloc(img->w * img->h, sizeof(Color));
     if (img->data == NULL)
