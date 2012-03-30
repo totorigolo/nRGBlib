@@ -19,11 +19,11 @@
 /// Draw the image's subrect on the given buffer
 void drawImagesubrect(ImageSubrect *imgsub, ScreenBuffer buffer)
 {
-    int i, j;
+    int i, j, jmax, width;
 
     if (!imgsub->image->data) return;
 
-    // drawImageSubrect = memset for 4bpp
+    // TODO: drawImageSubrect = memset for 4bpp
     if (!has_colors || !lcd_isincolor())
         for (i = ((imgsub->x < 0) ? (0) : (imgsub->x)); i < ((imgsub->x + imgsub->w >= SCREEN_WIDTH) ? (SCREEN_WIDTH) : (imgsub->x + imgsub->w)); i++)
             for (j = ((imgsub->y < 0) ? (0) : (imgsub->y)); j < ((imgsub->y + imgsub->h >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (imgsub->y + imgsub->h)); j++)
@@ -32,19 +32,19 @@ void drawImagesubrect(ImageSubrect *imgsub, ScreenBuffer buffer)
     {
         i = (imgsub->x < 0) ? (0) : (imgsub->x);
         j = (imgsub->y < 0) ? (0) : (imgsub->y);
-        int imax = ((imgsub->x + imgsub->w) >= SCREEN_WIDTH) ? (SCREEN_WIDTH) : (imgsub->x + imgsub->w);
-        int jmax = ((imgsub->y + imgsub->h) >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (imgsub->y + imgsub->h);
-        int width = abs(((imgsub->w + i >= SCREEN_WIDTH) ? (SCREEN_WIDTH - i) : (imgsub->w)) - ((imgsub->x > 0) ? (0) : (abs(imgsub->x))));
+        jmax = ((imgsub->y + imgsub->h) >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (imgsub->y + imgsub->h);
 
-        if ((imgsub->x + imgsub->w) < 0 || (imgsub->x) >= (SCREEN_WIDTH))
+        if (imgsub->x < 0)
+            width = (0 + (imgsub->w - abs(imgsub->x)) >= SCREEN_WIDTH) ? (SCREEN_WIDTH) : (imgsub->w - abs(imgsub->x));
+        else if (imgsub->x + imgsub->w >= SCREEN_WIDTH)
+            width = SCREEN_WIDTH - imgsub->x;
+        else
+            width = imgsub->w;
+
+        if (imgsub->x + imgsub->w < 0 || imgsub->x >= SCREEN_WIDTH)
             return;
 
         for (; j < jmax; j++)
             memcpy((((Color *)buffer) + (i + SCREEN_WIDTH * j)), &GET_SUBRECT_PIXEL(((imgsub->x < 0) ? (abs(imgsub->x)) : (0)), (j - imgsub->y), imgsub), width * 2);
     }
-/*
-    for (i = ((imgsub->x < 0) ? (0) : (imgsub->x)); i < ((imgsub->x + imgsub->w >= SCREEN_WIDTH) ? (SCREEN_WIDTH) : (imgsub->x + imgsub->w)); i++)
-        for (j = ((imgsub->y < 0) ? (0) : (imgsub->y)); j < ((imgsub->y + imgsub->h >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (imgsub->y + imgsub->h)); j++)
-            setPixel(i, j, GET_SUBRECT_PIXEL(i - imgsub->x, j - imgsub->y, imgsub), buffer);
-*/
 }

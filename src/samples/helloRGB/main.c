@@ -48,7 +48,7 @@ int main()
     // Draw everything
     drawStr(SCREEN_WIDTH / 2 - CHAR_WIDTH * 7, SCREEN_HEIGHT / 2 - CHAR_HEIGHT / 2, "Hello !", 2, 0, RGB(50, 205, 50), buffer); // Verdâtre
     drawLine(&l1, c1, buffer);
-    drawLine(&l2, RED, buffer);
+    drawLine(&l2, FUCHSIA, buffer);
 
     // Display our buffer on the screen
     display(buffer);

@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
     memcpy(path, argv[0], len);
     memcpy(path + len * sizeof(char), file, strlen(file));*/
 
-    char path[] = "/documents/Examples/bac.h.tns";
+    char path[] = "/documents/Examples/logo.h.tns";
     //char path[] = "/documents/ndless/dev/bac.h.tns";
 
     // Load the image

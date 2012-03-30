@@ -19,11 +19,11 @@
 /// Draw the image on the given buffer
 void drawImage(Image *img, ScreenBuffer buffer)
 {
-    int i, j;
+    int i, j, jmax, width;
 
     if (!img->data) return;
 
-    // drawImage = memset for 4bpp
+    // TODO: drawImage = memset for 4bpp
     if (!has_colors || !lcd_isincolor())
         for (i = ((img->x < 0) ? (0) : (img->x)); i < ((img->x + img->w >= SCREEN_WIDTH) ? (SCREEN_WIDTH) : (img->x + img->w)); i++)
             for (j = ((img->y < 0) ? (0) : (img->y)); j < ((img->y + img->h >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (img->y + img->h)); j++)
@@ -32,14 +32,27 @@ void drawImage(Image *img, ScreenBuffer buffer)
     {
         i = (img->x < 0) ? (0) : (img->x);
         j = (img->y < 0) ? (0) : (img->y);
-        int imax = ((img->x + img->w) >= SCREEN_WIDTH) ? (SCREEN_WIDTH) : (img->x + img->w);
-        int jmax = ((img->y + img->h) >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (img->y + img->h);
-        int width = abs(((img->w + i >= SCREEN_WIDTH) ? (SCREEN_WIDTH - i) : (img->w)) - ((img->x > 0) ? (0) : (abs(img->x))));
+        jmax = ((img->y + img->h) >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (img->y + img->h);
 
-        if (((img->x + img->w) < 0) || (img->x) >= (SCREEN_WIDTH + img->w))
+        if (img->x < 0)
+            width = (0 + (img->w - abs(img->x)) >= SCREEN_WIDTH) ? (SCREEN_WIDTH) : (img->w - abs(img->x));
+        else if (img->x + img->w >= SCREEN_WIDTH)
+            width = SCREEN_WIDTH - img->x;
+        else
+            width = img->w;
+
+        if (img->x + img->w < 0 || img->x >= SCREEN_WIDTH)
             return;
 
         for (; j < jmax; j++)
             memcpy((((Color *)buffer) + (i + SCREEN_WIDTH * j)), &GET_IMG_PIXEL(((img->x < 0) ? (abs(img->x)) : (0)), (j - img->y), img), width * 2);
     }
 }
+
+
+
+
+
+
+
+

@@ -19,10 +19,39 @@
 /// Draw a box / rectangle in color
 inline void drawBox_(int16_t x, int16_t y, int16_t w, int16_t h, Color c, ScreenBuffer buffer)
 {
-    int32_t i, j;
-    for (i = x; i < (x + w); i++)
-        for (j = y; j < (y + h); j++)
-            setPixel(i, j, c, buffer); // setPixel check if i and j are >0 and >320/240
+    int i, j, jmax, width, k;
+    Color *tmpc;
+
+    // TODO: drawBox = memset for 4bpp
+    if (!has_colors || !lcd_isincolor())
+        for (i = ((x < 0) ? (0) : (x)); i < ((x + w >= SCREEN_WIDTH) ? (SCREEN_WIDTH) : (x + w)); i++)
+            for (j = ((y < 0) ? (0) : (y)); j < ((y + h >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (y + h)); j++)
+                setPixel(i, j, c, buffer);
+    else
+    {
+        i = (x < 0) ? (0) : (x);
+        j = (y < 0) ? (0) : (y);
+        jmax = ((y + h) >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (y + h);
+
+        if (x < 0)
+            width = (0 + (w - abs(x)) >= SCREEN_WIDTH) ? (SCREEN_WIDTH) : (w - abs(x));
+        else if (x + w >= SCREEN_WIDTH)
+            width = SCREEN_WIDTH - x;
+        else
+            width = w;
+
+        if (x + w < 0 || x >= SCREEN_WIDTH)
+            return;
+
+        tmpc = calloc(width, sizeof(Color));
+        for (k = 0; k < width; k++)
+            tmpc[k] = c;
+
+        for (; j < jmax; j++)
+            memcpy((((Color *)buffer) + (i + SCREEN_WIDTH * j)), tmpc, width * 2);
+
+        free(tmpc);
+    }
 }
 inline void drawBox(Box *box, Color c, ScreenBuffer buffer)
 {
