@@ -45,7 +45,7 @@ void drawImage(Image *img, ScreenBuffer buffer)
             return;
 
         for (; j < jmax; j++)
-            memcpy((((Color *)buffer) + (i + SCREEN_WIDTH * j)), &GET_IMG_PIXEL(((img->x < 0) ? (abs(img->x)) : (0)), (j - img->y), img), width * 2);
+            memcpy((((Color *)buffer) + (i + (SCREEN_WIDTH * j))), &GET_IMG_PIXEL(((img->x < 0) ? (abs(img->x)) : (0)), (j - img->y), img), width * 2);
     }
 }
 

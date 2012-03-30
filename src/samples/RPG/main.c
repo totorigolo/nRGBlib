@@ -15,76 +15,140 @@
 
 #include <os.h>
 #include <nIMAGE.h>
+#include <nMATHS.h>
+#include <nGEO.h>
+
+#define SPEED 2
+#define CELL_SIZE 32
 
 int main(int argc, char* argv[])
 {
     // Create a new screen buffer
     ScreenBuffer buffer = GetNewScreenBuffer();
 
-    // Create the image
-    Image image;
-    ImageSubrect sub1, sub2;
-    sub1.image = NULL;
-    sub2.image = NULL;
-    image.data = NULL;
+    // Map
+    int i, j;
+    char map[(SCREEN_WIDTH / 2) + 1][(SCREEN_HEIGHT / 2) + 1];
 
-    char path[] = "/documents/Examples/fond.h.tns";
-    //char path[] = "/documents/ndless/dev/fond.h.tns";
+    // Create the image
+    Image imgPerso, imgTileset; imgPerso.data = NULL; imgTileset.data = NULL;
+    ImageSubrect tile; tile.image = NULL;
+
+    // "Srand"
+    clearScreen(BLACK, buffer);
+    drawStr(0, 0, "Clic to gen!", 1, 1, CYAN, GetDirectScreenBuffer());
+    while (!any_key_pressed())
+        rand();
+    while (any_key_pressed())
+        rand();
+
+    // Map generation
+    for (i = 0; i < (SCREEN_WIDTH / CELL_SIZE) + 1; i++)
+        for (j = 0; j < (SCREEN_HEIGHT / CELL_SIZE) + 1; j++)
+            map[i][j] = randMinMax(0, 2);
+
+    //char pathPerso[] = "/documents/Examples/rpg/imgPerso.tns";
+    char pathPerso[] = "/documents/ndless/dev/rpg/imgPerso.tns";
+
+    //char pathTileset[] = "/documents/Examples/rpg/imgTileset.tns";
+    char pathTileset[] = "/documents/ndless/dev/rpg/imgTileset.tns";
 
     // Load the image
-    loadImage(&image, path);
+    loadImage(&imgPerso, pathPerso);
+    loadImage(&imgTileset, pathTileset);
+    setImage(&tile, &imgTileset);
+    tile.w = CELL_SIZE;
+    tile.h = CELL_SIZE;
 
-    // Init subrects
-    setImage(&sub1, &image);
-    sub1.offset_x = 30;
-    sub1.offset_y = 20;
-    sub1.w = 40;
-    sub1.h = 40;
-
-    setImage(&sub2, &image);
-    sub2.x = 100;
-    sub2.offset_x = 90;
-    sub2.offset_y = 90;
-    sub2.w = 100;
-    sub2.h = 100;
-
-    clearScreen(RGB(200, 200, 200), buffer);
+    clearScreen(BLACK, buffer);
     while (1)
     {
         // Events processing
         if (isKeyPressed(KEY_NSPIRE_ESC))
             break;
 
-        if (isKeyPressed(KEY_NSPIRE_UP))
-            sub1.y -= 2;
-        if (isKeyPressed(KEY_NSPIRE_DOWN))
-            sub1.y += 2;
-        if (isKeyPressed(KEY_NSPIRE_LEFT))
-            sub1.x -= 2;
-        if (isKeyPressed(KEY_NSPIRE_RIGHT))
-            sub1.x += 2;
+        // Up and down
+        if (isKeyPressed(KEY_NSPIRE_UP) || isKeyPressed(KEY_NSPIRE_8))
+            imgPerso.y -= SPEED;
+        if (isKeyPressed(KEY_NSPIRE_DOWN) || isKeyPressed(KEY_NSPIRE_2))
+            imgPerso.y += SPEED;
 
-        if (isKeyPressed(KEY_NSPIRE_8))
-            sub2.y -= 2;
-        if (isKeyPressed(KEY_NSPIRE_2))
-            sub2.y += 2;
-        if (isKeyPressed(KEY_NSPIRE_4))
-            sub2.x -= 2;
-        if (isKeyPressed(KEY_NSPIRE_6))
-            sub2.x += 2;
+        // Left and right
+        if (isKeyPressed(KEY_NSPIRE_LEFT) || isKeyPressed(KEY_NSPIRE_4))
+            imgPerso.x -= SPEED;
+        if (isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
+            imgPerso.x += SPEED;
 
-        // Draw the image
-        clearBuffer(RGB(200, 200, 200), buffer);
+        // Up left/right
+        if (isKeyPressed(KEY_NSPIRE_LEFTUP) || isKeyPressed(KEY_NSPIRE_7))
+        {
+            imgPerso.y -= SPEED;
+            imgPerso.x -= SPEED;
+        }
+        if (isKeyPressed(KEY_NSPIRE_UPRIGHT) || isKeyPressed(KEY_NSPIRE_9))
+        {
+            imgPerso.y -= SPEED;
+            imgPerso.x += SPEED;
+        }
 
-        drawImagesubrect(&sub2, buffer);
-        drawImagesubrect(&sub1, buffer);
+        // Down left/right
+        if (isKeyPressed(KEY_NSPIRE_DOWNLEFT) || isKeyPressed(KEY_NSPIRE_1))
+        {
+            imgPerso.y += SPEED;
+            imgPerso.x -= SPEED;
+        }
+        if (isKeyPressed(KEY_NSPIRE_RIGHTDOWN) || isKeyPressed(KEY_NSPIRE_3))
+        {
+            imgPerso.y += SPEED;
+            imgPerso.x += SPEED;
+        }
+
+        /* Begin to draw on the buffer */
+        clearBuffer(BLACK, buffer);
+
+        // Draw the map
+        for (i = 0; i < (SCREEN_WIDTH / CELL_SIZE) + 1; i++)
+        {
+            tile.x = i * CELL_SIZE;
+            for (j = 0; j < (SCREEN_HEIGHT / CELL_SIZE) + 1; j++)
+            {
+                tile.y = j * CELL_SIZE;
+
+                if (map[i][j] == 0)
+                {
+                    tile.offset_x = 0;
+                    tile.offset_y = 0;
+                }
+                if (map[i][j] == 1)
+                {
+                    tile.offset_x = CELL_SIZE;
+                    tile.offset_y = 0;
+                }
+                if (map[i][j] == 2)
+                {
+                    tile.offset_x = 0;
+                    tile.offset_y = CELL_SIZE;
+                }
+
+                drawImagesubrect(&tile, buffer);
+            }
+        }
+
+        // Draw the perso
+        drawImage(&imgPerso, buffer);
 
         // Display our buffer on the screen
         display(buffer);
+
+        // Wait to save the battery
+        idle();
+        while (!any_key_pressed());
+        idle();
     }
 
     // Delete our image
-    deleteImage(&image);
+    deleteImage(&imgPerso);
+    deleteImage(&imgTileset);
 
     // Free our screen buffer
     free(buffer);

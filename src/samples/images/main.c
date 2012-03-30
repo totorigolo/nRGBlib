@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
     memcpy(path, argv[0], len);
     memcpy(path + len * sizeof(char), file, strlen(file));*/
 
-    char path[] = "/documents/Examples/logo.h.tns";
+    char path[] = "/documents/Examples/bac.h.tns";
     //char path[] = "/documents/ndless/dev/bac.h.tns";
 
     // Load the image
@@ -51,38 +51,38 @@ int main(int argc, char* argv[])
 
         // Up and down
         if (isKeyPressed(KEY_NSPIRE_UP) || isKeyPressed(KEY_NSPIRE_8))
-            image.y -= speed;
-        if (isKeyPressed(KEY_NSPIRE_DOWN) || isKeyPressed(KEY_NSPIRE_2))
             image.y += speed;
+        if (isKeyPressed(KEY_NSPIRE_DOWN) || isKeyPressed(KEY_NSPIRE_2))
+            image.y -= speed;
 
         // Left and right
         if (isKeyPressed(KEY_NSPIRE_LEFT) || isKeyPressed(KEY_NSPIRE_4))
-            image.x -= speed;
-        if (isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
             image.x += speed;
+        if (isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
+            image.x -= speed;
 
         // Up left/right
         if (isKeyPressed(KEY_NSPIRE_LEFTUP) || isKeyPressed(KEY_NSPIRE_7))
         {
-            image.y -= speed;
-            image.x -= speed;
+            image.y += speed;
+            image.x += speed;
         }
         if (isKeyPressed(KEY_NSPIRE_UPRIGHT) || isKeyPressed(KEY_NSPIRE_9))
         {
-            image.y -= speed;
-            image.x += speed;
+            image.y += speed;
+            image.x -= speed;
         }
 
         // Down left/right
         if (isKeyPressed(KEY_NSPIRE_DOWNLEFT) || isKeyPressed(KEY_NSPIRE_1))
         {
-            image.y += speed;
-            image.x -= speed;
+            image.y -= speed;
+            image.x += speed;
         }
         if (isKeyPressed(KEY_NSPIRE_RIGHTDOWN) || isKeyPressed(KEY_NSPIRE_3))
         {
-            image.y += speed;
-            image.x += speed;
+            image.y -= speed;
+            image.x -= speed;
         }
 
         if (isKeyPressed(KEY_NSPIRE_PLUS))
@@ -94,7 +94,7 @@ int main(int argc, char* argv[])
         {
             image.x = 0;
             image.y = 0;
-            speed = 1;
+            speed = 2;
         }
 
         // Draw the image
@@ -109,6 +109,14 @@ int main(int argc, char* argv[])
 
         // Display our buffer on the screen
         display(buffer);
+
+        // Wait to save the battery
+        //*
+        idle();
+        while (!any_key_pressed());
+        idle();
+        //*/
+
     }
 
     // Delete our image
