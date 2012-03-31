@@ -8,7 +8,7 @@ ifeq (${OBJCOPY},"")
 endif
 OBJS = main.o
 #DISTDIR = bin/
-DISTDIR = ../bin
+DISTDIR = ../bin/rpg
 vpath %.tns $(DISTDIR)
 
 all: RPG.tns

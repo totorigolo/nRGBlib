@@ -16,7 +16,7 @@ typedef struct Image {
 #define GET_IMG_PIXEL(x, y, img) img->data[((x) + ((y) * (img->w)))]
 
 /// Load an image from a converted image file
-void loadImage(Image *img, char *path);
+BOOL loadImage(Image *img, char *path);
 
 /// Draw the image on the given buffer
 void drawImage(Image *img, ScreenBuffer buffer);

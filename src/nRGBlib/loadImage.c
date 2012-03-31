@@ -17,7 +17,7 @@
 #include <nIMAGE.h>
 
 /// Load an image from a converted image file
-void loadImage(Image *img, char* path)
+BOOL loadImage(Image *img, char* path)
 {
     FILE *file;
     file = fopen(path, "rb");
@@ -26,7 +26,7 @@ void loadImage(Image *img, char* path)
     if (file == NULL)
     {
         printf("File doesn't exist! (%s)\n", path);
-        return;
+        return FALSE;
     }
 
     // (Re)init images values
@@ -59,4 +59,6 @@ void loadImage(Image *img, char* path)
     // Close our file
     fclose(file);
     printf("Image loaded successfully!\n");
+
+    return TRUE;
 }

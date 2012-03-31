@@ -20,15 +20,36 @@
 
 #define SPEED 2
 #define CELL_SIZE 32
+#define NB_TILES_X 50
+#define NB_TILES_Y 30
+
+typedef struct Tile {
+    uint16_t x;
+    uint16_t y;
+} Tile;
+
+typedef struct Map {
+    uint16_t w;
+    uint16_t h;
+    uint16_t nbTiles;
+    Tile *tiles;
+    uint16_t *map;
+} Map;
 
 int main(int argc, char* argv[])
 {
     // Create a new screen buffer
     ScreenBuffer buffer = GetNewScreenBuffer();
 
+    // Images' path
+    char pathPerso[] = "/documents/Examples/rpg/imgPerso.tns";
+    //char pathPerso[] = "/documents/ndless/dev/rpg/imgPerso.tns";
+    char pathTileset[] = "/documents/Examples/rpg/imgTileset.tns";
+    //char pathTileset[] = "/documents/ndless/dev/rpg/imgTileset.tns";
+
     // Map
     int i, j;
-    char map[(SCREEN_WIDTH / 2) + 1][(SCREEN_HEIGHT / 2) + 1];
+    Map myMap; myMap.map = NULL; myMap.tiles = NULL; myMap.nbTiles = 0;
 
     // Create the image
     Image imgPerso, imgTileset; imgPerso.data = NULL; imgTileset.data = NULL;
@@ -42,20 +63,31 @@ int main(int argc, char* argv[])
     while (any_key_pressed())
         rand();
 
+    // Load tileset's image
+    if (!loadImage(&imgTileset, pathTileset))
+        return 0;
+
+    // Load tileset and tiles
+    myMap.tiles = calloc(imgTileset.w * imgTileset.h, sizeof(Tile));
+    for (i = 0; i < (imgTileset.w / CELL_SIZE); i++)
+        for (j = 0; j < (imgTileset.h / CELL_SIZE); j++)
+        {
+            myMap.tiles[i + j * (imgTileset.w / CELL_SIZE)].x = i * CELL_SIZE;
+            myMap.tiles[i + j * (imgTileset.w / CELL_SIZE)].y = j * CELL_SIZE;
+            myMap.nbTiles++;
+        }
+
     // Map generation
-    for (i = 0; i < (SCREEN_WIDTH / CELL_SIZE) + 1; i++)
-        for (j = 0; j < (SCREEN_HEIGHT / CELL_SIZE) + 1; j++)
-            map[i][j] = randMinMax(0, 2);
+    //map = calloc((imgTileset.w / CELL_SIZE) * (imgTileset.h / CELL_SIZE), sizeof(unsigned int));
+    myMap.map = calloc(NB_TILES_X * NB_TILES_Y, sizeof(unsigned int));
+    for (i = 0; i < NB_TILES_X; i++)
+        for (j = 0; j < NB_TILES_Y; j++)
+            myMap.map[i + j * NB_TILES_X] = randMinMax(0, myMap.nbTiles);
 
-    //char pathPerso[] = "/documents/Examples/rpg/imgPerso.tns";
-    char pathPerso[] = "/documents/ndless/dev/rpg/imgPerso.tns";
-
-    //char pathTileset[] = "/documents/Examples/rpg/imgTileset.tns";
-    char pathTileset[] = "/documents/ndless/dev/rpg/imgTileset.tns";
-
-    // Load the image
+    // Load the perso's image
     loadImage(&imgPerso, pathPerso);
-    loadImage(&imgTileset, pathTileset);
+
+    // Set the tile
     setImage(&tile, &imgTileset);
     tile.w = CELL_SIZE;
     tile.h = CELL_SIZE;
@@ -107,28 +139,15 @@ int main(int argc, char* argv[])
         clearBuffer(BLACK, buffer);
 
         // Draw the map
-        for (i = 0; i < (SCREEN_WIDTH / CELL_SIZE) + 1; i++)
+        for (i = 0; i < NB_TILES_X; i++)
         {
             tile.x = i * CELL_SIZE;
-            for (j = 0; j < (SCREEN_HEIGHT / CELL_SIZE) + 1; j++)
+            for (j = 0; j < NB_TILES_Y; j++)
             {
                 tile.y = j * CELL_SIZE;
 
-                if (map[i][j] == 0)
-                {
-                    tile.offset_x = 0;
-                    tile.offset_y = 0;
-                }
-                if (map[i][j] == 1)
-                {
-                    tile.offset_x = CELL_SIZE;
-                    tile.offset_y = 0;
-                }
-                if (map[i][j] == 2)
-                {
-                    tile.offset_x = 0;
-                    tile.offset_y = CELL_SIZE;
-                }
+                tile.offset_x = myMap.tiles[myMap.map[i + j * NB_TILES_X]].x;
+                tile.offset_y = myMap.tiles[myMap.map[i + j * NB_TILES_X]].y;
 
                 drawImagesubrect(&tile, buffer);
             }
@@ -149,6 +168,10 @@ int main(int argc, char* argv[])
     // Delete our image
     deleteImage(&imgPerso);
     deleteImage(&imgTileset);
+
+    // Delete our map
+    free(myMap.map);
+    free(myMap.tiles);
 
     // Free our screen buffer
     free(buffer);
