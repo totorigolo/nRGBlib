@@ -42,8 +42,8 @@ void loadFromFile(Map *map, char *filename)
     fread(&map->tileset->nbTiles, sizeof(unsigned int), 1, f); printf(" - nbTiles = %d\n", map->tileset->nbTiles);
     fread(&map->w, sizeof(unsigned int), 1, f); printf(" - map->w = %d\n", map->w);
     fread(&map->h, sizeof(unsigned int), 1, f); printf(" - map->h = %d\n", map->h);
-    /*fread(&map->offsetX, sizeof(unsigned int), 1, f); printf("\t- \n");
-    fread(&map->offsetY, sizeof(unsigned int), 1, f); printf("\t- \n");*/
+    fread(&map->offset_x, sizeof(unsigned int), 1, f); map->offset_x *= CELL_SIZE; printf(" - offset_x = %d\n", map->offset_x);
+    fread(&map->offset_y, sizeof(unsigned int), 1, f); map->offset_y *= CELL_SIZE; printf(" - offset_y = %d\n", map->offset_y);
 
     // Lit les infos sur le tileset
     map->tileset->tiles = calloc(map->tileset->nbTiles, sizeof(Tile));

@@ -41,6 +41,8 @@ typedef struct Map {
     uint16_t h;
     uint32_t *map;
     Tileset *tileset;
+    uint16_t offset_x;
+    uint16_t offset_y;
 } Map;
 
 void loadFromFile(Map *map, char *filename);

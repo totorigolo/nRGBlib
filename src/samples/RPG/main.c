@@ -39,10 +39,11 @@ int main(int argc, char* argv[])
     initImage(&tileset.img);
 
     // Map
-    int i, j, ti, tj, offset_x = 0, offset_y = 0;
+    int i, j, ti, tj;
     Map myMap;
     myMap.map = NULL;
     myMap.tileset = &tileset;
+    myMap.offset_x = 0; myMap.offset_y = 0;
     loadFromFile(&myMap, "/documents/Examples/rpg/bin.map.tns");
 
     // Load the perso's image
@@ -100,67 +101,27 @@ int main(int argc, char* argv[])
         }
 
         if (isKeyPressed(KEY_NSPIRE_8))
-        {
-            offset_y -= SPEED;
-        }
+            myMap.offset_y -= SPEED;
         if (isKeyPressed(KEY_NSPIRE_2))
-        {
-            offset_y += SPEED;
-        }
+            myMap.offset_y += SPEED;
         if (isKeyPressed(KEY_NSPIRE_4))
-        {
-            offset_x -= SPEED;
-        }
+            myMap.offset_x -= SPEED;
         if (isKeyPressed(KEY_NSPIRE_6))
-        {
-            offset_x += SPEED;
-        }
+            myMap.offset_x += SPEED;
 
         /* Begin to draw on the buffer */
         clearBuffer(BLACK, buffer);
 
         // Draw the map
-        /*for (i = offset_x / CELL_SIZE - 1; i < (offset_x + SCREEN_WIDTH) / CELL_SIZE + 1; i++)
-        {
-            tile.x = i * CELL_SIZE + offset_x % CELL_SIZE;
-            for (j = offset_y / CELL_SIZE - 1; j < (offset_y + SCREEN_HEIGHT) / CELL_SIZE + 1; j++)
-            {
-                tile.y = j * CELL_SIZE + offset_y % CELL_SIZE;
-
-                ti = (i < 0) ? 0 : ((i >= myMap.w) ? myMap.w : i);
-                tj = (j < 0) ? 0 : ((j >= myMap.h) ? myMap.h : j);
-
-                tile.offset_x = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].x;
-                tile.offset_y = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].y;
-
-                drawImagesubrect(&tile, buffer);
-            }
-        }*/
         for (i = 0; i < SCREEN_WIDTH / CELL_SIZE + 1; i++)
         {
-            tile.x = i * CELL_SIZE - offset_x % CELL_SIZE;
+            tile.x = i * CELL_SIZE - myMap.offset_x % CELL_SIZE;
             for (j = 0; j < SCREEN_HEIGHT / CELL_SIZE + 2; j++)
             {
-                tile.y = j * CELL_SIZE - offset_y % CELL_SIZE;
+                tile.y = j * CELL_SIZE - myMap.offset_y % CELL_SIZE;
 
-                ////////////////////////////////////////////////////////////////////////
-                if (i + (offset_x / CELL_SIZE) < 0)
-                    ti = 0;
-                else if (i + (offset_x / CELL_SIZE) >= myMap.w)
-                    ti = myMap.w;
-                else
-                    ti = i + (offset_x / CELL_SIZE);
-                ////////////////////////////////////////////////////////////////////////
-                if (j + (offset_y / CELL_SIZE) < 0)
-                    tj = 0;
-                else if (j + (offset_y / CELL_SIZE) >= myMap.h)
-                    tj = myMap.h;
-                else
-                    tj = j + (offset_y / CELL_SIZE);
-                ////////////////////////////////////////////////////////////////////////
-
-                /*ti = (i + (offset_x / CELL_SIZE) < 0) ? (0) : ((i + (offset_x / CELL_SIZE) >= myMap.w) ? (myMap.w) : (i + (offset_x / CELL_SIZE)));
-                tj = (j + (offset_y / CELL_SIZE) < 0) ? (0) : ((j + (offset_y / CELL_SIZE) >= myMap.h) ? (myMap.h) : (j + (offset_y / CELL_SIZE)));*/
+                ti = (i + (myMap.offset_x / CELL_SIZE) < 0) ? (0) : ((i + (myMap.offset_x / CELL_SIZE) >= myMap.w) ? (myMap.w) : (i + (myMap.offset_x / CELL_SIZE)));
+                tj = (j + (myMap.offset_y / CELL_SIZE) < 0) ? (0) : ((j + (myMap.offset_y / CELL_SIZE) >= myMap.h) ? (myMap.h) : (j + (myMap.offset_y / CELL_SIZE)));
 
                 tile.offset_x = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].x;
                 tile.offset_y = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].y;
