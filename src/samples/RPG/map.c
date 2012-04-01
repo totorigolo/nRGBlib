@@ -23,7 +23,11 @@ void loadFromFile(Map *map, char *filename)
 
     // Open file
     f = fopen(filename, "rb");
-    if(!f) return;
+    if (!f)
+    {
+        show_msgbox("Error!", "Failed to open the map.");
+        exit(0);
+    }
 
     printf("Map infos:\n");
 

@@ -29,8 +29,6 @@ int main(int argc, char* argv[])
     // Images' path
     char pathPerso[] = "/documents/Examples/rpg/imgPerso.tns";
     //char pathPerso[] = "/documents/ndless/dev/rpg/imgPerso.tns";
-    char pathTileset[] = "/documents/Examples/rpg/imgTileset.tns";
-    //char pathTileset[] = "/documents/ndless/dev/rpg/imgTileset.tns";
 
     // Tileset
     Tileset tileset;
