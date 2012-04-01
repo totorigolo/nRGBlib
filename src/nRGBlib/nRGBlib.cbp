@@ -123,6 +123,10 @@
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="..\samples\RPG\map.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\samples\RPG\map.h" />
 		<Unit filename="..\samples\ReadMe.txt">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -199,6 +203,9 @@
 		<Unit filename="drawTriangle.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="initImage.c">
+			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="loadImage.c">
 			<Option compilerVar="CC" />

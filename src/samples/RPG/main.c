@@ -17,24 +17,9 @@
 #include <nIMAGE.h>
 #include <nMATHS.h>
 #include <nGEO.h>
+#include "map.h"
 
 #define SPEED 2
-#define CELL_SIZE 32
-#define NB_TILES_X 50
-#define NB_TILES_Y 30
-
-typedef struct Tile {
-    uint16_t x;
-    uint16_t y;
-} Tile;
-
-typedef struct Map {
-    uint16_t w;
-    uint16_t h;
-    uint16_t nbTiles;
-    Tile *tiles;
-    uint16_t *map;
-} Map;
 
 int main(int argc, char* argv[])
 {
@@ -47,48 +32,27 @@ int main(int argc, char* argv[])
     char pathTileset[] = "/documents/Examples/rpg/imgTileset.tns";
     //char pathTileset[] = "/documents/ndless/dev/rpg/imgTileset.tns";
 
+    // Tileset
+    Tileset tileset;
+    tileset.tiles = NULL;
+    tileset.nbTiles = 0;
+    initImage(&tileset.img);
+
     // Map
-    int i, j;
-    Map myMap; myMap.map = NULL; myMap.tiles = NULL; myMap.nbTiles = 0;
-
-    // Create the image
-    Image imgPerso, imgTileset; imgPerso.data = NULL; imgTileset.data = NULL;
-    ImageSubrect tile; tile.image = NULL;
-
-    // "Srand"
-    clearScreen(BLACK, buffer);
-    drawStr(0, 0, "Clic to gen!", 1, 1, CYAN, GetDirectScreenBuffer());
-    while (!any_key_pressed())
-        rand();
-    while (any_key_pressed())
-        rand();
-
-    // Load tileset's image
-    if (!loadImage(&imgTileset, pathTileset))
-        return 0;
-
-    // Load tileset and tiles
-    myMap.tiles = calloc(imgTileset.w * imgTileset.h, sizeof(Tile));
-    for (i = 0; i < (imgTileset.w / CELL_SIZE); i++)
-        for (j = 0; j < (imgTileset.h / CELL_SIZE); j++)
-        {
-            myMap.tiles[i + j * (imgTileset.w / CELL_SIZE)].x = i * CELL_SIZE;
-            myMap.tiles[i + j * (imgTileset.w / CELL_SIZE)].y = j * CELL_SIZE;
-            myMap.nbTiles++;
-        }
-
-    // Map generation
-    //map = calloc((imgTileset.w / CELL_SIZE) * (imgTileset.h / CELL_SIZE), sizeof(unsigned int));
-    myMap.map = calloc(NB_TILES_X * NB_TILES_Y, sizeof(unsigned int));
-    for (i = 0; i < NB_TILES_X; i++)
-        for (j = 0; j < NB_TILES_Y; j++)
-            myMap.map[i + j * NB_TILES_X] = randMinMax(0, myMap.nbTiles);
+    int i, j, ti, tj, offset_x = 0, offset_y = 0;
+    Map myMap;
+    myMap.map = NULL;
+    myMap.tileset = &tileset;
+    loadFromFile(&myMap, "/documents/Examples/rpg/bin.map.tns");
 
     // Load the perso's image
+    Image imgPerso;
+    ImageSubrect tile; tile.image = NULL;
+    initImage(&imgPerso);
     loadImage(&imgPerso, pathPerso);
 
     // Set the tile
-    setImage(&tile, &imgTileset);
+    setImage(&tile, &tileset.img);
     tile.w = CELL_SIZE;
     tile.h = CELL_SIZE;
 
@@ -100,54 +64,106 @@ int main(int argc, char* argv[])
             break;
 
         // Up and down
-        if (isKeyPressed(KEY_NSPIRE_UP) || isKeyPressed(KEY_NSPIRE_8))
+        if (isKeyPressed(KEY_NSPIRE_UP))
             imgPerso.y -= SPEED;
-        if (isKeyPressed(KEY_NSPIRE_DOWN) || isKeyPressed(KEY_NSPIRE_2))
+        if (isKeyPressed(KEY_NSPIRE_DOWN))
             imgPerso.y += SPEED;
 
         // Left and right
-        if (isKeyPressed(KEY_NSPIRE_LEFT) || isKeyPressed(KEY_NSPIRE_4))
+        if (isKeyPressed(KEY_NSPIRE_LEFT))
             imgPerso.x -= SPEED;
-        if (isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
+        if (isKeyPressed(KEY_NSPIRE_RIGHT))
             imgPerso.x += SPEED;
 
         // Up left/right
-        if (isKeyPressed(KEY_NSPIRE_LEFTUP) || isKeyPressed(KEY_NSPIRE_7))
+        if (isKeyPressed(KEY_NSPIRE_LEFTUP))
         {
             imgPerso.y -= SPEED;
             imgPerso.x -= SPEED;
         }
-        if (isKeyPressed(KEY_NSPIRE_UPRIGHT) || isKeyPressed(KEY_NSPIRE_9))
+        if (isKeyPressed(KEY_NSPIRE_UPRIGHT))
         {
             imgPerso.y -= SPEED;
             imgPerso.x += SPEED;
         }
 
         // Down left/right
-        if (isKeyPressed(KEY_NSPIRE_DOWNLEFT) || isKeyPressed(KEY_NSPIRE_1))
+        if (isKeyPressed(KEY_NSPIRE_DOWNLEFT))
         {
             imgPerso.y += SPEED;
             imgPerso.x -= SPEED;
         }
-        if (isKeyPressed(KEY_NSPIRE_RIGHTDOWN) || isKeyPressed(KEY_NSPIRE_3))
+        if (isKeyPressed(KEY_NSPIRE_RIGHTDOWN))
         {
             imgPerso.y += SPEED;
             imgPerso.x += SPEED;
+        }
+
+        if (isKeyPressed(KEY_NSPIRE_8))
+        {
+            offset_y -= SPEED;
+        }
+        if (isKeyPressed(KEY_NSPIRE_2))
+        {
+            offset_y += SPEED;
+        }
+        if (isKeyPressed(KEY_NSPIRE_4))
+        {
+            offset_x -= SPEED;
+        }
+        if (isKeyPressed(KEY_NSPIRE_6))
+        {
+            offset_x += SPEED;
         }
 
         /* Begin to draw on the buffer */
         clearBuffer(BLACK, buffer);
 
         // Draw the map
-        for (i = 0; i < NB_TILES_X; i++)
+        /*for (i = offset_x / CELL_SIZE - 1; i < (offset_x + SCREEN_WIDTH) / CELL_SIZE + 1; i++)
         {
-            tile.x = i * CELL_SIZE;
-            for (j = 0; j < NB_TILES_Y; j++)
+            tile.x = i * CELL_SIZE + offset_x % CELL_SIZE;
+            for (j = offset_y / CELL_SIZE - 1; j < (offset_y + SCREEN_HEIGHT) / CELL_SIZE + 1; j++)
             {
-                tile.y = j * CELL_SIZE;
+                tile.y = j * CELL_SIZE + offset_y % CELL_SIZE;
 
-                tile.offset_x = myMap.tiles[myMap.map[i + j * NB_TILES_X]].x;
-                tile.offset_y = myMap.tiles[myMap.map[i + j * NB_TILES_X]].y;
+                ti = (i < 0) ? 0 : ((i >= myMap.w) ? myMap.w : i);
+                tj = (j < 0) ? 0 : ((j >= myMap.h) ? myMap.h : j);
+
+                tile.offset_x = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].x;
+                tile.offset_y = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].y;
+
+                drawImagesubrect(&tile, buffer);
+            }
+        }*/
+        for (i = 0; i < SCREEN_WIDTH / CELL_SIZE + 1; i++)
+        {
+            tile.x = i * CELL_SIZE - offset_x % CELL_SIZE;
+            for (j = 0; j < SCREEN_HEIGHT / CELL_SIZE + 2; j++)
+            {
+                tile.y = j * CELL_SIZE - offset_y % CELL_SIZE;
+
+                ////////////////////////////////////////////////////////////////////////
+                if (i + (offset_x / CELL_SIZE) < 0)
+                    ti = 0;
+                else if (i + (offset_x / CELL_SIZE) >= myMap.w)
+                    ti = myMap.w;
+                else
+                    ti = i + (offset_x / CELL_SIZE);
+                ////////////////////////////////////////////////////////////////////////
+                if (j + (offset_y / CELL_SIZE) < 0)
+                    tj = 0;
+                else if (j + (offset_y / CELL_SIZE) >= myMap.h)
+                    tj = myMap.h;
+                else
+                    tj = j + (offset_y / CELL_SIZE);
+                ////////////////////////////////////////////////////////////////////////
+
+                /*ti = (i + (offset_x / CELL_SIZE) < 0) ? (0) : ((i + (offset_x / CELL_SIZE) >= myMap.w) ? (myMap.w) : (i + (offset_x / CELL_SIZE)));
+                tj = (j + (offset_y / CELL_SIZE) < 0) ? (0) : ((j + (offset_y / CELL_SIZE) >= myMap.h) ? (myMap.h) : (j + (offset_y / CELL_SIZE)));*/
+
+                tile.offset_x = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].x;
+                tile.offset_y = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].y;
 
                 drawImagesubrect(&tile, buffer);
             }
@@ -167,11 +183,11 @@ int main(int argc, char* argv[])
 
     // Delete our image
     deleteImage(&imgPerso);
-    deleteImage(&imgTileset);
+    deleteImage(&tileset.img);
 
     // Delete our map
     free(myMap.map);
-    free(myMap.tiles);
+    free(tileset.tiles);
 
     // Free our screen buffer
     free(buffer);

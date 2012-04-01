@@ -6,7 +6,7 @@ OBJCOPY := "$(shell (which arm-elf-objcopy arm-none-eabi-objcopy arm-linux-gnuea
 ifeq (${OBJCOPY},"")
 	OBJCOPY := arm-none-eabi-objcopy
 endif
-OBJS = main.o
+OBJS = map.o main.o
 #DISTDIR = bin/
 DISTDIR = ../bin/rpg
 vpath %.tns $(DISTDIR)

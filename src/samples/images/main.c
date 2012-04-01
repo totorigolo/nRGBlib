@@ -25,7 +25,6 @@ int main(int argc, char* argv[])
     // Create the image
     int speed = 2;
     Image image;
-    image.data = NULL;
 
 // TODO: Explorateur de fichiers (sample/images)
 
@@ -40,6 +39,7 @@ int main(int argc, char* argv[])
     //char path[] = "/documents/ndless/dev/bac.h.tns";
 
     // Load the image
+    initImage(&image);
     loadImage(&image, path);
 
     clearScreen(RGB(200, 200, 200), buffer);

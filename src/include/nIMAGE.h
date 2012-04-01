@@ -15,15 +15,18 @@ typedef struct Image {
 
 #define GET_IMG_PIXEL(x, y, img) img->data[((x) + ((y) * (img->w)))]
 
+/// Init an image
+void initImage(Image *img);
+
+/// Delete an image
+// Just define x, y, w, h to 0 and free data
+void deleteImage(Image *img);
+
 /// Load an image from a converted image file
 BOOL loadImage(Image *img, char *path);
 
 /// Draw the image on the given buffer
 void drawImage(Image *img, ScreenBuffer buffer);
-
-/// Delete an image
-// Just define x, y, w, h to 0 and free data
-void deleteImage(Image *img);
 
 /* Image sub-rect */
 
