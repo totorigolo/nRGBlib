@@ -1,6 +1,6 @@
 GCC = nspire-gcc
 LD = nspire-ld
-GCCFLAGS = -Os -nostdlib -I"../../include"
+GCCFLAGS = -O3 -nostdlib -I"../../include"
 LDFLAGS = -L "../../lib"
 OBJCOPY := "$(shell (which arm-elf-objcopy arm-none-eabi-objcopy arm-linux-gnueabi-objcopy | head -1) 2>/dev/null)"
 ifeq (${OBJCOPY},"")
