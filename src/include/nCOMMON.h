@@ -8,9 +8,9 @@ typedef uint16_t Color;
 // See http://en.wikipedia.org/wiki/High_color -> "16-bit high color" for the encoding of the screen buffer
 #define RGB(r, g, b) (Color) (((((uint8_t)(r)) / 8) << 11) | ((((uint8_t)(g)) / 4) << 5) | (((uint8_t)(b)) / 8))
 
-#define getR(c) ((((c) & 0xF800) >> 11) * 8)
-#define getG(c) ((((c) & 0x7E0) >> 5) * 4)
-#define getB(c) (((c) & 0x1F) * 2)
+#define getR(c) ((((((c) & 0xF800) >> 11) - 1) * 8) + 1)
+#define getG(c) ((((((c) & 0x7E0) >> 5) - 1) * 4) + 1)
+#define getB(c) (((((c) & 0x1F) - 1) * 8) + 1)
 #define getBW(c) ((((getR(c)) / 16) + ((getG(c)) / 16) + ((getB(c)) / 16)) / 3)
 
 // BLACK and WHITE are already defined by libndls
