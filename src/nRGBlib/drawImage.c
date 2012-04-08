@@ -19,19 +19,38 @@
 /// Draw the image on the given buffer
 void drawImage(Image *img, ScreenBuffer buffer)
 {
-    int i, j, jmax, width;
+    int i, j, jmax, width, x;
 
     if (!img->data) return;
 
-    // TODO: drawImage = memset for 4bpp
     if (!has_colors || !lcd_isincolor())
-        for (i = ((img->x < 0) ? (0) : (img->x)); i < ((img->x + img->w >= SCREEN_WIDTH) ? (SCREEN_WIDTH) : (img->x + img->w)); i++)
-            for (j = ((img->y < 0) ? (0) : (img->y)); j < ((img->y + img->h >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (img->y + img->h)); j++)
-                setPixel(i, j, GET_IMG_PIXEL((i - img->x), (j - img->y), img), buffer);
-    else
     {
+        if (img->x + (img->w / 2) < 0 || img->x >= SCREEN_WIDTH / 2)
+            return;
+
         i = (img->x < 0) ? (0) : (img->x);
         j = (img->y < 0) ? (0) : (img->y);
+        x = ((img->x < 0) ? (abs(img->x)) : (0));
+        jmax = ((img->y + img->h) >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (img->y + img->h);
+
+        if (img->x < 0)
+            width = (0 + ((img->w / 2) - abs(img->x)) >= SCREEN_WIDTH / 2) ? (SCREEN_WIDTH / 2) : ((img->w / 2) - abs(img->x));
+        else if (img->x + img->w / 2 >= SCREEN_WIDTH / 2)
+            width = (SCREEN_WIDTH / 2) - img->x;
+        else
+            width = img->w / 2;
+
+        for (; j < jmax; j++)
+            memcpy((uint8_t*)(buffer + ((i + (SCREEN_WIDTH / 2 * j)) * sizeof(uint8_t))), getImagePixel_4bpp(x, (j - img->y), img), width);
+    }
+    else
+    {
+        if (img->x + img->w < 0 || img->x >= SCREEN_WIDTH)
+            return;
+
+        i = (img->x < 0) ? (0) : (img->x);
+        j = (img->y < 0) ? (0) : (img->y);
+        x = ((img->x < 0) ? (abs(img->x)) : (0));
         jmax = ((img->y + img->h) >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (img->y + img->h);
 
         if (img->x < 0)
@@ -40,19 +59,9 @@ void drawImage(Image *img, ScreenBuffer buffer)
             width = SCREEN_WIDTH - img->x;
         else
             width = img->w;
-
-        if (img->x + img->w < 0 || img->x >= SCREEN_WIDTH)
-            return;
+        width *= 2;
 
         for (; j < jmax; j++)
-            memcpy((((Color *)buffer) + (i + (SCREEN_WIDTH * j))), &GET_IMG_PIXEL(((img->x < 0) ? (abs(img->x)) : (0)), (j - img->y), img), width * 2);
+            memcpy((Color *)(buffer + ((i + (SCREEN_WIDTH * j)) * sizeof(Color))), getImagePixel_16bpp(x, (j - img->y), img), width);
     }
 }
-
-
-
-
-
-
-
-

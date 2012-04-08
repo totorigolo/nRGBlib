@@ -10,10 +10,8 @@ typedef struct Image {
     int16_t y;
     uint16_t w;
     uint16_t h;
-    Color *data;
+    void *data;
 } Image;
-
-#define GET_IMG_PIXEL(x, y, img) img->data[((x) + ((y) * (img->w)))]
 
 /// Init an image
 void initImage(Image *img);
@@ -28,6 +26,15 @@ BOOL loadImage(Image *img, char *path);
 /// Draw the image on the given buffer
 void drawImage(Image *img, ScreenBuffer buffer);
 
+/// Get a pixel from any image
+inline void* getImagePixel(uint16_t x, uint16_t y, Image *img);
+
+/// Get a pixel from a 4bpp image
+inline void* getImagePixel_4bpp(uint16_t x, uint16_t y, Image *img);
+
+/// Get a pixel from a 16bpp image
+inline void* getImagePixel_16bpp(uint16_t x, uint16_t y, Image *img);
+
 /* Image sub-rect */
 
 typedef struct ImageSubrect {
@@ -40,12 +47,19 @@ typedef struct ImageSubrect {
     Image *image;
 } ImageSubrect;
 
-#define GET_SUBRECT_PIXEL(x, y, subrect) GET_IMG_PIXEL(((x) + (subrect->offset_x)), ((y) + (subrect->offset_y)), (subrect->image))
-
 /// Set the ImageSubrect's image
 void setImage(ImageSubrect *imgsub, Image *img);
 
 /// Draw the image's subrect on the given buffer
 void drawImageSubrect(ImageSubrect *imgsub, ScreenBuffer buffer);
+
+/// Get a pixel from any image subrect
+inline void* getImageSubPixel(uint16_t x, uint16_t y, ImageSubrect *sub);
+
+/// Get a pixel from a 4bpp image subrect
+inline void* getImageSubPixel_4bpp(uint16_t x, uint16_t y, ImageSubrect *sub);
+
+/// Get a pixel from a 16bpp image subrect
+inline void* getImageSubPixel_16bpp(uint16_t x, uint16_t y, ImageSubrect *sub);
 
 #endif // NIMAGE_H_INCLUDED

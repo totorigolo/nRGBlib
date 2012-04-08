@@ -19,19 +19,38 @@
 /// Draw the image's subrect on the given buffer
 void drawImagesubrect(ImageSubrect *imgsub, ScreenBuffer buffer)
 {
-    int i, j, jmax, width;
+    int i, j, jmax, width, x;
 
     if (!imgsub->image->data) return;
 
-    // TODO: drawImageSubrect = memset for 4bpp
     if (!has_colors || !lcd_isincolor())
-        for (i = ((imgsub->x < 0) ? (0) : (imgsub->x)); i < ((imgsub->x + imgsub->w >= SCREEN_WIDTH) ? (SCREEN_WIDTH) : (imgsub->x + imgsub->w)); i++)
-            for (j = ((imgsub->y < 0) ? (0) : (imgsub->y)); j < ((imgsub->y + imgsub->h >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (imgsub->y + imgsub->h)); j++)
-                setPixel(i, j, GET_SUBRECT_PIXEL(i - imgsub->x, j - imgsub->y, imgsub), buffer);
-    else
     {
+        if (imgsub->x + (imgsub->w / 2) < 0 || imgsub->x >= SCREEN_WIDTH / 2)
+            return;
+
         i = (imgsub->x < 0) ? (0) : (imgsub->x);
         j = (imgsub->y < 0) ? (0) : (imgsub->y);
+        x = ((imgsub->x < 0) ? (abs(imgsub->x)) : (0));
+        jmax = ((imgsub->y + imgsub->h) >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (imgsub->y + imgsub->h);
+
+        if (imgsub->x < 0)
+            width = (0 + ((imgsub->w / 2) - abs(imgsub->x)) >= SCREEN_WIDTH / 2) ? (SCREEN_WIDTH / 2) : ((imgsub->w / 2) - abs(imgsub->x));
+        else if (imgsub->x + imgsub->w / 2 >= SCREEN_WIDTH / 2)
+            width = (SCREEN_WIDTH / 2) - imgsub->x;
+        else
+            width = imgsub->w / 2;
+
+        for (; j < jmax; j++)
+            memcpy((uint8_t*)(buffer + ((i + (SCREEN_WIDTH / 2 * j)) * sizeof(uint8_t))), getImageSubPixel_4bpp(x, (j - imgsub->y), imgsub), width);
+    }
+    else
+    {
+        if (imgsub->x + imgsub->w < 0 || imgsub->x >= SCREEN_WIDTH)
+            return;
+
+        i = (imgsub->x < 0) ? (0) : (imgsub->x);
+        j = (imgsub->y < 0) ? (0) : (imgsub->y);
+        x = ((imgsub->x < 0) ? (abs(imgsub->x)) : (0));
         jmax = ((imgsub->y + imgsub->h) >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (imgsub->y + imgsub->h);
 
         if (imgsub->x < 0)
@@ -40,11 +59,9 @@ void drawImagesubrect(ImageSubrect *imgsub, ScreenBuffer buffer)
             width = SCREEN_WIDTH - imgsub->x;
         else
             width = imgsub->w;
-
-        if (imgsub->x + imgsub->w < 0 || imgsub->x >= SCREEN_WIDTH)
-            return;
+        width *= 2;
 
         for (; j < jmax; j++)
-            memcpy((((Color *)buffer) + (i + SCREEN_WIDTH * j)), &GET_SUBRECT_PIXEL(((imgsub->x < 0) ? (abs(imgsub->x)) : (0)), (j - imgsub->y), imgsub), width * 2);
+            memcpy((Color *)(buffer + ((i + (SCREEN_WIDTH * j)) * sizeof(Color))), getImageSubPixel_16bpp(x, (j - imgsub->y), imgsub), width);
     }
 }

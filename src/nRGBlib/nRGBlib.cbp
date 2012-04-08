@@ -204,6 +204,12 @@
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="getImagePixel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="getImageSubPixel.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="initImage.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -19,6 +19,9 @@
 /// Load an image from a converted image file
 BOOL loadImage(Image *img, char* path)
 {
+    uint32_t i;
+    void* rawImg = NULL, *rawptr = NULL;
+    uint8_t *img_ptr = NULL;
     FILE *file;
     file = fopen(path, "rb");
 
@@ -45,7 +48,14 @@ BOOL loadImage(Image *img, char* path)
     img->data = NULL;
 
     // Alloc image data
-    img->data = calloc(img->w * img->h, sizeof(Color));
+    if (!has_colors || !lcd_isincolor())
+    {
+        img->data = (uint8_t*) calloc(img->w * img->h / 2, sizeof(uint8_t));
+        rawImg = (Color*) calloc(img->w * img->h, sizeof(Color));
+    }
+    else
+        img->data = (Color*) calloc(img->w * img->h, sizeof(Color));
+
     if (img->data == NULL)
     {
         printf("Failed to alloc memory: the image is too big.\n");
@@ -54,7 +64,21 @@ BOOL loadImage(Image *img, char* path)
 
     // Load image
     printf("Loading image...\n");
-	fread(img->data, sizeof(Color), img->w * img->h, file);
+    if (!has_colors || !lcd_isincolor())
+    {
+        fread(rawImg, sizeof(Color), img->w * img->h, file);
+
+        img_ptr = (uint8_t*)img->data;
+        rawptr = rawImg;
+
+        for (i = 0; i < img->w * img->h / 2; rawptr += 2 * sizeof(Color), img_ptr += sizeof(uint8_t), i++)
+            *img_ptr = (getBW(*(Color*)rawptr) << 4) | (getBW(*(Color*)(rawptr + sizeof(Color))));
+
+        free(rawImg);
+        rawptr = NULL;
+    }
+    else
+        fread(img->data, sizeof(Color), img->w * img->h, file);
 
     // Close our file
     fclose(file);
