@@ -1,18 +1,3 @@
-/****************************************************************************
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * The Original Code is nRGBlib code.
- *
- * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
- * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011-2012
- * the Initial Developer. All Rights Reserved.
- *
- * Contributor(s):
- ****************************************************************************/
-
 #include <os.h>
 #include <nIMAGE.h>
 #include <nMATHS.h>
@@ -28,7 +13,6 @@ int main(int argc, char* argv[])
 
     // Images' path
     char pathPerso[] = "/documents/Examples/rpg/imgPerso.tns";
-    //char pathPerso[] = "/documents/ndless/dev/rpg/imgPerso.tns";
 
     // Tileset
     Tileset tileset;
@@ -37,7 +21,7 @@ int main(int argc, char* argv[])
     initImage(&tileset.img);
 
     // Map
-    int i, j, ti, tj;
+    int i, j, ti, tj, d;
     Map myMap;
     myMap.map = NULL;
     myMap.tileset = &tileset;
@@ -111,9 +95,10 @@ int main(int argc, char* argv[])
         clearBuffer(BLACK, buffer);
 
         // Draw the map
+        d = ((!has_colors || !lcd_isincolor()) ? 2 : 1);
         for (i = 0; i < SCREEN_WIDTH / CELL_SIZE + 1; i++)
         {
-            tile.x = i * CELL_SIZE - myMap.offset_x % CELL_SIZE;
+            tile.x = i * CELL_SIZE/d - myMap.offset_x % CELL_SIZE/d;
             for (j = 0; j < SCREEN_HEIGHT / CELL_SIZE + 2; j++)
             {
                 tile.y = j * CELL_SIZE - myMap.offset_y % CELL_SIZE;
@@ -134,10 +119,14 @@ int main(int argc, char* argv[])
         // Display our buffer on the screen
         display(buffer);
 
-        // Wait to save the battery
-        idle();
-        while (!any_key_pressed());
-        idle();
+        if (!has_colors || !lcd_isincolor())
+        {
+            /** Doesn't work with CX !! **/
+            // Wait to save the battery
+            idle();
+            while (!any_key_pressed());
+            idle();
+        }
     }
 
     // Delete our image

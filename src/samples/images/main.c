@@ -1,18 +1,3 @@
-/****************************************************************************
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * The Original Code is nRGBlib code.
- *
- * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
- * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011-2012
- * the Initial Developer. All Rights Reserved.
- *
- * Contributor(s):
- ****************************************************************************/
-
 #include <os.h>
 #include <nIMAGE.h>
 #include <nGUI.h>
@@ -23,7 +8,7 @@ int main(int argc, char* argv[])
     ScreenBuffer buffer = GetNewScreenBuffer();
 
     // Create the image
-    int speed = 2;
+    int speed = 1;
     Image image;
 
 // TODO: Explorateur de fichiers (sample/images)
@@ -35,8 +20,7 @@ int main(int argc, char* argv[])
     memcpy(path, argv[0], len);
     memcpy(path + len * sizeof(char), file, strlen(file));*/
 
-    char path[] = "/documents/Examples/bac.h.tns";
-    //char path[] = "/documents/ndless/dev/bac.h.tns";
+    char path[] = "/documents/Examples/bacp.h.tns";
 
     // Load the image
     initImage(&image);
@@ -94,7 +78,7 @@ int main(int argc, char* argv[])
         {
             image.x = 0;
             image.y = 0;
-            speed = 2;
+            speed = 1;
         }
 
         // Draw the image
@@ -110,13 +94,16 @@ int main(int argc, char* argv[])
         // Display our buffer on the screen
         display(buffer);
 
-        // Wait to save the battery
-        //*
-        idle();
-        while (!any_key_pressed());
-        idle();
-        //*/
+        if (!has_colors || !lcd_isincolor())
+        {
+            //sleep(20);
 
+            /** Doesn't work with CX !! **/
+            // Wait to save the battery
+            idle();
+            while (!any_key_pressed());
+            idle();
+        }
     }
 
     // Delete our image

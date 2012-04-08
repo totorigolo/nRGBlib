@@ -1,18 +1,3 @@
-/****************************************************************************
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * The Original Code is nRGBlib code.
- *
- * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
- * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011-2012
- * the Initial Developer. All Rights Reserved.
- *
- * Contributor(s):
- ****************************************************************************/
-
 #include "map.h"
 
 void loadFromFile(Map *map, char *filename)
@@ -41,7 +26,6 @@ void loadFromFile(Map *map, char *filename)
         exit(0);
     }
     printf(" - Tileset's image succesfully loaded!\n");
-
 
     fread(&map->tileset->nbTiles, sizeof(unsigned int), 1, f); printf(" - nbTiles = %d\n", map->tileset->nbTiles);
     fread(&map->w, sizeof(unsigned int), 1, f); printf(" - map->w = %d\n", map->w);
