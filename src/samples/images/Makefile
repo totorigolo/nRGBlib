@@ -11,7 +11,7 @@ OBJS = main.o
 DISTDIR = ../bin
 vpath %.tns $(DISTDIR)
 
-all: HelloRGB.tns
+all: images.tns
 
 %.o: %.c
 	echo 'Building $<...'
@@ -21,11 +21,11 @@ all: HelloRGB.tns
 	echo 'Building $<...'
 	$(GCC) $(GCCFLAGS) -c $<
 
-HelloRGB.tns: $(OBJS)
+images.tns: $(OBJS)
 	$(LD) $(LDFLAGS) $^ -o $(@:.tns=.elf) -lRGB
 	@mkdir -p $(DISTDIR)
 	$(OBJCOPY) -O binary $(@:.tns=.elf) $(DISTDIR)/$@
 
 clean:
 	rm -f *.o *.elf
-	rm -f $(DISTDIR)/HelloRGB.tns
+	rm -f $(DISTDIR)/images.tns
