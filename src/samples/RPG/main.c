@@ -95,10 +95,9 @@ int main(int argc, char* argv[])
         clearBuffer(BLACK, buffer);
 
         // Draw the map
-        d = ((!has_colors || !lcd_isincolor()) ? 2 : 1);
         for (i = 0; i < SCREEN_WIDTH / CELL_SIZE + 1; i++)
         {
-            tile.x = i * CELL_SIZE/d - myMap.offset_x % CELL_SIZE/d;
+            tile.x = i * CELL_SIZE - myMap.offset_x % CELL_SIZE;
             for (j = 0; j < SCREEN_HEIGHT / CELL_SIZE + 2; j++)
             {
                 tile.y = j * CELL_SIZE - myMap.offset_y % CELL_SIZE;

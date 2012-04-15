@@ -25,18 +25,18 @@ void drawImage(Image *img, ScreenBuffer buffer)
 
     if (!has_colors || !lcd_isincolor())
     {
-        if (img->x + (img->w / 2) < 0 || img->x >= SCREEN_WIDTH / 2)
+        if (img->x / 2 + img->w / 2 < 0 || img->x / 2 >= SCREEN_WIDTH / 2)
             return;
 
-        i = (img->x < 0) ? (0) : (img->x);
+        i = (img->x < 0) ? (0) : (img->x / 2);
         j = (img->y < 0) ? (0) : (img->y);
         x = ((img->x < 0) ? (abs(img->x)) : (0));
         jmax = ((img->y + img->h) >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (img->y + img->h);
 
-        if (img->x < 0)
-            width = (0 + ((img->w / 2) - abs(img->x)) >= SCREEN_WIDTH / 2) ? (SCREEN_WIDTH / 2) : ((img->w / 2) - abs(img->x));
-        else if (img->x + img->w / 2 >= SCREEN_WIDTH / 2)
-            width = (SCREEN_WIDTH / 2) - img->x;
+        if (img->x / 2 < 0)
+            width = (0 + ((img->w / 2) - abs(img->x / 2)) >= SCREEN_WIDTH / 2) ? (SCREEN_WIDTH / 2) : ((img->w / 2) - abs(img->x / 2));
+        else if (img->x / 2 + img->w / 2 >= SCREEN_WIDTH / 2)
+            width = (SCREEN_WIDTH / 2) - img->x / 2;
         else
             width = img->w / 2;
 

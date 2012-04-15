@@ -25,18 +25,18 @@ void drawImagesubrect(ImageSubrect *imgsub, ScreenBuffer buffer)
 
     if (!has_colors || !lcd_isincolor())
     {
-        if (imgsub->x + (imgsub->w / 2) < 0 || imgsub->x >= SCREEN_WIDTH / 2)
+        if (imgsub->x / 2 + (imgsub->w / 2) < 0 || imgsub->x / 2 >= SCREEN_WIDTH / 2)
             return;
 
-        i = (imgsub->x < 0) ? (0) : (imgsub->x);
+        i = (imgsub->x < 0) ? (0) : (imgsub->x / 2);
         j = (imgsub->y < 0) ? (0) : (imgsub->y);
         x = ((imgsub->x < 0) ? (abs(imgsub->x)) : (0));
         jmax = ((imgsub->y + imgsub->h) >= SCREEN_HEIGHT) ? (SCREEN_HEIGHT) : (imgsub->y + imgsub->h);
 
-        if (imgsub->x < 0)
-            width = (0 + ((imgsub->w / 2) - abs(imgsub->x)) >= SCREEN_WIDTH / 2) ? (SCREEN_WIDTH / 2) : ((imgsub->w / 2) - abs(imgsub->x));
-        else if (imgsub->x + imgsub->w / 2 >= SCREEN_WIDTH / 2)
-            width = (SCREEN_WIDTH / 2) - imgsub->x;
+        if (imgsub->x / 2 < 0)
+            width = (0 + ((imgsub->w / 2) - abs(imgsub->x / 2)) >= SCREEN_WIDTH / 2) ? (SCREEN_WIDTH / 2) : ((imgsub->w / 2) - abs(imgsub->x / 2));
+        else if (imgsub->x / 2 + imgsub->w / 2 >= SCREEN_WIDTH / 2)
+            width = (SCREEN_WIDTH / 2) - imgsub->x / 2;
         else
             width = imgsub->w / 2;
 

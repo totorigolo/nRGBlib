@@ -29,7 +29,7 @@ inline void* getImageSubPixel(uint16_t x, uint16_t y, ImageSubrect *sub)
 /// Get a pixel from a 4bpp image subrect
 inline void* getImageSubPixel_4bpp(uint16_t x, uint16_t y, ImageSubrect *sub)
 {
-    return getImagePixel_4bpp((x + (sub->offset_x / 2)), (y + sub->offset_y), sub->image);
+    return getImagePixel_4bpp(x + sub->offset_x, (y + sub->offset_y), sub->image);
 }
 
 /// Get a pixel from a 16bpp image subrect
