@@ -1,4 +1,4 @@
-SUBDIRS = RPG images helloRGB GeometriCX CXSnake
+SUBDIRS = RPG images GeometriCX helloRGB CXSnake
 DISTDIR = ../../sdk/calcbin/samples
 
 all: distdir
