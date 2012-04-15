@@ -1,21 +1,19 @@
-/****************************************************************************
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/.
+/*****************************************************************************
+ * Copyright (C) 2010 by ANNEHEIM Geoffrey
+ * Contact: geoffrey.anneheim@gmail.com
  *
- * The Original Code is nRGBlib code.
+ * Original code by BoneSoft:
+ * http://www.codeproject.com/KB/GDI-plus/FunWithGravity.aspx
  *
- * The Initial Developer of the Original Code is Thomas LACROIX aka totorigolo
- * <toto.rigolo@free.fr>.
- * Portions created by the Initial Developer are Copyright (C) 2011-2012
- * the Initial Developer. All Rights Reserved.
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * Contributor(s):
- ****************************************************************************/
-
+ * RCSID $Id$
+ *****************************************************************************/
 #include <nMATHS.h>
 
-/// Choose a random number (based on the number of times this function is called
+/// Choose a random number (based on the number of times this function is called)
 int rand()
 {
     static int m_w = 56789;
