@@ -16,15 +16,15 @@ typedef uint16_t Color;
 // BLACK and WHITE are already defined by libndls
 #undef WHITE
 #undef BLACK
-#define BLACK RGB(0, 0, 0)
-#define WHITE RGB(255, 255, 255)
-#define RED RGB(255, 0, 0)
-#define GREEN RGB(0, 255, 0)
-#define BLUE RGB(0, 0, 255)
-#define YELLOW RGB(255, 255, 0)
-#define CYAN RGB(0, 255, 255)
-#define FUCHSIA RGB(255, 0, 255)
-#define BROWN RGB(91, 59, 17)
+#define BLACK 0
+#define WHITE 65535
+#define RED 63488
+#define GREEN 2016
+#define BLUE 31
+#define YELLOW 65504
+#define CYAN 2047
+#define FUCHSIA 63519
+#define BROWN 22978
 
 typedef void* ScreenBuffer;
 

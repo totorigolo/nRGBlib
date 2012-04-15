@@ -38,11 +38,11 @@ int main(void)
     drawTile8Unicolor(20, 80, 1, tile_bonhommeU, buffer);
     drawTile8Multicolors(40, 80, 1, tile_bonhommeM, buffer);
     drawTile8Multicolors(30, 20, 5, tile_bonhommeM, buffer);
-    drawStr(0, 240 - CHAR_HEIGHT * 3, "Ctrl to Bubble Land!", 2, 0, RGB(0, 255, 255), buffer);
-    drawStrBckg(0, 240 - CHAR_HEIGHT, "Esc to Quit", 1, 0, RGB(255, 0, 0), RGB(255, 255, 255), buffer);
-    drawStrBckg(SCREEN_WIDTH - 13 * CHAR_WIDTH, 240 - CHAR_HEIGHT, "by totorigolo", 1, 0, RGB(255, 0, 0), RGB(0, 255, 255), buffer);
-    drawCircle_(289, 30, 30, RGB(255, 255, 255), buffer);
-    drawDisc_(15, 15, 15, RGB(255, 255, 255), buffer);
+    drawStr(0, 240 - CHAR_HEIGHT * 3, "Ctrl to Bubble Land!", 2, 0, CYAN, buffer);
+    drawStrBckg(0, 240 - CHAR_HEIGHT, "Esc to Quit", 1, 0, RED, WHITE, buffer);
+    drawStrBckg(SCREEN_WIDTH - 21 * CHAR_WIDTH, 240 - CHAR_HEIGHT, "nRGBlib by totorigolo", 1, 0, RED, CYAN, buffer);
+    drawCircle_(289, 30, 30,WHITE, buffer);
+    drawDisc_(15, 15, 15, WHITE, buffer);
 
     // Display our buffer on the screen
     display(buffer);
