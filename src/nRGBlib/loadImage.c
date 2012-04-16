@@ -28,7 +28,7 @@ BOOL loadImage(Image *img, char* path)
     // File doesn't exist
     if (file == NULL)
     {
-        printf("File doesn't exist! (%s)\n", path);
+        //printf("File doesn't exist! (%s)\n", path);
         return FALSE;
     }
 
@@ -41,7 +41,7 @@ BOOL loadImage(Image *img, char* path)
     // Read the image dimensions
     fread(&img->w, 1, sizeof(unsigned int), file);
     fread(&img->h, 1, sizeof(unsigned int), file);
-    printf("Image size:\n - width = %d\n - height = %d\n", img->w, img->h);
+    //printf("Image size:\n - width = %d\n - height = %d\n", img->w, img->h);
 
     // Free old data
     free(img->data);
@@ -58,12 +58,12 @@ BOOL loadImage(Image *img, char* path)
 
     if (img->data == NULL)
     {
-        printf("Failed to alloc memory: the image is too big.\n");
+        //printf("Failed to alloc memory: the image is too big.\n");
         exit(0);
     }
 
     // Load image
-    printf("Loading image...\n");
+    //printf("Loading image...\n");
     if (!has_colors || !lcd_isincolor())
     {
         fread(rawImg, sizeof(Color), img->w * img->h, file);
@@ -82,7 +82,7 @@ BOOL loadImage(Image *img, char* path)
 
     // Close our file
     fclose(file);
-    printf("Image loaded successfully!\n");
+    //printf("Image loaded successfully!\n");
 
     return TRUE;
 }
