@@ -1,5 +1,0 @@
-Cette version est la v0.2 de nRGBlib.
-
------
-
-It's the v0.2 of nRGBlib.
