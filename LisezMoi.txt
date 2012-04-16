@@ -2,7 +2,7 @@
 = nRGBlib pour Ndless v3.1 sur TI-Nspire =
 ==========================================
 
-nRGBlib v0.2
+nRGBlib v0.3
 
 Qu'est-ce que c'est ?
 =====================
@@ -12,13 +12,12 @@ pour fonctionner, Ndless 3.1. Elle permet de dessiner plusieurs formes en couleu
 et très simplement permettant ainsi à l'utilisateur de ne pas perdre de temps sur
 la création de ces fonctions basiques.
 
-nRGBlib peut-être utilisée sur Nspire 4 bpp (Clickpad, Touchpad) et sur Nspire 16 bpp (CX, CM).
-Les exécutables créé avec nRGBlib peuvent être utilisés sur n'importe quelle Nspire sans
+nRGBlib peut-être utilisée sur Nspire 4 bpp (ClickPad, TouchPad) et sur Nspire 16 bpp (CX, CM).
+Les exécutables créés avec nRGBlib peuvent être utilisés sur n'importe quelle Nspire sans
 recompilation. nRGBlib laisse à l'utilisateur le choix d'utiliser l'écran exclusivement en 4 bpp.
 
 Le dépot Mercurial officiel est disponible à cette adresse :
 https://bitbucket.org/totorigolo/nrgblib
-
 
 Quelles sont les fonctionnalités de nRGBlib ?
 =============================================
@@ -28,16 +27,26 @@ n'utiliser que les modules utiles au projet à développer, et de ne pas alourdir 
 
 Pour le moment, nRGBlib s'organise ainsi :
 
-Structures de base : Couleur
-nGEO :
-    Structures : Disque, Cercle, Ligne, Rectangle, Carré, Triangle
-    Fonctions d'affichage de ces formes
-nTILE :
-    Structures : Tile
-    Fonctions d'affichage de ces structures
-nGUI :
-    Structures : Lettre, Texte
-    Fonctions d'affichage de ces structures
+nCOMMON:
+    - Couleur, conversion RGB <-> BW, couleurs prédifinies.
+    - Buffer écran, création, affichage, capture d'écran, vidage.
+    - setPixel(), clearScreen().
+nGEO:
+    - Formes: Disque, Cercle, Ligne, Rectangle, Carré, Triangle.
+    - Fonctions d'affichage de ces formes.
+nTILE:
+    - Tile 8x8 en une couleurs ou plusieurs couleurs.
+    - Fonctions d'affichage des tiles.
+    -> Les tiles sont compilées AVEC le programme.
+nIMAGE:
+    - Image, création, chargement, affichage, getPixel().
+    - Sous-image, création, chargement, affichage, getPixel().
+    -> Les images sont enregistrées EN-DEHORS du programme.
+nGUI:
+    - Structures : Lettre, Texte.
+    - Fonctions d'affichage de ces structures.
+nMATHS:
+    - Fonctions rand() + randMinMax().
 
 Pour être tenu au courant de l'avancement et des mises à jour, voici le topic officiel :
     - FR : http://tiplanet.org/forum/viewtopic.php?t=8597
@@ -46,25 +55,36 @@ Pour être tenu au courant de l'avancement et des mises à jour, voici le topic of
 De quoi ai-je besoin afin d'utiliser nRGBlib ?
 ==============================================
 
-- Une TI-Nspire CAS ou non-CAS ClickPad, Touchpad ou CX
-- L'OS v3.1.0 installé
-- Ndless 3.1 d'installé
-- Un programme d'envoi de fichier à la calculette comme TI-Nspire Student Software
+- Une TI-Nspire CAS ou non-CAS ClickPad, TouchPad ou CX.
+- L'OS v3.1.0 installé.
+- Ndless 3.1 d'installé (la dernière version).
+- Un programme d'envoi de fichier à la calculette comme TI-Nspire Student Software.
 
 Comment utiliser nRGBlib ?
 ==========================
 
-1. Inclure dans le programme qui doit utiliser nRGBlib le fichier <nRGBlib.h> pour avoir accès
+Méthode simple:
+1. Copier les en-têtes de nRGBlib dans "C:/Users/<Votre nom>/.ndless/include" et les
+   fichiers .a dans "C:/Users/<Votre nom>/.ndless/lib".
+2. Inclure dans le programme qui doit utiliser nRGBlib le fichier <nRGBlib.h> pour avoir accès
    à toute la bibliothèque, ou inclure les entêtes dont vous avez besoin.
-2. Indiquer à GCC où se trouvent les .a et .h
-3. Lier "libRGB.a" à votre projet en utilisant l'option "-lRGB" à nspire-gcc.
+3. Indiquer à GCC où se trouvent les .a et .h.
+4. Lier "libRGB.a" à votre projet en utilisant l'option "-lRGB" à nspire-gcc.
 
-Pour 2 et 3, voici un Makefile d'exemple :
+Méthode compliquée:
+1. Copier les en-têtes et les fichiers .a dans le dossier de votre choix.
+2. Inclure dans le programme qui doit utiliser nRGBlib le fichier <nRGBlib.h> pour avoir accès
+   à toute la bibliothèque, ou inclure les entêtes dont vous avez besoin.
+3. Indiquer à GCC où se trouvent les .a et .h
+4. Lier "libRGB.a" à votre projet en utilisant l'option "-lRGB" à nspire-gcc.
+
+Pour 3 et 4, voici un Makefile d'exemple:
+#-- Uniquement pour la méthode compliquée: --
+GCCFLAGS = -O3 -nostdlib -I"chemin/vers/sdk/include/de/nRGBlib"
+LDFLAGS = -L "chemin/vers/sdk/lib/de/nRGBlib"
 #---------------
 GCC = nspire-gcc
 LD = nspire-ld
-GCCFLAGS = -Os -nostdlib -I"chemin/vers/sdk/include/de/nRGBlib"
-LDFLAGS = -L "chemin/vers/sdk/lib/de/nRGBlib"
 OBJCOPY := "$(shell (which arm-elf-objcopy arm-none-eabi-objcopy arm-linux-gnueabi-objcopy | head -1) 2>/dev/null)"
 ifeq (${OBJCOPY},"")
 	OBJCOPY := arm-none-eabi-objcopy

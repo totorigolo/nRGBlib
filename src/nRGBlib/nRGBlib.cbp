@@ -52,9 +52,6 @@
 		<Unit filename="..\include\charmap.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="..\include\nAUDIO.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="..\include\nCOMMON.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -74,9 +71,6 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="..\include\nTILE.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="..\include\nVIEW.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="..\samples\CXSnake\Makefile">

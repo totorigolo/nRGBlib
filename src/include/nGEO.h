@@ -46,7 +46,7 @@ typedef struct Triangle {
 } Triangle;
 
 /// Draw a line in color
-//    - Note that for a vertical or horizontal line, use of drawBox is faster
+// - Note that for a vertical or horizontal line, use of drawBox is faster
 void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBuffer buffer);
 inline void drawLine(Line *l, Color c, ScreenBuffer buffer);
 
