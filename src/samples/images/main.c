@@ -11,20 +11,16 @@ int main(int argc, char* argv[])
     int speed = 1;
     Image image;
 
-// TODO: Explorateur de fichiers (sample/images)
-
-    // Find the image path
-    /*char *file = "elephant.h.tns";
-    int len = strrchr(argv[0], '/') - argv[0] + 1;
-    char path[len + strlen(file) + 1];
-    memcpy(path, argv[0], len);
-    memcpy(path + len * sizeof(char), file, strlen(file));*/
-
-    char path[] = "/documents/Examples/bacp.h.tns";
+    // Ask for the image
+    char *path;
+    show_msgbox("Ouvrir une image", "Rentrez le chemin de l'image a ouvrir, ou pressez Esc.\nOuvre uniquement les images converties.");
+    if (show_msg_user_input("Ouvrir une image", "", "/documents/ndless/img/super.cool.tns", &path) < 0)
+        return 0;
 
     // Load the image
     initImage(&image);
     loadImage(&image, path);
+    free(path);
 
     clearScreen(RGB(200, 200, 200), buffer);
     while (1)
