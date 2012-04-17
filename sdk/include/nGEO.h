@@ -53,10 +53,16 @@ inline void drawLine(Line *l, Color c, ScreenBuffer buffer);
 /// Draw a box / rectangle in color
 inline void drawBox_(int16_t x, int16_t y, int16_t w, int16_t h, Color c, ScreenBuffer buffer);
 inline void drawBox(Box *box, Color c, ScreenBuffer buffer);
+// Sl = slower
+inline void drawBox_Sl(int16_t x, int16_t y, int16_t w, int16_t h, Color c, ScreenBuffer buffer);
+inline void drawBoxSl(Box *box, Color c, ScreenBuffer buffer);
 
 /// Draw a square in color
 inline void drawSquare_(int16_t x, int16_t y, int16_t side, Color c, ScreenBuffer buffer);
 inline void drawSquare(Square *s, Color c, ScreenBuffer buffer);
+// Sl = slower
+inline void drawSquare_Sl(int16_t x, int16_t y, int16_t side, Color c, ScreenBuffer buffer);
+inline void drawSquareSl(Square *s, Color c, ScreenBuffer buffer);
 
 /// Draw a circle in color
 void drawCircle_(int16_t x, int16_t y, int16_t radius, Color c, ScreenBuffer buffer);
