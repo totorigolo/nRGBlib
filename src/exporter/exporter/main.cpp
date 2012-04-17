@@ -55,8 +55,6 @@ int main()
 		{
 			c = RGB(img.GetPixel(i, j).r, img.GetPixel(i, j).g, img.GetPixel(i, j).b);
 			image[i + j * img.GetWidth()] = c;
-			//image[j + i * img.GetHeight()] = c;
-			//fwrite(&c, sizeof(unsigned short), 1, f);
 		}
 	}
 	fwrite(image, sizeof(unsigned short), img.GetWidth() * img.GetHeight(), f);
