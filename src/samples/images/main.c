@@ -80,6 +80,8 @@ int main(int argc, char* argv[])
         // Draw the image
         clearBuffer(RGB(200, 200, 200), buffer);
         drawImage(&image, buffer);
+
+        // Draw the speed
         if (speed < 0)
             drawChar(0, 0, '-', 1, RED, buffer);
         else

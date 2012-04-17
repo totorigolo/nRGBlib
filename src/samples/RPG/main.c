@@ -4,8 +4,6 @@
 #include <nGEO.h>
 #include "map.h"
 
-#define SPEED 2
-
 int main(int argc, char* argv[])
 {
     // Create a new screen buffer
@@ -29,6 +27,7 @@ int main(int argc, char* argv[])
     loadFromFile(&myMap, "/documents/Examples/rpg/bin.map.tns");
 
     // Load the perso's image
+    int speed = 2;
     Image imgPerso;
     ImageSubrect tile; tile.image = NULL;
     initImage(&imgPerso);
@@ -48,48 +47,53 @@ int main(int argc, char* argv[])
 
         // Up and down
         if (isKeyPressed(KEY_NSPIRE_UP))
-            imgPerso.y -= SPEED;
+            imgPerso.y -= speed;
         if (isKeyPressed(KEY_NSPIRE_DOWN))
-            imgPerso.y += SPEED;
+            imgPerso.y += speed;
 
         // Left and right
         if (isKeyPressed(KEY_NSPIRE_LEFT))
-            imgPerso.x -= SPEED;
+            imgPerso.x -= speed;
         if (isKeyPressed(KEY_NSPIRE_RIGHT))
-            imgPerso.x += SPEED;
+            imgPerso.x += speed;
 
         // Up left/right
         if (isKeyPressed(KEY_NSPIRE_LEFTUP))
         {
-            imgPerso.y -= SPEED;
-            imgPerso.x -= SPEED;
+            imgPerso.y -= speed;
+            imgPerso.x -= speed;
         }
         if (isKeyPressed(KEY_NSPIRE_UPRIGHT))
         {
-            imgPerso.y -= SPEED;
-            imgPerso.x += SPEED;
+            imgPerso.y -= speed;
+            imgPerso.x += speed;
         }
 
         // Down left/right
         if (isKeyPressed(KEY_NSPIRE_DOWNLEFT))
         {
-            imgPerso.y += SPEED;
-            imgPerso.x -= SPEED;
+            imgPerso.y += speed;
+            imgPerso.x -= speed;
         }
         if (isKeyPressed(KEY_NSPIRE_RIGHTDOWN))
         {
-            imgPerso.y += SPEED;
-            imgPerso.x += SPEED;
+            imgPerso.y += speed;
+            imgPerso.x += speed;
         }
 
-        if (isKeyPressed(KEY_NSPIRE_8))
-            myMap.offset_y -= SPEED;
-        if (isKeyPressed(KEY_NSPIRE_2))
-            myMap.offset_y += SPEED;
-        if (isKeyPressed(KEY_NSPIRE_4))
-            myMap.offset_x -= SPEED;
-        if (isKeyPressed(KEY_NSPIRE_6))
-            myMap.offset_x += SPEED;
+        if (isKeyPressed(KEY_NSPIRE_PLUS))
+            speed += 1;
+        if (isKeyPressed(KEY_NSPIRE_MINUS))
+            speed -= 1;
+
+        if (isKeyPressed(KEY_NSPIRE_8) && (myMap.offset_y - speed) >= 0)
+            myMap.offset_y -= speed;
+        if (isKeyPressed(KEY_NSPIRE_2) && (myMap.offset_y + speed) < ((myMap.h * CELL_SIZE) - SCREEN_HEIGHT))
+            myMap.offset_y += speed;
+        if (isKeyPressed(KEY_NSPIRE_4) && (myMap.offset_x - speed) >= 0)
+            myMap.offset_x -= speed;
+        if (isKeyPressed(KEY_NSPIRE_6) && (myMap.offset_x + speed) < ((myMap.w * CELL_SIZE) - SCREEN_WIDTH))
+            myMap.offset_x += speed;
 
         /* Begin to draw on the buffer */
         clearBuffer(BLACK, buffer);
@@ -105,6 +109,9 @@ int main(int argc, char* argv[])
                 ti = (i + (myMap.offset_x / CELL_SIZE) < 0) ? (0) : ((i + (myMap.offset_x / CELL_SIZE) >= myMap.w) ? (myMap.w) : (i + (myMap.offset_x / CELL_SIZE)));
                 tj = (j + (myMap.offset_y / CELL_SIZE) < 0) ? (0) : ((j + (myMap.offset_y / CELL_SIZE) >= myMap.h) ? (myMap.h) : (j + (myMap.offset_y / CELL_SIZE)));
 
+                if (tj >= myMap.h)
+                    tj = myMap.h-1;
+
                 tile.offset_x = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].x;
                 tile.offset_y = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].y;
 
@@ -114,6 +121,15 @@ int main(int argc, char* argv[])
 
         // Draw the perso
         drawImage(&imgPerso, buffer);
+
+        // Draw the speed
+        if (speed < 0)
+            drawChar(0, 0, '-', 1, RED, buffer);
+        else
+            drawChar(0, 0, '+', 1, RED, buffer);
+
+        drawChar(8, 0, '0' + abs(speed) / 10, 1, RED, buffer);
+        drawChar(16, 0, '0' + abs(speed) % 10, 1, RED, buffer);
 
         // Display our buffer on the screen
         display(buffer);
