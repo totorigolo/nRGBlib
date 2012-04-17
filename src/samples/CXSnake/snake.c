@@ -33,7 +33,7 @@ int Snake(ScreenBuffer *buffer)
     // Create the score area
     score = 0;
     scoreTxt = "Score = 0    ";
-    drawBox_(0, 0, SCREEN_WIDTH, 2 * 8, colScoreFond, buffer);
+    drawBox_Sl(0, 0, SCREEN_WIDTH, 2 * 8, colScoreFond, buffer);
     drawStrBckg(0, 0, scoreTxt, 1, 0, colScoreTxt, colScoreFond, buffer);
 
     // Init game array to zero
@@ -50,13 +50,13 @@ int Snake(ScreenBuffer *buffer)
     // Create the snake (size == 4), and draw it
     for (i = 0; i < size; i++)
     {
-        drawSquare_(Head->x * 8, Head->y * 8, 8, colSerpent, buffer);
+        drawSquare_Sl(Head->x * 8, Head->y * 8, 8, colSerpent, buffer);
         tab[Current->x][Current->y] = 1;
         Current = Pos_add(Current, 1, 0); // Ajoute une case
     }
 
     // Create the head, and draw it
-    drawSquare_(Current->x * 8, Current->y * 8, 8, colSerpent, buffer);
+    drawSquare_Sl(Current->x * 8, Current->y * 8, 8, colSerpent, buffer);
     tab[Current->x][Current->y] = 1;
     Head = Current;
 
@@ -64,7 +64,7 @@ int Snake(ScreenBuffer *buffer)
     apple.side = 8;
     apple.x = abs(randMinMax(1, 40-1)) * 8;
     apple.y = abs(randMinMax(4, 30-1)) * 8;
-    drawSquare(&apple, colPomme, buffer);
+    drawSquareSl(&apple, colPomme, buffer);
 
     // Main loop
     while (loose == 0 && !isKeyPressed(KEY_NSPIRE_ESC))
@@ -117,7 +117,7 @@ int Snake(ScreenBuffer *buffer)
 
         // Append a block at the head and draw it
         if ( (Head->x > (-1)) && (Head->y > (-1)))
-            drawSquare_(Head->x * 8, Head->y * 8, 8, colSerpent, buffer);
+            drawSquare_Sl(Head->x * 8, Head->y * 8, 8, colSerpent, buffer);
 
         // Check that the head isn't touching the body
         if (tab[Head->x][Head->y] == 1)
@@ -152,7 +152,7 @@ int Snake(ScreenBuffer *buffer)
                 apple.y = abs(randMinMax(4, 30-1)) * 8;
             }
             while (tab[apple.x / 8][apple.y / 8] == 1);
-            drawSquare(&apple, colPomme, buffer);
+            drawSquareSl(&apple, colPomme, buffer);
         }
 
         // Remove the snake's last block
@@ -161,7 +161,7 @@ int Snake(ScreenBuffer *buffer)
         else
         {
             tab[Bottom->x][Bottom->y] = 0;
-            drawSquare_(Bottom->x * 8, Bottom->y * 8, 8, colFond, buffer);
+            drawSquare_Sl(Bottom->x * 8, Bottom->y * 8, 8, colFond, buffer);
             Bottom = Pos_pop(Bottom);
         }
 

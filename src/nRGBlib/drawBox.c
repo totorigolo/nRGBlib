@@ -108,6 +108,18 @@ inline void drawBox(Box *box, Color c, ScreenBuffer buffer)
 {
     drawBox_(box->x, box->y, box->w, box->h, c, buffer);
 }
+// Sl = slower
+void drawBox_Sl(int16_t x, int16_t y, int16_t w, int16_t h, Color c, ScreenBuffer buffer)
+{
+    int32_t i, j;
+    for (i = x; i < (x + w); i++)
+        for (j = y; j < (y + h); j++)
+            setPixel(i, j, c, buffer);
+}
+inline void drawBoxSl(Box *box, Color c, ScreenBuffer buffer)
+{
+    drawBox_(box->x, box->y, box->w, box->h, c, buffer);
+}
 
 /// Draw a square in color
 inline void drawSquare_(int16_t x, int16_t y, int16_t side, Color c, ScreenBuffer buffer)
@@ -117,4 +129,13 @@ inline void drawSquare_(int16_t x, int16_t y, int16_t side, Color c, ScreenBuffe
 inline void drawSquare(Square *s, Color c, ScreenBuffer buffer)
 {
     drawBox_(s->x, s->y, s->side, s->side, c, buffer);
+}
+// Sl = slower
+inline void drawSquare_Sl(int16_t x, int16_t y, int16_t side, Color c, ScreenBuffer buffer)
+{
+    drawBox_Sl(x, y, side, side, c, buffer);
+}
+inline void drawSquareSl(Square *s, Color c, ScreenBuffer buffer)
+{
+    drawBox_Sl(s->x, s->y, s->side, s->side, c, buffer);
 }
