@@ -125,14 +125,11 @@ Problèmes connus et dépanages :
 Le bug tracker officiel est disponible à cette adresse :
 https://bitbucket.org/totorigolo/nrgblib/issues
 
-Support and suggestions
+Support et suggestions
 =======================
 
-Forum: http://www.omnimaga.org/index.php?board=136.0
-Issues and enhancements tracker: http://www.unsads.com/projects/nsptools
-General TI-Nspire hacking wiki: http://hackspire.unsads.com
-Development version of the source code:
-  https://www.unsads.com/scm/svn/nsptools/Ndless/trunk (guest/guest)
+ - FR : http://tiplanet.org/forum/viewtopic.php?t=8597
+ - EN : http://www.omnimaga.org/index.php?topic=12134
 
 Remerciements :
 ===============

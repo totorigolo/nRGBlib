@@ -124,6 +124,12 @@ Troubleshooting:
 The official bug tracker is available at:
 https://bitbucket.org/totorigolo/nrgblib/issues
 
+Support and suggestions
+=======================
+
+ - FR : http://tiplanet.org/forum/viewtopic.php?t=8597
+ - EN : http://www.omnimaga.org/index.php?topic=12134
+
 Many thanks to:
 ================
 
