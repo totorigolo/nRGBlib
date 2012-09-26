@@ -16,8 +16,8 @@
 #include <os.h>
 #include <nCOMMON.h>
 
-/// Display the buffer on the screen
-void display(ScreenBuffer buffer)
+/// Copy one buffer in one other
+void copyBuffers(ScreenBuffer source, ScreenBuffer dest)
 {
-    memcpy(SCREEN_BASE_ADDRESS, buffer, SCREEN_BYTES_SIZE);
+    memcpy(dest, source, SCREEN_BYTES_SIZE);
 }

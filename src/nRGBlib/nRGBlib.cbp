@@ -5,39 +5,39 @@
 		<Option title="nRGBlib" />
 		<Option makefile_is_custom="1" />
 		<Option pch_mode="2" />
-		<Option compiler="gcc" />
+		<Option compiler="armelfgcc" />
 		<Build>
 			<Target title="all">
 				<Option type="4" />
-				<Option compiler="gcc" />
+				<Option compiler="armelfgcc" />
 			</Target>
 			<Target title="clean">
 				<Option type="4" />
-				<Option compiler="gcc" />
+				<Option compiler="armelfgcc" />
 			</Target>
 			<Target title="clean all">
 				<Option type="4" />
-				<Option compiler="gcc" />
+				<Option compiler="armelfgcc" />
 			</Target>
 			<Target title="samples">
 				<Option type="4" />
-				<Option compiler="gcc" />
+				<Option compiler="armelfgcc" />
 			</Target>
 			<Target title="rsamples">
 				<Option type="4" />
-				<Option compiler="gcc" />
+				<Option compiler="armelfgcc" />
 			</Target>
 			<Target title="all_sam">
 				<Option type="4" />
-				<Option compiler="gcc" />
+				<Option compiler="armelfgcc" />
 			</Target>
 			<Target title="all_rsam">
 				<Option type="4" />
-				<Option compiler="gcc" />
+				<Option compiler="armelfgcc" />
 			</Target>
 			<Target title="clr_all_rsam">
 				<Option type="4" />
-				<Option compiler="gcc" />
+				<Option compiler="armelfgcc" />
 			</Target>
 		</Build>
 		<Compiler>
@@ -72,6 +72,10 @@
 		</Unit>
 		<Unit filename="..\include\nTILE.h">
 			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="..\samples\8bpp\Makefile" />
+		<Unit filename="..\samples\8bpp\main.c">
+			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="..\samples\CXSnake\Makefile">
 			<Option target="&lt;{~None~}&gt;" />
@@ -138,43 +142,42 @@
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="..\samples\newvox\Makefile" />
+		<Unit filename="..\samples\newvox\main.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Makefile">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="clearBuffer.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="clearScreen.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="copyBuffers.c">
+			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="copyScreenToBuffer.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="deleteImage.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="display.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="drawBox.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="drawChar.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="drawCircle.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="drawDisc.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="drawImage.c">
 			<Option compilerVar="CC" />
@@ -184,19 +187,15 @@
 		</Unit>
 		<Unit filename="drawLine.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="drawStr.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="drawTile.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="drawTriangle.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="getImagePixel.c">
 			<Option compilerVar="CC" />
@@ -212,14 +211,12 @@
 		</Unit>
 		<Unit filename="maths.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="setImage.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="setPixel.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Extensions>
 			<code_completion />

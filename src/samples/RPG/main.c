@@ -115,7 +115,7 @@ int main(int argc, char* argv[])
                 tile.offset_x = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].x;
                 tile.offset_y = myMap.tileset->tiles[myMap.map[ti + tj * myMap.w]].y;
 
-                drawImagesubrect(&tile, buffer);
+                drawImageSubrect(&tile, buffer);
             }
         }
 

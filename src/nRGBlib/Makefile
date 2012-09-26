@@ -6,8 +6,7 @@ LD = nspire-ld
 LDFLAGS = s -nostdlib
 OBJCOPY := "$(shell (which arm-elf-objcopy arm-none-eabi-objcopy arm-linux-gnueabi-objcopy | head -1) 2>/dev/null)"
 LIB = libRGB.a
-#DISTDIR = ../lib
-DISTDIR = ../../../ndless-v3.1/sdk/lib
+DISTDIR = ../lib
 vpath %.a $(DISTDIR)
 OBJS = $(patsubst %.c,%.o,$(wildcard *.c))
 

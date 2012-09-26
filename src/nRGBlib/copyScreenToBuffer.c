@@ -15,7 +15,6 @@
 
 #include <os.h>
 #include <nCOMMON.h>
-#include <nGEO.h>
 
 /// Display the buffer on the screen
 void copyScreenToBuffer(ScreenBuffer buffer)

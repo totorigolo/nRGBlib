@@ -3,7 +3,9 @@
 
 #include "nCOMMON.h"
 #include "nGEO.h"
-#include "nTILE.h"
 #include "nGUI.h"
+#include "nIMAGE.h"
+#include "nMATHS.h"
+#include "nTILE.h"
 
 #endif // NRGBLIB_H_INCLUDED

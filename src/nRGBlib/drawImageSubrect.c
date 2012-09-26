@@ -17,7 +17,7 @@
 #include <nIMAGE.h>
 
 /// Draw the image's subrect on the given buffer
-void drawImagesubrect(ImageSubrect *imgsub, ScreenBuffer buffer)
+void drawImageSubrect(ImageSubrect *imgsub, ScreenBuffer buffer)
 {
     int i, j, jmax, width, x;
 
