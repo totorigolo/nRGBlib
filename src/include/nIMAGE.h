@@ -27,13 +27,13 @@ BOOL loadImage(Image *img, char *path);
 void drawImage(Image *img, ScreenBuffer buffer);
 
 /// Get a pixel from any image
-inline void* getImagePixel(uint16_t x, uint16_t y, Image *img);
+void* getImagePixel(uint16_t x, uint16_t y, Image *img);
 
 /// Get a pixel from a 4bpp image
-inline void* getImagePixel_4bpp(uint16_t x, uint16_t y, Image *img);
+void* getImagePixel_4bpp(uint16_t x, uint16_t y, Image *img);
 
 /// Get a pixel from a 16bpp image
-inline void* getImagePixel_16bpp(uint16_t x, uint16_t y, Image *img);
+void* getImagePixel_16bpp(uint16_t x, uint16_t y, Image *img);
 
 /* Image sub-rect */
 
@@ -54,12 +54,12 @@ void setImage(ImageSubrect *imgsub, Image *img);
 void drawImageSubrect(ImageSubrect *imgsub, ScreenBuffer buffer);
 
 /// Get a pixel from any image subrect
-inline void* getImageSubPixel(uint16_t x, uint16_t y, ImageSubrect *sub);
+void* getImageSubPixel(uint16_t x, uint16_t y, ImageSubrect *sub);
 
 /// Get a pixel from a 4bpp image subrect
-inline void* getImageSubPixel_4bpp(uint16_t x, uint16_t y, ImageSubrect *sub);
+void* getImageSubPixel_4bpp(uint16_t x, uint16_t y, ImageSubrect *sub);
 
 /// Get a pixel from a 16bpp image subrect
-inline void* getImageSubPixel_16bpp(uint16_t x, uint16_t y, ImageSubrect *sub);
+void* getImageSubPixel_16bpp(uint16_t x, uint16_t y, ImageSubrect *sub);
 
 #endif // NIMAGE_H_INCLUDED

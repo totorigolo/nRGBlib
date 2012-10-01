@@ -40,7 +40,7 @@ void drawDisc_(int16_t x, int16_t y, int16_t radius, Color c, ScreenBuffer buffe
         x2++;
     }
 }
-inline void drawDisc(Disc *d, Color c, ScreenBuffer buffer)
+void drawDisc(Disc *d, Color c, ScreenBuffer buffer)
 {
     drawDisc_(d->x, d->y, d->radius, c, buffer);
 }

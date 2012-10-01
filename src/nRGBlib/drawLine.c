@@ -21,9 +21,9 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBu
 {
     int16_t d, dx, dy, aincr, bincr, xincr, yincr, x, y, tmp;
 
-    if (abs(x2 - x1) < abs(y2 - y1)) // Parcours par l'axe vertical
+    if (abs(x2 - x1) < abs(y2 - y1)) // Run through the vertical axis
     {
-        if (y1 > y2) // Echange les nombres
+        if (y1 > y2) // Swap numbers
         {
             tmp = x1; x1 = x2; x2 = tmp;
             tmp = y1; y1 = y2; y2 = tmp;
@@ -53,9 +53,9 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBu
             setPixel(x, y, c, buffer);
         }
     }
-    else // Parcours l'axe horizontal
+    else // Run through the horyzontal axis
     {
-        if (x1 > x2) // Echange les nombres
+        if (x1 > x2) // Swap numbers
         {
             tmp = x1; x1 = x2; x2 = tmp;
             tmp = y1; y1 = y2; y2 = tmp;
@@ -85,7 +85,7 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBu
         }
     }
 }
-inline void drawLine(Line *l, Color c, ScreenBuffer buffer)
+void drawLine(Line *l, Color c, ScreenBuffer buffer)
 {
     drawLine_(l->x1, l->y1, l->x2, l->y2, c, buffer);
 }

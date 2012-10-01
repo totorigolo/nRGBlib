@@ -12,9 +12,10 @@
  * RCSID $Id$
  *****************************************************************************/
 #include <nMATHS.h>
+#include <os.h>
 
-/// Choose a random number (based on the number of times this function is called)
-int rand()
+/// Choose a SEmi-RANDom number (based on the number of times this function is called -> the results are always the same ;D)
+int serand()
 {
     static int m_w = 56789;
     static int m_z = 38765;
@@ -25,7 +26,11 @@ int rand()
     return (m_z << 16) + m_w;
 }
 /// \min included et \max included
-inline int randMinMax(int min, int max)
+int randMinMax(int min, int max)
 {
     return abs(rand()) % (max - min + 1) + min;
+}
+int serandMinMax(int min, int max)
+{
+    return abs(serand()) % (max - min + 1) + min;
 }

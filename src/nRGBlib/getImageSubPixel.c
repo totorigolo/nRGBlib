@@ -17,7 +17,7 @@
 #include <nIMAGE.h>
 
 /// Get a pixel from any image subrect
-inline void* getImageSubPixel(uint16_t x, uint16_t y, ImageSubrect *sub)
+void* getImageSubPixel(uint16_t x, uint16_t y, ImageSubrect *sub)
 {
     if (!has_colors || !lcd_isincolor())
         return getImageSubPixel_4bpp(x, y, sub);
@@ -27,13 +27,13 @@ inline void* getImageSubPixel(uint16_t x, uint16_t y, ImageSubrect *sub)
 }
 
 /// Get a pixel from a 4bpp image subrect
-inline void* getImageSubPixel_4bpp(uint16_t x, uint16_t y, ImageSubrect *sub)
+void* getImageSubPixel_4bpp(uint16_t x, uint16_t y, ImageSubrect *sub)
 {
     return getImagePixel_4bpp(x + sub->offset_x, (y + sub->offset_y), sub->image);
 }
 
 /// Get a pixel from a 16bpp image subrect
-inline void* getImageSubPixel_16bpp(uint16_t x, uint16_t y, ImageSubrect *sub)
+void* getImageSubPixel_16bpp(uint16_t x, uint16_t y, ImageSubrect *sub)
 {
     return getImagePixel_16bpp((x + sub->offset_x), (y + sub->offset_y), sub->image);
 }

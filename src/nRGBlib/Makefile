@@ -1,7 +1,7 @@
 AS = nspire-as
 AR := "$(shell (which arm-elf-ar arm-none-eabi-ar arm-linux-gnueabi-ar | head -1) 2>/dev/null)"
 GCC = nspire-gcc
-GCCFLAGS = -O3 -nostdlib -I"../include"
+GCCFLAGS = -O3 -Os -std=c99 -marm -nostdlib -I"../include"
 LD = nspire-ld
 LDFLAGS = s -nostdlib
 OBJCOPY := "$(shell (which arm-elf-objcopy arm-none-eabi-objcopy arm-linux-gnueabi-objcopy | head -1) 2>/dev/null)"
