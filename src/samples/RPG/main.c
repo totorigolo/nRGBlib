@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
     ScreenBuffer buffer = GetNewScreenBuffer();
 
     // Images' path
-    char pathPerso[] = "/documents/Examples/rpg/imgPerso.tns";
+    char pathPerso[] = "/documents/Examples/rpg/imgPerso.nif.tns";
 
     // Tileset
     Tileset tileset;
