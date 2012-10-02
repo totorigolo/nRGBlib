@@ -11,16 +11,23 @@ int main(int argc, char* argv[])
     int speed = 1;
     Image image;
 
-    // Ask for the image
+    // Get the image path from argv
     char *path;
-    show_msgbox("Ouvrir une image", "Rentrez le chemin de l'image a ouvrir, ou pressez Esc.\nOuvre uniquement les images converties.");
-    if (show_msg_user_input("Ouvrir une image", "", "/documents/ndless/img/super.cool.tns", &path) < 0)
-        return 0;
+    if (argc > 1)
+    {
+        strcpy(path, argv[1]);
+    }
+    // Or ask for the image
+    else
+    {
+        show_msgbox("Ouvrir une image", "Rentrez le chemin de l'image a ouvrir, ou pressez Esc.\nOuvre uniquement les images converties.");
+        if (show_msg_user_input("Ouvrir une image", "", "/documents/ndless/img.nif.tns", &path) < 0)
+            return 0;
+    }
 
     // Load the image
     initImage(&image);
     loadImage(&image, path);
-    free(path);
 
     clearScreen(RGB(200, 200, 200), buffer);
     while (1)
