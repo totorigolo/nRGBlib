@@ -24,14 +24,14 @@ void drawCircle_(int16_t x, int16_t y, int16_t radius, Color c, ScreenBuffer buf
 
     while (x2 <= y2) // Tant qu'on est dans le second octant
     {
-        setPixel( x2 + x,  y2 + y, c, buffer);
-        setPixel( y2 + x,  x2 + y, c, buffer);
-        setPixel(-x2 + x,  y2 + y, c, buffer);
-        setPixel(-y2 + x,  x2 + y, c, buffer);
-        setPixel( x2 + x, -y2 + y, c, buffer);
-        setPixel( y2 + x, -x2 + y, c, buffer);
-        setPixel(-x2 + x, -y2 + y, c, buffer);
-        setPixel(-y2 + x, -x2 + y, c, buffer);
+        setPixel_s( x2 + x,  y2 + y, c, buffer);
+        setPixel_s( y2 + x,  x2 + y, c, buffer);
+        setPixel_s(-x2 + x,  y2 + y, c, buffer);
+        setPixel_s(-y2 + x,  x2 + y, c, buffer);
+        setPixel_s( x2 + x, -y2 + y, c, buffer);
+        setPixel_s( y2 + x, -x2 + y, c, buffer);
+        setPixel_s(-x2 + x, -y2 + y, c, buffer);
+        setPixel_s(-y2 + x, -x2 + y, c, buffer);
 
         if (m > 0) // Choix du point
         {

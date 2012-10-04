@@ -114,7 +114,7 @@ void drawBox_Sl(int16_t x, int16_t y, int16_t w, int16_t h, Color c, ScreenBuffe
     int32_t i, j;
     for (i = x; i < (x + w); i++)
         for (j = y; j < (y + h); j++)
-            setPixel(i, j, c, buffer);
+            setPixel_s(i, j, c, buffer);
 }
 void drawBoxSl(Box *box, Color c, ScreenBuffer buffer)
 {

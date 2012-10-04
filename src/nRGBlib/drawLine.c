@@ -38,7 +38,7 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBu
         x = x1;
         y = y1;
 
-        setPixel(x, y, c, buffer);
+        setPixel_s(x, y, c, buffer);
 
         for (y = y1+1; y <= y2; ++y)
         {
@@ -50,7 +50,7 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBu
             else
                 d += bincr;
 
-            setPixel(x, y, c, buffer);
+            setPixel_s(x, y, c, buffer);
         }
     }
     else // Run through the horyzontal axis
@@ -70,7 +70,7 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBu
         x = x1;
         y = y1;
 
-        setPixel(x, y, c, buffer);
+        setPixel_s(x, y, c, buffer);
 
         for (x = x1+1; x <= x2; ++x)
         {
@@ -81,7 +81,7 @@ void drawLine_(int16_t x1, int16_t y1, int16_t x2, int16_t y2, Color c, ScreenBu
             }
             else
                 d += bincr;
-            setPixel(x, y, c, buffer);
+            setPixel_s(x, y, c, buffer);
         }
     }
 }

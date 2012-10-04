@@ -266,12 +266,12 @@ main(int argc, char *argv[])
         a += sa;
 
         /* Slowly reset the angle to 0 */
-        if(sa != 0)
+        if (sa != 0)
         {
             if(sa < 0)
-                sa += 0.01;
+                sa += 0.001;
             else
-                sa -= 0.01;
+                sa -= 0.001;
         }
 
         /* User input */
@@ -294,11 +294,11 @@ main(int argc, char *argv[])
         }
         if(isKeyPressed(KEY_NSPIRE_RIGHT) || isKeyPressed(KEY_NSPIRE_6))
         {
-            sa += 0.03;
+            sa += 0.003;
         }
         if(isKeyPressed(KEY_NSPIRE_LEFT) || isKeyPressed(KEY_NSPIRE_4))
         {
-            sa -= 0.03;
+            sa -= 0.003;
         }
     }
 
@@ -306,15 +306,4 @@ main(int argc, char *argv[])
     free(screen);
     exit(0);
 }
-
-
-
-
-
-
-
-
-
-
-
 

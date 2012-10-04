@@ -45,6 +45,7 @@ void copyScreenToBuffer(ScreenBuffer buffer);
 void copyBuffers(ScreenBuffer source, ScreenBuffer dest);
 
 /// Draw a pixel in color
+void setPixel_s(int16_t x, int16_t y, Color c, ScreenBuffer buffer); // secured
 void setPixel(int16_t x, int16_t y, Color c, ScreenBuffer buffer);
 
 /// Clear screen and buffer with a color (give NULL as buffer to not delete)
