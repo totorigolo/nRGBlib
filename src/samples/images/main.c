@@ -10,24 +10,26 @@ int main(int argc, char* argv[])
     // Create the image
     int speed = 1;
     Image image;
+    initImage(&image);
 
     // Get the image path from argv
-    char *path;
     if (argc > 1)
     {
+        char path[80];
         strcpy(path, argv[1]);
+        argc = 1;
+        loadImage(&image, path);
     }
     // Or ask for the image
     else
     {
+        char *path;
         show_msgbox("Ouvrir une image", "Rentrez le chemin de l'image a ouvrir, ou pressez Esc.\nOuvre uniquement les images converties.");
         if (show_msg_user_input("Ouvrir une image", "", "/documents/ndless/img.nif.tns", &path) < 0)
             return 0;
+        loadImage(&image, path);
+        free(path);
     }
-
-    // Load the image
-    initImage(&image);
-    loadImage(&image, path);
 
     clearScreen(RGB(200, 200, 200), buffer);
     while (1)
